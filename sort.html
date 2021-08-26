@@ -1,0 +1,434 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>sort - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>1.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>2.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>3.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>4.</strong> cut</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>5.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>6.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>7.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html class=active><strong aria-hidden=true>8.</strong> sort</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=sort><a class=header href=#sort>sort</a></h1><p>The <code>sort</code> command provides a wide variety of features. In addition to alphabetical ordering, it supports various numerical formats. You can also sort based on particular column(s). And there are nifty features like merging already sorted input, debugging, whether input is sorted and so on.<h2 id=default-sort-and-collating-order><a class=header href=#default-sort-and-collating-order>Default sort and Collating order</a></h2><p>By default, <code>sort</code> orders the input in ascending order. If you know about <a href=https://ascii.cl/>ASCII codepoints</a>, do you agree that the following two examples are showing the correct expected output?<pre><code class=language-bash>$ cat greeting.txt
+Hi there
+Have a nice day
+
+# extract and sort space separated words
+$ &LTgreeting.txt tr ' ' '\n' | sort
+a
+day
+Have
+Hi
+nice
+there
+
+# note that newline is there for the final line even if not present in input
+$ printf '(banana)\n[apple]\n{cherry}' | sort
+[apple]
+(banana)
+{cherry}
+</code></pre><p>From <a href=https://www.gnu.org/software/coreutils/manual/coreutils.html#sort-invocation>sort manual</a>:<blockquote><p>Unless otherwise specified, all comparisons use the character collating sequence specified by the LC_COLLATE locale.<p>If you use a non-POSIX locale (e.g., by setting <code>LC_ALL</code> to <code>en_US</code>), then sort may produce output that is sorted differently than you’re accustomed to. In that case, set the <code>LC_ALL</code> environment variable to <code>C</code>. Note that setting only <code>LC_COLLATE</code> has two problems. First, it is ineffective if <code>LC_ALL</code> is also set. Second, it has undefined behavior if <code>LC_CTYPE</code> (or <code>LANG</code>, if <code>LC_CTYPE</code> is unset) is set to an incompatible value. For example, you get undefined behavior if <code>LC_CTYPE</code> is <code>ja_JP.PCK</code> but <code>LC_COLLATE</code> is <code>en_US.UTF-8</code>.</blockquote><p>All my <code>locale</code> settings are based on <code>en_IN</code>, which is different from the POSIX sorting order. So, the fact to remember is that <code>sort</code> obeys the rules of the current <code>locale</code>. If you want POSIX sorting, one option is to use <code>LC_ALL=C</code> as shown below.<pre><code class=language-bash>$ &LTgreeting.txt tr ' ' '\n' | LC_ALL=C sort
+Have
+Hi
+a
+day
+nice
+there
+
+$ printf '(banana)\n[apple]\n{cherry}' | LC_ALL=C sort
+(banana)
+[apple]
+{cherry}
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Another benefit of <code>C</code> locale is that it will be significantly faster compared to Unicode parsing and sorting rules.</blockquote><blockquote><p><img src=./images/info.svg alt=info> Use <code>-f</code> option if you want to explicitly ignore case. See also <a href=https://www.gnu.org/software/coreutils/faq/#Sort-does-not-sort-in-normal-order_0021>GNU Core Utilities FAQ: Sort does not sort in normal order!</a>.</blockquote><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://unix.stackexchange.com/q/75341/109046>this unix.stackexchange thread</a> if you want to create your own custom sort order.</blockquote><h2 id=ignoring-headers><a class=header href=#ignoring-headers>Ignoring headers</a></h2><p>You can use <code>head</code> and <code>tail</code> commands to keep the header in position and sort only the rest of the input. Here's an example:<pre><code class=language-bash>$ cat scores.csv
+Name,Maths,Physics,Chemistry
+Ith,100,100,100
+Cy,97,98,95
+Lin,78,83,80
+
+$ cat <(head -n1 scores.csv) <(tail -n +2 scores.csv | sort)
+Name,Maths,Physics,Chemistry
+Cy,97,98,95
+Ith,100,100,100
+Lin,78,83,80
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> You can also group commands with <code>()</code> or <code>{}</code> instead of using <code>cat</code> and <a href=https://www.gnu.org/software/bash/manual/bash.html#Process-Substitution>process substitution</a>. See <a href=https://www.gnu.org/software/bash/manual/bash.html#Command-Grouping>bash manual: Grouping Commands</a> for more details.</blockquote><pre><code class=language-bash>$ { head -n1 scores.csv ; tail -n +2 scores.csv | sort ; } > op.txt
+
+$ cat op.txt
+Name,Maths,Physics,Chemistry
+Cy,97,98,95
+Ith,100,100,100
+Lin,78,83,80
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://unix.stackexchange.com/q/11856/109046>this unix.stackexchange thread</a> for a nice shortcut when you want to pipe the output of another command to any other command. The header will be displayed as is and only the rest of the <code>stdin</code> data will be processed.</blockquote><h2 id=dictionary-sort><a class=header href=#dictionary-sort>Dictionary sort</a></h2><p>The <code>-d</code> option will consider only alphabets, numbers and blanks for sorting. Space and tab characters are considered as blanks, but this would also depend on the locale.<pre><code class=language-bash>$ printf '(banana)\n[apple]\n{cherry}' | LC_ALL=C sort -d
+[apple]
+(banana)
+{cherry}
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Use the <code>-i</code> option if you want to ignore only the non-printing characters.</blockquote><h2 id=reversed-order><a class=header href=#reversed-order>Reversed order</a></h2><p>The <code>-r</code> option will reverse the output order. Note that this doesn't change how <code>sort</code> performs comparisons, only the output is reversed. You'll see an example later where this distinction becomes clearer.<pre><code class=language-bash>$ printf '(banana)\n[apple]\n{cherry}' | sort -r
+{cherry}
+(banana)
+[apple]
+</code></pre><h2 id=numeric-sort><a class=header href=#numeric-sort>Numeric sort</a></h2><p><code>sort</code> provides various options to work with numeric formats. For most cases, the <code>-n</code> option is enough. Here's an example:<pre><code class=language-bash># default sort isn't suited for numbers
+$ printf '20\n2\n3' | sort
+2
+20
+3
+
+# -n helps in this case
+$ printf '20\n2\n3' | sort -n
+2
+3
+20
+</code></pre><p>The <code>-n</code> option can handle negative and floating-point numbers as well. The decimal point and the thousands separator characters will depend on the <code>locale</code> settings.<pre><code class=language-bash>$ cat mixed_numbers.txt
+1,234
+42
+31.24
+-100
+42
+5678
+
+# , is the thousands separator in en_IN
+# . is the decimal point in en_IN
+$ sort -n mixed_numbers.txt
+-100
+31.24
+42
+42
+1,234
+5678
+</code></pre><p>Use the <code>-g</code> option if your input can have the <code>+</code> prefix for positive numbers or follows the <a href=https://en.wikipedia.org/wiki/Scientific_notation#E_notation>E scientific notation</a>.<pre><code class=language-bash>$ cat e_notation.txt
++120
+-1.53
+3.14e+4
+42.1e-2
+
+$ sort -g e_notation.txt
+-1.53
+42.1e-2
++120
+3.14e+4
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Unless otherwise specified, <code>sort</code> will break ties by using the content of entire input line. In the case of <code>-n</code> option, sorting will work even if there are extra characters after the number. Those extra characters will affect the output order if the numbers are equal. If a line doesn't start with a number (excluding blanks), it will be treated as <code>0</code>.</blockquote><pre><code class=language-bash># 'b' comes before 'p'
+$ printf '2 pins\n13 pens\n2 balls' | sort -n
+2 balls
+2 pins
+13 pens
+
+# 'z' and 'a2p' will be treated as '0'
+# 'a' comes before 'z'
+$ printf 'z\na2p\n13p\n2b\n-1\n    10' | sort -n
+-1
+a2p
+z
+2b
+    10
+13p
+</code></pre><h2 id=human-numeric-sort><a class=header href=#human-numeric-sort>Human numeric sort</a></h2><p>Commands like <code>du</code> (disk usage) have <code>-h</code> and <code>--si</code> options to display numbers with <a href=https://en.wikipedia.org/wiki/International_System_of_Units>SI</a> suffixes like <code>k</code>, <code>K</code>, <code>M</code>, <code>G</code> and so on. In such cases, you can use <code>sort -h</code> to order them.<pre><code class=language-bash>$ cat file_size.txt
+104K    power.log
+316M    projects
+746K    report.log
+20K     sample.txt
+1.4G    games
+
+$ sort -hr file_size.txt
+1.4G    games
+316M    projects
+746K    report.log
+104K    power.log
+20K     sample.txt
+</code></pre><h2 id=version-sort><a class=header href=#version-sort>Version sort</a></h2><p>The <code>-V</code> option is useful when you have a mix of alphabets and digits. It also helps when you want to treat digits after a decimal point as whole numbers, for example <code>1.10</code> should be greater than <code>1.2</code>.<pre><code class=language-bash>$ printf '1.10\n1.2' | sort -n
+1.10
+1.2
+$ printf '1.10\n1.2' | sort -V
+1.2
+1.10
+
+$ cat versions.txt
+file2
+cmd5.2
+file10
+cmd1.6
+file5
+cmd5.10
+$ sort -V versions.txt
+cmd1.6
+cmd5.2
+cmd5.10
+file2
+file5
+file10
+</code></pre><p>Here's an example of dealing with numbers reported by the <code>time</code> command (assuming all the entries have the same format).<pre><code class=language-bash>$ cat timings.txt
+5m35.363s
+3m20.058s
+4m11.130s
+3m42.833s
+4m3.083s
+
+$ sort -V timings.txt
+3m20.058s
+3m42.833s
+4m3.083s
+4m11.130s
+5m35.363s
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://www.gnu.org/software/coreutils/manual/coreutils.html#Version-sort-ordering>Version sort ordering</a> for more details. Note that the <code>ls</code> command uses lowercase <code>-v</code> for this task.</blockquote><h2 id=random-sort><a class=header href=#random-sort>Random sort</a></h2><p>The <code>-R</code> option will display the output in random order. Unlike <code>shuf</code>, this option will always place identical lines next to each other due to the implementation.<pre><code class=language-bash># the two lines with '42' will always be next to each other
+$ sort -R mixed_numbers.txt
+31.24
+5678
+42
+42
+1,234
+-100
+
+# duplicates can end up anywhere
+$ shuf mixed_numbers.txt
+-100
+1,234
+42
+31.24
+42
+5678
+</code></pre><h2 id=unique-sort><a class=header href=#unique-sort>Unique sort</a></h2><p>The <code>-u</code> option will keep only the first copy of lines that are deemed to be equal.<pre><code class=language-bash># (10) and [10] are deemed equal in dictionary sort
+$ printf '(10)\n[20]\n[10]' | sort -du
+(10)
+[20]
+
+$ cat purchases.txt
+coffee
+tea
+washing powder
+coffee
+toothpaste
+tea
+soap
+tea
+$ sort -u purchases.txt
+coffee
+soap
+tea
+toothpaste
+washing powder
+</code></pre><p>As seen earlier, <code>-n</code> option will work even if there are extra characters after the number. When <code>-u</code> option is also used, only the first such copy will be retained. Use the <code>uniq</code> command if you want to remove duplicates based on the whole line.<pre><code class=language-bash>$ printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -nu
+2 balls
+13 pens
+
+# note that only the output order is reversed
+# use tac if you want the last duplicate to be preserved instead of first
+$ printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -r -nu
+13 pens
+2 balls
+
+# use uniq when the entire line contents should be compared
+$ printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -n | uniq
+2 balls
+2 pins
+13 pens
+</code></pre><p>You can use the <code>-f</code> option to ignore case while determining duplicates.<pre><code class=language-bash>$ printf 'cat\nbat\nCAT\ncar\nbat\n' | sort -u
+bat
+car
+cat
+CAT
+
+# first copy between 'cat' and 'CAT' is retained
+$ printf 'cat\nbat\nCAT\ncar\nbat\n' | sort -fu
+bat
+car
+cat
+</code></pre><h2 id=column-sort><a class=header href=#column-sort>Column sort</a></h2><p>The <code>-k</code> option allows you to sort based on specific column(s) instead of entire input line. By default, the empty string between non-blank and blank characters is considered as the separator and thus the blanks are also part of the field contents. The effect of blanks and mitigation will be discussed later.<p>The <code>-k</code> option accepts arguments in various ways. You can specify starting and ending column numbers separated by a comma. If you specify only the starting column, the last column will be used as the ending column. Usually you just want to sort by a single column, in which case the same number is specified as both the starting and ending columns. Here's an example:<pre><code class=language-bash>$ cat shopping.txt
+apple   50
+toys    5
+Pizza   2
+mango   25
+Banana  10
+
+# sort based on 2nd column numbers
+$ sort -k2,2n shopping.txt
+Pizza   2
+toys    5
+Banana  10
+mango   25
+apple   50
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Note that in the above example, the <code>-n</code> option was also appended to the <code>-k</code> option. This makes it specific to that column and overrides global options, if any. Also, remember that the entire line will be used to break ties, unless otherwise specified.</blockquote><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. Use <code>\0</code> to specify NUL as the separator. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character. When <code>-t</code> option is used, the field separator won't be part of the field contents. Here's an example:<pre><code class=language-bash># department,name,marks
+$ cat marks.csv
+ECE,Raj,53
+ECE,Joel,72
+EEE,Moi,68
+CSE,Surya,81
+EEE,Raj,88
+CSE,Moi,62
+EEE,Tia,72
+ECE,Om,92
+CSE,Amy,67
+
+# name column is the primary sort key
+# entire line content will be used for breaking ties
+$ sort -t, -k2,2 marks.csv
+CSE,Amy,67
+ECE,Joel,72
+CSE,Moi,62
+EEE,Moi,68
+ECE,Om,92
+ECE,Raj,53
+EEE,Raj,88
+CSE,Surya,81
+EEE,Tia,72
+</code></pre><p>You can use the <code>-k</code> option multiple times to specify your own order of tie breakers. Entire line will still be used to break ties if needed.<pre><code class=language-bash># second column is the primary key
+# reversed numeric sort on third column is the secondary key
+# entire line will be used only if there are still tied entries
+$ sort -t, -k2,2 -k3,3nr marks.csv
+CSE,Amy,67
+ECE,Joel,72
+EEE,Moi,68
+CSE,Moi,62
+ECE,Om,92
+EEE,Raj,88
+ECE,Raj,53
+CSE,Surya,81
+EEE,Tia,72
+
+# sort by month first and then the day
+# -M option sorts based on abbreviated month names
+$ printf 'Aug-20\nMay-5\nAug-3' | sort -t- -k1,1M -k2,2n
+May-5
+Aug-3
+Aug-20
+</code></pre><p>Use the <code>-s</code> option to retain the original order of input lines when two or more lines are deemed equal. You can still use multiple keys to specify your own tie breakers, <code>-s</code> only prevents the last resort comparison.<pre><code class=language-bash>$ sort -t, -s -k2,2 marks.csv
+CSE,Amy,67
+ECE,Joel,72
+EEE,Moi,68
+CSE,Moi,62
+ECE,Om,92
+ECE,Raj,53
+EEE,Raj,88
+CSE,Surya,81
+EEE,Tia,72
+</code></pre><p>The <code>-u</code> option, as discussed earlier, will retain only the first copy of lines that are deemed equal.<pre><code class=language-bash>$ sort -t, -u -k2,2 marks.csv
+CSE,Amy,67
+ECE,Joel,72
+EEE,Moi,68
+ECE,Om,92
+ECE,Raj,53
+CSE,Surya,81
+EEE,Tia,72
+</code></pre><h2 id=character-positions-within-columns><a class=header href=#character-positions-within-columns>Character positions within columns</a></h2><p>The <code>-k</code> option also accepts starting and ending character positions within the columns. These are specified after the column number, separated by a <code>.</code> character. If the character position is not specified for the ending column, the last character of that column is assumed.<p>The character positions start with <code>1</code> for the first character. Recall that when the <code>-t</code> option is used, the field separator is not part of the field contents.<pre><code class=language-bash># based on the second column number
+# 2.2 helps to ignore first character, otherwise -n won't have any effect here
+$ printf 'car,(20)\njeep,[10]\ntruck,(5)\nbus,[3]' | sort -t, -k2.2,2n
+bus,[3]
+truck,(5)
+jeep,[10]
+car,(20)
+
+# first character of the second column is the primary key
+# entire line acts as the last resort tie breaker
+$ printf 'car,(20)\njeep,[10]\ntruck,(5)\nbus,[3]' | sort -t, -k2.1,2.1
+car,(20)
+truck,(5)
+bus,[3]
+jeep,[10]
+</code></pre><p>The default blanks based separation works differently. The empty string between non-blank and blank characters is considered as the separator and thus the blanks are also part of the field contents. You can use the <code>-b</code> option to ignore such leading blanks of field contents.<pre><code class=language-bash># the second column here starts with a blank, hence the unexpected result
+$ printf 'car (20)\njeep [10]\ntruck (5)\nbus [3]' | sort -k2.2,2n
+bus [3]
+car (20)
+jeep [10]
+truck (5)
+
+# use -b in such cases to ignore leading blanks
+$ printf 'car (20)\njeep [10]\ntruck (5)\nbus [3]' | sort -k2.2b,2n
+bus [3]
+truck (5)
+jeep [10]
+car (20)
+</code></pre><h2 id=debugging><a class=header href=#debugging>Debugging</a></h2><p>The <code>--debug</code> option can help you identify issues if the output isn't what you expected. Here's the previously seen <code>-b</code> example, now with <code>--debug</code> enabled. The underscores in the debug output shows which portions of the input are used as primary key, secondary key and so on. The collating order being used is also shown in the output.<pre><code class=language-bash>$ printf 'car (20)\njeep [10]\ntruck (5)\nbus [3]' | sort -k2.2,2n --debug
+sort: using ‘en_IN’ sorting rules
+sort: leading blanks are significant in key 1; consider also specifying 'b'
+bus [3]
+    ^ no match for key
+_______
+car (20)
+    ^ no match for key
+________
+jeep [10]
+     ^ no match for key
+_________
+truck (5)
+      ^ no match for key
+_________
+
+$ printf 'car (20)\njeep [10]\ntruck (5)\nbus [3]' | sort -k2.2b,2n --debug
+sort: using ‘en_IN’ sorting rules
+bus [3]
+     _
+_______
+truck (5)
+       _
+_________
+jeep [10]
+      __
+_________
+car (20)
+     __
+________
+</code></pre><h2 id=check-if-sorted><a class=header href=#check-if-sorted>Check if sorted</a></h2><p>The <code>-c</code> options helps you spot the first unsorted entry in the given input. The <code>-C</code> option is similar but only affects the exit status. Note that these options will not work for multiple inputs.<pre><code class=language-bash>$ cat shopping.txt
+apple   50
+toys    5
+Pizza   2
+mango   25
+Banana  10
+
+$ sort -c shopping.txt
+sort: shopping.txt:3: disorder: Pizza   2
+
+$ sort -C shopping.txt
+$ echo $?
+1
+</code></pre><h2 id=specifying-output-file><a class=header href=#specifying-output-file>Specifying output file</a></h2><p>The <code>-o</code> option can be used to specify the output file to be used for saving the results.<pre><code class=language-bash>$ sort -R nums.txt -o rand_nums.txt
+
+$ cat rand_nums.txt
+1000
+3.14
+42
+</code></pre><p>You can use <code>-o</code> for in-place editing as well, but the documentation gives this warning:<blockquote><p>However, it is often safer to output to an otherwise-unused file, as data may be lost if the system crashes or sort encounters an I/O or other serious error while a file is being sorted in place. Also, sort with <code>--merge</code> (<code>-m</code>) can open the output file before reading all input, so a command like <code>cat F | sort -m -o F - G</code> is not safe as sort might start writing <code>F</code> before <code>cat</code> is done reading it.</blockquote><h2 id=merge-sort><a class=header href=#merge-sort>Merge sort</a></h2><p>The <code>-m</code> option is useful if you have one or more sorted input files and need a single sorted output file. Typically the use case is that you want to add newly obtained data to existing sorted data. In such cases, you can sort only the new data separately and then combine all the sorted inputs using the <code>-m</code> option. Here's a sample timing comparison between different combinations of sorted/unsorted inputs.<pre><code class=language-bash>$ shuf -n1000000 -i1-999999999999 > n1.txt
+$ shuf -n1000000 -i1-999999999999 > n2.txt
+$ sort -n n1.txt > n1_sorted.txt
+$ sort -n n2.txt > n2_sorted.txt
+
+$ time sort -n n1.txt n2.txt > op1.txt
+real    0m1.010s
+$ time sort -mn n1_sorted.txt <(sort -n n2.txt) > op2.txt
+real    0m0.535s
+$ time sort -mn n1_sorted.txt n2_sorted.txt > op3.txt
+real    0m0.218s
+
+$ diff -sq op1.txt op2.txt
+Files op.txt and op2.txt are identical
+$ diff -sq op1.txt op3.txt
+Files op1.txt and op3.txt are identical
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> You might wonder if you can improve the performance of a single large file using the <code>-m</code> option. By default, <code>sort</code> already uses the number of available processors to split the input and merge. You can use the <code>--parallel</code> option to customize this behavior.</blockquote><h2 id=nul-separator><a class=header href=#nul-separator>NUL separator</a></h2><p>Use <code>-z</code> option if you want to use NUL character as the line separator. In this scenario, <code>sort</code> will ensure to add a final NUL character even if not present in the input.<pre><code class=language-bash>$ printf 'cherry\0apple\0banana' | sort -z | cat -v
+apple^@banana^@cherry^@
+</code></pre><h2 id=further-reading><a class=header href=#further-reading>Further reading</a></h2><p>Options like <code>--compress-program</code>, <code>--files0-from</code> aren't covered in this book. See <a href=https://www.gnu.org/software/coreutils/manual/coreutils.html#sort-invocation>sort manual</a> for details and examples. See also:<ul><li><a href=https://unix.stackexchange.com/q/279096/109046>unix.stackexchange: Scalability of sort for gigantic files</a><li><a href=https://stackoverflow.com/q/3832068/4082052>stackoverflow: Sort by last field when the number of fields varies</a><li><a href=https://wiki.archlinux.org/title/locale>Arch wiki: locale</a><li><a href=https://www.shellhacks.com/linux-define-locale-language-settings/>ShellHacks: locale and language settings</a></ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=fold-fmt.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=fold-fmt.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
