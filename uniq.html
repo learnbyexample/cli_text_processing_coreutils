@@ -1,0 +1,182 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>uniq - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>1.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>2.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>3.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>4.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>5.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>6.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>7.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>8.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>9.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>10.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html class=active><strong aria-hidden=true>11.</strong> uniq</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=uniq><a class=header href=#uniq>uniq</a></h1><p>The <code>uniq</code> command identifies similar lines that are adjacent to each other. There are various options to help you filter unique or duplicate lines, count them, group them, etc.<h2 id=retain-single-copy-of-duplicates><a class=header href=#retain-single-copy-of-duplicates>Retain single copy of duplicates</a></h2><p>This is the default behavior of the <code>uniq</code> command. If adjacent lines are the same, only the first copy will be displayed in the output. Unlike <code>sort</code>, the <code>uniq</code> command doesn't have to read the entire input since it compares only the lines that are next to each other.<pre><code class=language-bash># uniq will add a newline even if not present for the last input line
+$ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | uniq
+red
+green
+red
+blue
+</code></pre><p>If you want to retain only a single copy based on the entire input contents, one option is to sort the input before applying <code>uniq</code>. Or, use <code>sort -u</code> if applicable.<pre><code class=language-bash># same as sort -u for this case
+$ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | sort | uniq
+blue
+green
+red
+</code></pre><p>Sometimes though, you want to sort based on some specific criteria but identify duplicates based on the entire line contents. <code>uniq</code> will help in such cases.<pre><code class=language-bash># can't use sort -n -u here
+$ printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -n | uniq
+2 balls
+2 pins
+13 pens
+</code></pre><p>If you need to preserve input order, use alternatives like <code>awk</code>, <code>perl</code> and <code>huniq</code>.<pre><code class=language-bash># retain single copy of duplicates, maintain input order
+$ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | awk '!seen[$0]++'
+red
+green
+blue
+</code></pre><h2 id=duplicates-only><a class=header href=#duplicates-only>Duplicates only</a></h2><p>The <code>-d</code> option will display only the duplicate entries. That is, only if a line is seen more than once.<pre><code class=language-bash>$ cat purchases.txt
+coffee
+tea
+washing powder
+coffee
+toothpaste
+tea
+soap
+tea
+
+$ sort purchases.txt | uniq -d
+coffee
+tea
+</code></pre><p>To display all the copies of duplicates, use the <code>-D</code> option.<pre><code class=language-bash>$ sort purchases.txt | uniq -D
+coffee
+coffee
+tea
+tea
+tea
+</code></pre><h2 id=unique-only><a class=header href=#unique-only>Unique only</a></h2><p>The <code>-u</code> option will display only the unique entries. That is, only if a line doesn't occur more than once.<pre><code class=language-bash>$ sort purchases.txt | uniq -u
+soap
+toothpaste
+washing powder
+
+$ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | uniq -u
+green
+red
+</code></pre><h2 id=grouping-similar-lines><a class=header href=#grouping-similar-lines>Grouping similar lines</a></h2><p>The <code>--group</code> options allows you to visually separate groups of similar lines with an empty line. This option can accept four values — <code>separate</code>, <code>prepend</code>, <code>append</code> and <code>both</code>. The default is <code>separate</code>, which adds a newline character between the groups. <code>prepend</code> will add a newline before the first group as well and <code>append</code> will add a newline after the last group. <code>both</code> combines <code>prepend</code> and <code>append</code> behavior.<pre><code class=language-bash>$ sort purchases.txt | uniq --group
+coffee
+coffee
+
+soap
+
+tea
+tea
+tea
+
+toothpaste
+
+washing powder
+</code></pre><p>The <code>--group</code> option cannot be used with <code>-c</code>, <code>-d</code>, <code>-D</code> or <code>-u</code> options. The <code>--all-repeated</code> alias for the <code>-D</code> option uses <code>none</code> as the default grouping. You can change that to <code>separate</code> or <code>prepend</code> values.<pre><code class=language-bash>$ sort purchases.txt | uniq --all-repeated=prepend
+
+coffee
+coffee
+
+tea
+tea
+tea
+</code></pre><h2 id=prefix-count><a class=header href=#prefix-count>Prefix count</a></h2><p>If you want to know how many times a line has been repeated, use the <code>-c</code> option. This will be added as a prefix.<pre><code class=language-bash>$ sort purchases.txt | uniq -c
+      2 coffee
+      1 soap
+      3 tea
+      1 toothpaste
+      1 washing powder
+
+$ sort purchases.txt | uniq -dc
+      2 coffee
+      3 tea
+</code></pre><p>The output of this option is usually piped to <code>sort</code> for ordering the output by the count value.<pre><code class=language-bash>$ sort purchases.txt | uniq -c | sort -n
+      1 soap
+      1 toothpaste
+      1 washing powder
+      2 coffee
+      3 tea
+
+$ sort purchases.txt | uniq -c | sort -nr
+      3 tea
+      2 coffee
+      1 washing powder
+      1 toothpaste
+      1 soap
+</code></pre><h2 id=ignoring-case><a class=header href=#ignoring-case>Ignoring case</a></h2><p>Use the <code>-i</code> option to ignore case while determining duplicates.<pre><code class=language-bash># depending on your locale, sort and sort -f can give the same results
+$ printf 'cat\nbat\nCAT\ncar\nbat\n' | sort -f | uniq -iD
+bat
+bat
+cat
+CAT
+</code></pre><h2 id=partial-match><a class=header href=#partial-match>Partial match</a></h2><p><code>uniq</code> has three options to change the matching criteria to partial parts of the input line. These aren't as powerful as the <code>sort -k</code> option, but they do come in handy for some use cases.<p>The <code>-f</code> option allows you to skip first <code>N</code> fields. Field separation is based on one or more space/tab characters only. Note that these separators will still be part of the field contents, so this will not work with variable number of blanks.<pre><code class=language-bash># skip first field
+$ printf '2 cars\n5 cars\n10 jeeps\n5 jeeps\n3 trucks\n' | uniq -f1 --group
+2 cars
+5 cars
+
+10 jeeps
+5 jeeps
+
+3 trucks
+
+# example with variable number of blanks
+$ printf '2 cars\n5 cars\n10 jeeps\n5  jeeps\n3 trucks\n' | uniq -f1
+2 cars
+10 jeeps
+5  jeeps
+3 trucks
+</code></pre><p>The <code>-s</code> option allows you to skip first <code>N</code> characters (calculated as bytes).<pre><code class=language-bash># skip first character
+$ printf '* red\n* green\n- green\n* blue\n= blue' | uniq -s1
+* red
+* green
+* blue
+</code></pre><p>The <code>-w</code> option allows you to specify a maximum of <code>N</code> characters to be used for comparison (calculated as bytes).<pre><code class=language-bash># compare only first 2 characters
+$ printf '1) apple\n1) almond\n2) banana\n3) cherry' | uniq -w2
+1) apple
+2) banana
+3) cherry
+</code></pre><p>When these options are used simultaneously, the priority is <code>-f</code> first, then <code>-s</code> and then <code>-w</code> option. Remember that blanks are part of the field content.<pre><code class=language-bash># skip first field
+# then skip first two characters (including the blank character)
+# use next two characters for comparison ('bl' and 'ch' in this example)
+$ printf '2 @blue\n10 :black\n5 :cherry\n3 @chalk' | uniq -f1 -s2 -w2
+2 @blue
+5 :cherry
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> If a line doesn't have enough fields or characters to satisfy the <code>-f</code> and <code>-s</code> options respectively, a null string is used for comparison.</blockquote><h2 id=output-file><a class=header href=#output-file>Output file</a></h2><p><code>uniq</code> can accept filename as the source of input contents, but only a maximum of one file. If you specify another file, it will be used as the output file.<pre><code class=language-bash>$ printf 'apple\napple\nbanana\ncherry\ncherry\ncherry' > ip.txt
+$ uniq ip.txt op.txt
+
+$ cat op.txt
+apple
+banana
+cherry
+</code></pre><h2 id=nul-separator><a class=header href=#nul-separator>NUL separator</a></h2><p>Use <code>-z</code> option if you want to use NUL character as the line separator. In this scenario, <code>uniq</code> will ensure to add a final NUL character even if not present in the input.<pre><code class=language-bash>$ printf 'cherry\0cherry\0cherry\0apple\0banana' | uniq -z | cat -v
+cherry^@apple^@banana^@
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> If grouping is specified, NUL will be used as the separator instead of the newline character.</blockquote><h2 id=alternatives><a class=header href=#alternatives>Alternatives</a></h2><p>Here's some alternate commands you can explore if <code>uniq</code> isn't enough to solve your task.<ul><li><a href=https://learnbyexample.github.io/learn_gnuawk/dealing-with-duplicates.html>Dealing with duplicates</a> chapter from my <strong>GNU awk</strong> ebook<li><a href=https://learnbyexample.github.io/learn_perl_oneliners/dealing-with-duplicates.html>Dealing with duplicates</a> chapter from my <strong>Perl one-liners</strong> ebook<li><a href=https://github.com/koraa/huniq>huniq</a> — remove duplicates from entire input contents, input order is maintained, supports count option as well</ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=sort.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=sort.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
