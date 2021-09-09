@@ -1,0 +1,257 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>nl - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>1.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>2.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>3.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>4.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>5.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>6.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>7.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>8.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>9.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>10.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>11.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>12.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>13.</strong> join</a><li class="chapter-item expanded"><a href=nl.html class=active><strong aria-hidden=true>14.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>15.</strong> wc</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=nl><a class=header href=#nl>nl</a></h1><p>If the numbering options provided by <code>cat</code> isn't enough for you, <code>nl</code> might help you. Apart from options to customize the number formatting and the separator, you can also filter which lines should be numbered. Additionally, you can divide your input into sections and number them separately.<h2 id=default-numbering><a class=header href=#default-numbering>Default numbering</a></h2><p>By default, <code>nl</code> will prefix line number and a tab character to every non-empty input lines. The default number formatting is <code>6</code> characters wide and right justified with spaces. Similar to <code>cat</code>, the <code>nl</code> command will concatenate multiple inputs.<pre><code class=language-bash># same as: cat -n greeting.txt fruits.txt nums.txt
+$ nl greeting.txt fruits.txt nums.txt
+     1  Hi there
+     2  Have a nice day
+     3  banana
+     4  papaya
+     5  mango
+     6  3.14
+     7  42
+     8  1000
+
+# input with empty lines, same as: cat -b
+$ printf 'apple\n\nbanana\n\ncherry\n' | nl
+     1  apple
+
+     2  banana
+
+     3  cherry
+</code></pre><h2 id=number-formatting><a class=header href=#number-formatting>Number formatting</a></h2><p>You can use the <code>-n</code> option to customize the number formatting. The available styles are:<ul><li><code>rn</code> right justified with space fillers (default)<li><code>rz</code> right justified with leading zeros<li><code>ln</code> left justified with space fillers</ul><pre><code class=language-bash># right justified with space fillers
+$ nl -n 'rn' greeting.txt
+     1  Hi there
+     2  Have a nice day
+
+# right justified with leading zeros
+$ nl -n 'rz' greeting.txt
+000001  Hi there
+000002  Have a nice day
+
+# left justified with space fillers
+$ nl -n 'ln' greeting.txt
+1       Hi there
+2       Have a nice day
+</code></pre><h2 id=customize-width><a class=header href=#customize-width>Customize width</a></h2><p>You can use the <code>-w</code> option to specify the width to be used for the numbers (default is <code>6</code>).<pre><code class=language-bash>$ nl -w2 greeting.txt
+ 1      Hi there
+ 2      Have a nice day
+</code></pre><h2 id=customize-separator><a class=header href=#customize-separator>Customize separator</a></h2><p>By default, a tab character is used to separate the line number and the line content. You can use the <code>-s</code> option to specify your own custom string separator.<pre><code class=language-bash>$ nl -w2 -s' ' greeting.txt
+ 1 Hi there
+ 2 Have a nice day
+
+$ nl -w1 -s' --> ' greeting.txt
+1 --> Hi there
+2 --> Have a nice day
+</code></pre><h2 id=starting-number-and-increment><a class=header href=#starting-number-and-increment>Starting number and increment</a></h2><p>The <code>-v</code> option allows you to specify a different starting integer. Negative integer is also allowed.<pre><code class=language-bash>$ nl -v10 greeting.txt
+    10  Hi there
+    11  Have a nice day
+
+$ nl -v-1 fruits.txt
+    -1  banana
+     0  papaya
+     1  mango
+</code></pre><p>The <code>-i</code> option allows you to specify a positive integer as the step value (default is <code>1</code>).<pre><code class=language-bash>$ nl -w2 -s') ' -i2 greeting.txt fruits.txt nums.txt
+ 1) Hi there
+ 3) Have a nice day
+ 5) banana
+ 7) papaya
+ 9) mango
+11) 3.14
+13) 42
+15) 1000
+</code></pre><h2 id=section-wise-numbering><a class=header href=#section-wise-numbering>Section wise numbering</a></h2><p>If you organize your input with special lines conforming to specific patterns, you can control their numbering separately. <code>nl</code> recognizes three types of sections with the following default patterns:<ul><li><code>\:\:\:</code> as header<li><code>\:\:</code> as body<li><code>\:</code> as footer</ul><p>These special lines will be replaced with an empty line after numbering. The numbering will be reset at the start of every section. Here's an example with multiple body sections:<pre><code class=language-bash>$ cat body.txt
+\:\:
+Hi there
+How are you
+\:\:
+banana
+papaya
+mango
+
+$ nl -w1 -s' ' body.txt
+
+1 Hi there
+2 How are you
+
+1 banana
+2 papaya
+3 mango
+</code></pre><p>Here's an example with both header and body sections. By default, header and footer section lines are not numbered (you'll see options to enable them later).<pre><code class=language-bash>$ cat header_body.txt
+\:\:\:
+Header
+red
+\:\:
+Hi there
+How are you
+\:\:
+banana
+papaya
+mango
+\:\:\:
+Header
+green
+
+$ nl -w1 -s' ' header_body.txt
+
+  Header
+  red
+
+1 Hi there
+2 How are you
+
+1 banana
+2 papaya
+3 mango
+
+  Header
+  green
+</code></pre><p>And here's an example with all the three types of sections:<pre><code class=language-bash>$ cat all_sections.txt
+\:\:\:
+Header
+red
+\:\:
+Hi there
+How are you
+\:\:
+banana
+papaya
+mango
+\:
+Footer
+
+$ nl -w1 -s' ' all_sections.txt
+
+  Header
+  red
+
+1 Hi there
+2 How are you
+
+1 banana
+2 papaya
+3 mango
+
+  Footer
+</code></pre><p>The <code>-b</code>, <code>-h</code> and <code>-f</code> options control which lines should be numbered for the three types of sections. The various features will discussed later. For now, use <code>a</code> to number all lines of a particular section.<pre><code class=language-bash>$ nl -w1 -s' ' -ha -fa all_sections.txt
+
+1 Header
+2 red
+
+1 Hi there
+2 How are you
+
+1 banana
+2 papaya
+3 mango
+
+1 Footer
+</code></pre><p>If you use the <code>-p</code> option, the numbering will not be reset on encountering a new section.<pre><code class=language-bash>$ nl -p -w1 -s' ' all_sections.txt
+
+  Header
+  red
+
+1 Hi there
+2 How are you
+
+3 banana
+4 papaya
+5 mango
+
+  Footer
+
+$ nl -p -w1 -s' ' -ha -fa all_sections.txt
+
+1 Header
+2 red
+
+3 Hi there
+4 How are you
+
+5 banana
+6 papaya
+7 mango
+
+8 Footer
+</code></pre><p>You can change the two character pattern that is used to identify the different sections using the <code>-d</code> option.<pre><code class=language-bash># pattern changed from \: to %=
+$ cat body_sep.txt
+%=%=
+apple
+banana
+%=%=
+red
+green
+
+$ nl -w1 -s' ' -d'%=' body_sep.txt
+
+1 apple
+2 banana
+
+1 red
+2 green
+</code></pre><h2 id=section-numbering-criteria><a class=header href=#section-numbering-criteria>Section numbering criteria</a></h2><p>As mentioned earlier, the <code>-b</code>, <code>-h</code> and <code>-f</code> options control which lines should be numbered for the three types of sections. These options accept the following arguments:<ul><li><code>a</code> number all lines, including empty lines<li><code>t</code> number lines except empty ones (default for body sections)<li><code>n</code> do not number lines (default for header and footer sections)<li><code>pBRE</code> use basic regular expressions (BRE) to filter lines for numbering</ul><p>If the input doesn't have special patterns to identify the different sections, it will be treated as if it has a single body section. Here's an example to include empty lines for numbering:<pre><code class=language-bash>$ printf 'apple\n\nbanana\n\ncherry\n' | nl -w1 -s' ' -ba
+1 apple
+2 
+3 banana
+4 
+5 cherry
+</code></pre><p>The <code>-l</code> option controls how many consecutive empty lines should be considered as a single entry. Only the last empty line of such groupings will be numbered.<pre><code class=language-bash># only 2nd consecutive empty line will be considered for numbering
+$ printf 'a\n\n\n\n\nb\n\nc' | nl -w1 -s' ' -ba -l2
+1 a
+  
+2 
+  
+3 
+4 b
+  
+5 c
+</code></pre><p>Here's an example which uses regexp to identify lines to be numbered:<pre><code class=language-bash># number lines starting with 'c' or 't'
+$ nl -w1 -s' ' -bp'^[ct]' purchases.txt
+1 coffee
+2 tea
+  washing powder
+3 coffee
+4 toothpaste
+5 tea
+  soap
+6 tea
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about BRE syntax and features.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=join.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=wc.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=join.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=wc.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
