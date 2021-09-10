@@ -57,17 +57,17 @@ $ printf 'apple\n\nbanana\n\ncherry\n' | nl
 
      3  cherry
 </code></pre><h2 id=number-formatting><a class=header href=#number-formatting>Number formatting</a></h2><p>You can use the <code>-n</code> option to customize the number formatting. The available styles are:<ul><li><code>rn</code> right justified with space fillers (default)<li><code>rz</code> right justified with leading zeros<li><code>ln</code> left justified with space fillers</ul><pre><code class=language-bash># right justified with space fillers
-$ nl -n 'rn' greeting.txt
+$ nl -n'rn' greeting.txt
      1  Hi there
      2  Have a nice day
 
 # right justified with leading zeros
-$ nl -n 'rz' greeting.txt
+$ nl -n'rz' greeting.txt
 000001  Hi there
 000002  Have a nice day
 
 # left justified with space fillers
-$ nl -n 'ln' greeting.txt
+$ nl -n'ln' greeting.txt
 1       Hi there
 2       Have a nice day
 </code></pre><h2 id=customize-width><a class=header href=#customize-width>Customize width</a></h2><p>You can use the <code>-w</code> option to specify the width to be used for the numbers (default is <code>6</code>).<pre><code class=language-bash>$ nl -w2 greeting.txt

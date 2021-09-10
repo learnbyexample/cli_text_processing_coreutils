@@ -205,6 +205,9 @@ $ seq 3 | tac
 3
 2
 1
+</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> If the last line of input doesn't end with a newline, the output will also not have that newline character.</blockquote><pre><code class=language-bash>$ printf 'apple\nbanana\ncherry' | tac
+cherrybanana
+apple
 </code></pre><p>Reversing input lines makes some of the text processing tasks easier. For example, if there multiple matches but you want only the last such match. See my ebooks on <a href=https://github.com/learnbyexample/learn_gnused>GNU sed</a> and <a href=https://github.com/learnbyexample/learn_gnuawk>GNU awk</a> for more examples.<pre><code class=language-bash>$ cat log.txt
 --> warning 1
 a,b,c,d
@@ -220,14 +223,55 @@ $ tac log.txt | grep -m1 'warning'
 $ tac log.txt | sed '/warning/q' | tac
 --> warning 3
 4,3,1
-</code></pre><p>The <code>log.txt</code> input file has multiple lines containing <code>warning</code>. The task is to fetch lines based on the last match. Tools like <code>grep</code> and <code>sed</code> have features to easily match the first occurrence, so applying <code>tac</code> on the input helps to reverse the condition from last match to first match. Another benefit is that the first <code>tac</code> will stop reading input contents after the match is found in the above examples.<p>By default, the newline character is used to split the input content into <em>lines</em>. You can use the <code>-s</code> option to specify a different string to be used as the separator. Here's an example:<pre><code class=language-bash>$ printf 'car\njeep\nbus\n' | tac
+</code></pre><p>The <code>log.txt</code> input file has multiple lines containing <code>warning</code>. The task is to fetch lines based on the last match. Tools like <code>grep</code> and <code>sed</code> have features to easily match the first occurrence, so applying <code>tac</code> on the input helps to reverse the condition from last match to first match. Another benefit is that the first <code>tac</code> will stop reading input contents after the match is found in the above examples.<p>By default, the newline character is used to split the input content into <em>lines</em>. You can use the <code>-s</code> option to specify a different string to be used as the separator. Here's some examples:<pre><code class=language-bash>$ printf 'car\njeep\nbus\n' | tac
 bus
 jeep
 car
-
+# use NUL as the line separator
 # you can also use -s '' instead of -s $'\0'
-$ printf 'car\0jeep\0bus\0' | tac -s $'\0' | cat -e
+$ printf 'car\0jeep\0bus\0' | tac -s $'\0' | cat -v
 bus^@jeep^@car^@
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Use the <code>rev</code> command if you want each input line to be reversed character wise.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=preface.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=preface.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+
+# as seen before, last entry should also have the separator
+# otherwise it won't be present in the output
+$ printf 'apple banana cherry' | tac -s ' ' | cat -e
+cherrybanana apple $ 
+$ printf 'apple banana cherry ' | tac -s ' ' | cat -e
+cherry banana apple $ 
+</code></pre><p>When the custom separator occurs before the content of interest, use the <code>-b</code> option to print those separators before the content in the output as well.<pre><code class=language-bash>$ cat body_sep.txt
+%=%=
+apple
+banana
+%=%=
+red
+green
+
+$ tac -b -s '%=%=' body_sep.txt
+%=%=
+red
+green
+%=%=
+apple
+banana
+</code></pre><p>The separator will be treated as a regular expressions if you use the <code>-r</code> option as well.<pre><code class=language-bash>$ cat shopping.txt 
+apple   50
+toys    5
+Pizza   2
+mango   25
+Banana  10
+
+# separator character is 'a' or 'm' at the start of a line
+$ tac -b -rs '^[am]' shopping.txt
+mango   25
+Banana  10
+apple   50
+toys    5
+Pizza   2
+
+# alternate solution for this example: tac log.txt | sed '/warning/q' | tac
+$ tac -b -rs '^.*warning' log.txt | awk '/warning/ && ++c==2{exit} 1'
+--> warning 3
+4,3,1
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote><blockquote><p><img src=./images/info.svg alt=info> Use the <code>rev</code> command if you want each input line to be reversed character wise.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=preface.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=preface.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
             window.playground_copyable = true;
         </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
