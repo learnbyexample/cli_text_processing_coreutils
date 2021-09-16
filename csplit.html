@@ -250,6 +250,33 @@ tea
 
 ==> xx02 <==
 tea
+</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> Suppressing matched lines for regexp based split other than <code>{*}</code> usage doesn't give expected results. See <a href=https://lists.gnu.org/archive/html/bug-coreutils/2020-08/msg00006.html>this bug report</a> for more details.</blockquote><pre><code class=language-bash>$ seq 11 14 | csplit -q --suppress-matched - '/3/'
+# the matching line wasn't suppressed
+$ head xx*
+==> xx00 <==
+11
+12
+
+==> xx01 <==
+13
+14
+
+$ rm xx*
+
+$ seq 11 16 | csplit -q --suppress-matched - '/[35]/' '{1}'
+# the first matching line was correctly suppressed
+# but the second matching line wasn't suppressed
+$ head xx*
+==> xx00 <==
+11
+12
+
+==> xx01 <==
+14
+
+==> xx02 <==
+15
+16
 </code></pre><h2 id=exclude-empty-files><a class=header href=#exclude-empty-files>Exclude empty files</a></h2><p>There are various cases that can result in empty output files. For example, first or last line matching the given split condition. Another possibility is <code>--suppress-matched</code> option combined with consecutive lines matching during multiple splits. Here's an example:<pre><code class=language-bash>$ csplit -q --suppress-matched purchases.txt '/coffee\|tea/' '{*}'
 
 $ head xx*
