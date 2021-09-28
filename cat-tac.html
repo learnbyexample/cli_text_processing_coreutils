@@ -38,15 +38,15 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=cat-and-tac><a class=header href=#cat-and-tac>cat and tac</a></h1><p><code>cat</code> derives its name from con<strong>cat</strong>enation, but it provides other nifty options too.<p><code>tac</code> is used to reverse the input line wise for further text processing.<h2 id=creating-text-files><a class=header href=#creating-text-files>Creating text files</a></h2><p>Yeah, <code>cat</code> can be used to write contents to a file by typing them from the terminal itself. If you invoke <code>cat</code> without providing file arguments or <code>stdin</code> from a pipe, it will wait for you to type the content. After you are done typing all the text you want to save, press Enter key and then <code>Ctrl+d</code> key combination. If you don't want the last line to have a newline character, press <code>Ctrl+d</code> twice instead of Enter and <code>Ctrl+d</code>. See also <a href=https://unix.stackexchange.com/q/16333/109046>unix.stackexchange: difference between Ctrl+c and Ctrl+d</a>.<pre><code class=language-bash># press Enter key and Ctrl+d after typing all the required characters
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=cat-and-tac><a class=header href=#cat-and-tac>cat and tac</a></h1><p><code>cat</code> derives its name from con<strong>cat</strong>enation and provides other nifty options too.<p><code>tac</code> helps you to reverse the input line wise, usually used for further text processing.<h2 id=creating-text-files><a class=header href=#creating-text-files>Creating text files</a></h2><p>Yeah, <code>cat</code> can be used to write contents to a file by typing them from the terminal itself. If you invoke <code>cat</code> without providing file arguments or <code>stdin</code> from a pipe, it will wait for you to type the content. After you are done typing all the text you want to save, press Enter key and then <code>Ctrl+d</code> key combination. If you don't want the last line to have a newline character, press <code>Ctrl+d</code> twice instead of Enter and <code>Ctrl+d</code>. See also <a href=https://unix.stackexchange.com/q/16333/109046>unix.stackexchange: difference between Ctrl+c and Ctrl+d</a>.<pre><code class=language-bash># press Enter key and Ctrl+d after typing all the required characters
 $ cat > greeting.txt
 Hi there
 Have a nice day
 </code></pre><p>In the above example, the output of <code>cat</code> is redirected to a file named <code>greeting.txt</code>. If you don't redirect the <code>stdout</code>, each line will be echoed as you type. You can check the contents of the file you just created by using <code>cat</code> again.<pre><code class=language-bash>$ cat greeting.txt
 Hi there
 Have a nice day
-</code></pre><p><strong>Here Documents</strong> is another popular way to create such files. Especially inside shell scripts, since pressing <code>Ctrl+d</code> interactively won't be possible. Here's an example:<pre><code class=language-bash># > and a space at the start of lines are only present in interactive mode
-# won't be needed in a shell script
+</code></pre><p><strong>Here Documents</strong> is another popular way to create such files. Especially in shell scripts, since pressing <code>Ctrl+d</code> interactively won't be possible. Here's an example:<pre><code class=language-bash># > and a space at the start of lines are only present in interactive mode
+# don't type them in a shell script
 # EOF is typically used as the identifier
 $ cat << 'EOF' > fruits.txt
 > banana
@@ -58,14 +58,16 @@ $ cat fruits.txt
 banana
 papaya
 mango
-</code></pre><p>The termination string is enclosed in single quotes to prevent parameter expansion, command substitution, etc. You can also use <code>\string</code> for this purpose. If you use <code><&LT-</code> instead of <code><<</code>, you can use leading tab characters for indentation purposes. See <a href=https://www.gnu.org/software/bash/manual/bash.html#Here-Documents>bash manual: Here Documents</a> and <a href=https://stackoverflow.com/q/2953081/4082052>stackoverflow: here-documents</a> for more details.<blockquote><p><img src=./images/info.svg alt=info> Note that creating files as shown above isn't restricted to <code>cat</code>, it can be applied to any command waiting for <code>stdin</code>.</blockquote><pre><code class=language-bash>$ tr 'a-z' 'A-Z' << 'end' > op.txt
+</code></pre><p>The termination string is enclosed in single quotes to prevent parameter expansion, command substitution, etc. You can also use <code>\string</code> for this purpose. If you use <code><&LT-</code> instead of <code><<</code>, you can use leading tab characters for indentation purposes. See <a href=https://www.gnu.org/software/bash/manual/bash.html#Here-Documents>bash manual: Here Documents</a> and <a href=https://stackoverflow.com/q/2953081/4082052>stackoverflow: here-documents</a> for more details.<blockquote><p><img src=./images/info.svg alt=info> Note that creating files as shown above isn't restricted to <code>cat</code>, it can be applied to any command waiting for <code>stdin</code>.</blockquote><pre><code class=language-bash># 'tr' converts lowercase alphabets to uppercase in this example
+$ tr 'a-z' 'A-Z' << 'end' > op.txt
 > hi there
 > have a nice day
 > end
+
 $ cat op.txt
 HI THERE
 HAVE A NICE DAY
-</code></pre><h2 id=concatenate-files><a class=header href=#concatenate-files>Concatenate files</a></h2><p>Here's some examples to showcase <code>cat</code>'s main utility. One or more files can be given as arguments.<pre><code class=language-bash>$ cat greeting.txt fruits.txt nums.txt
+</code></pre><h2 id=concatenate-files><a class=header href=#concatenate-files>Concatenate files</a></h2><p>Here's some examples to showcase <code>cat</code>'s main utility. One or more files can be given as arguments.<blockquote><p><img src=./images/info.svg alt=info> Visit the <a href=https://github.com/learnbyexample/cli_text_processing_coreutils>cli_text_processing_coreutils repo</a> to get all the example files used in this book.</blockquote><pre><code class=language-bash>$ cat greeting.txt fruits.txt nums.txt
 Hi there
 Have a nice day
 banana
@@ -85,21 +87,19 @@ mango
 3.14
 42
 1000
-</code></pre><h2 id=accepting-stdin-data><a class=header href=#accepting-stdin-data>Accepting stdin data</a></h2><p>You can represent <code>stdin</code> data using <code>-</code> as a file argument. If file arguments are not present, <code>cat</code> will read from <code>stdin</code> data if present or wait for interactive input as seen earlier.<pre><code class=language-bash># only stdin
+</code></pre><h2 id=accepting-stdin-data><a class=header href=#accepting-stdin-data>Accepting stdin data</a></h2><p>You can represent <code>stdin</code> data using <code>-</code> as a file argument. If file arguments are not present, <code>cat</code> will read from <code>stdin</code> data if present or wait for interactive input as seen earlier.<pre><code class=language-bash># only stdin (- is optional in this case)
 $ echo 'apple banana cherry' | cat
 apple banana cherry
 
+# both stdin and file arguments
 $ echo 'apple banana cherry' | cat greeting.txt -
 Hi there
 Have a nice day
 apple banana cherry
 
-$ echo 'apple banana cherry' | cat - greeting.txt
-apple banana cherry
-Hi there
-Have a nice day
-
-$ printf 'Numbers' | cat - nums.txt
+# here's an example with no newline character at the end of first input
+$ printf 'Some\nNumbers' | cat - nums.txt
+Some
 Numbers3.14
 42
 1000
@@ -116,7 +116,7 @@ hello
 world
 
 have a nice day
-</code></pre><h2 id=prefix-line-numbers><a class=header href=#prefix-line-numbers>Prefix line numbers</a></h2><p>The <code>-n</code> option will prefix line number and a tab character to each input line. You can use <code>-b</code> option instead if you don't want empty lines to be numbered.<pre><code class=language-bash>$ cat -n greeting.txt fruits.txt nums.txt
+</code></pre><h2 id=prefix-line-numbers><a class=header href=#prefix-line-numbers>Prefix line numbers</a></h2><p>The <code>-n</code> option will prefix line number and a tab character to each input line. The line numbers are right justified to occupy a minimum of <code>6</code> characters, with space as the filler.<pre><code class=language-bash>$ cat -n greeting.txt fruits.txt nums.txt
      1  Hi there
      2  Have a nice day
      3  banana
@@ -125,15 +125,23 @@ have a nice day
      6  3.14
      7  42
      8  1000
+</code></pre><p>Use <code>-b</code> option instead of <code>-n</code> option if you don't want empty lines to be numbered.<pre><code class=language-bash># -n option numbers all the input lines
+$ printf 'apple\n\nbanana\n\ncherry\n' | cat -n
+     1	apple
+     2	
+     3	banana
+     4	
+     5	cherry
 
-# number only non-empty lines
+# -b option numbers only the non-empty input lines
 $ printf 'apple\n\nbanana\n\ncherry\n' | cat -b
      1  apple
 
      2  banana
 
      3  cherry
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Use <code>nl</code> command if you want more customization options for numbering.</blockquote><h2 id=viewing-special-characters><a class=header href=#viewing-special-characters>Viewing special characters</a></h2><p>Characters like backspace and carriage return will mangle the contents if viewed naively on the terminal. Characters like NUL won't even be visible. You can use the <code>-v</code> option to show such characters using the caret notation (see <a href=https://en.wikipedia.org/wiki/ASCII_control_characters#Control_code_chart>wikipedia: Control code chart</a> for details). See <a href=https://unix.stackexchange.com/q/522297/109046>this unix.stackexchange thread</a> for non-ASCII character examples.<pre><code class=language-bash>$ printf 'car\bt\nbike\rp\n'
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Use <code>nl</code> command if you want more customization options for numbering.</blockquote><h2 id=viewing-special-characters><a class=header href=#viewing-special-characters>Viewing special characters</a></h2><p>Characters like backspace and carriage return will mangle the contents if viewed naively on the terminal. Characters like NUL won't even be visible. You can use the <code>-v</code> option to show such characters using the caret notation (see <a href=https://en.wikipedia.org/wiki/ASCII_control_characters#Control_code_chart>wikipedia: Control code chart</a> for details). See <a href=https://unix.stackexchange.com/q/522297/109046>this unix.stackexchange thread</a> for non-ASCII character examples.<pre><code class=language-bash># example for backspace and carriage return
+$ printf 'car\bt\nbike\rp\n'
 cat
 pike
 $ printf 'car\bt\nbike\rp\n' | cat -v
@@ -162,7 +170,7 @@ $ printf '1 2\t3\f4\v5\n' | cat -t
 
 $ printf '1 2\t3\f4\v5\n' | cat -A
 1 2^I3^L4^K5$
-</code></pre><h2 id=useless-use-of-cat><a class=header href=#useless-use-of-cat>Useless use of cat</a></h2><p>Using <code>cat</code> to view the contents of a file, to concatenate them, etc is well and good. But, using <code>cat</code> when it is not needed is a bad habit that you should avoid. See <a href=https://en.wikipedia.org/wiki/Cat_(Unix)#Useless_use_of_cat>wikipedia: UUOC</a> and <a href=http://porkmail.org/era/unix/award.html>Useless Use of Cat Award</a> for more details.<p>Most commands that you'll see in this book can directly work with file arguments, so you shouldn't use <code>cat</code> and pipe the contents for such cases. Here's a single file example:<pre><code class=language-bash># useless use of cat
+</code></pre><h2 id=useless-use-of-cat><a class=header href=#useless-use-of-cat>Useless use of cat</a></h2><p>Using <code>cat</code> to view the contents of a file, to concatenate them, etc is well and good. But, using <code>cat</code> when it is not needed is a bad habit that you should avoid. See <a href=https://en.wikipedia.org/wiki/Cat_(Unix)#Useless_use_of_cat>wikipedia: UUOC</a> and <a href=https://porkmail.org/era/unix/award.html>Useless Use of Cat Award</a> for more details.<p>Most commands that you'll see in this book can directly work with file arguments, so you shouldn't use <code>cat</code> and pipe the contents for such cases. Here's a single file example:<pre><code class=language-bash># useless use of cat
 $ cat greeting.txt | sed -E 's/\w+/\L\u&/g'
 Hi There
 Have A Nice Day
@@ -180,7 +188,7 @@ HAVE A NICE DAY
 $ &LTgreeting.txt tr 'a-z' 'A-Z'
 HI THERE
 HAVE A NICE DAY
-</code></pre><p>Such useless use of <code>cat</code> isn't noticeable unless you are dealing with large input files. Especially for commands like <code>tac</code> and <code>tail</code> which will have to wait for all the data to be read instead of directly processing from the end of the file if they had been passed as arguments (or using shell redirection).<p>If you are dealing with multiple files, then the use of <code>cat</code> will depend upon the results desired. Here's some examples:<pre><code class=language-bash># match lines containing 'o' or '0'
+</code></pre><p>Such useless use of <code>cat</code> might not have a noticeable negative impact unless you are dealing with large input files. Especially for commands like <code>tac</code> and <code>tail</code> which will have to wait for all the data to be read instead of directly processing from the end of the file if they had been passed as arguments (or using shell redirection).<p>If you are dealing with multiple files, then the use of <code>cat</code> will depend upon the results desired. Here's some examples:<pre><code class=language-bash># match lines containing 'o' or '0'
 # -n option adds line number prefix
 $ cat greeting.txt fruits.txt nums.txt | grep -n '[o0]'
 5:mango
@@ -196,19 +204,22 @@ fruits.txt:1
 nums.txt:1
 $ cat greeting.txt fruits.txt nums.txt | grep -c '[o0]'
 2
-</code></pre><p>For some use cases like in-place editing with <code>sed</code>, you can't use <code>cat</code> or shell redirection at all. The files have to be passed as arguments only. To conclude, don't use <code>cat</code> just to pass the input as <code>stdin</code> for another command unless you really need to.<h2 id=tac><a class=header href=#tac>tac</a></h2><p><code>tac</code> will also concatenate file contents, but it will display the input lines in reversed order. Here's some examples:<pre><code class=language-bash>$ tac greeting.txt
+</code></pre><p>For some use cases like in-place editing with <code>sed</code>, you can't use <code>cat</code> or shell redirection at all. The files have to be passed as arguments only. To conclude, don't use <code>cat</code> just to pass the input as <code>stdin</code> for another command unless you really need to.<h2 id=tac><a class=header href=#tac>tac</a></h2><p><code>tac</code> will display the input lines in reversed order. If you pass multiple input files, each file content will be reversed separately. Here's some examples:<pre><code class=language-bash># won't be same as: cat greeting.txt fruits.txt | tac
+$ tac greeting.txt fruits.txt
 Have a nice day
 Hi there
+mango
+papaya
+banana
 
-# stdin example
-$ seq 3 | tac
-3
-2
-1
+$ printf 'apple\nbanana\ncherry\n' | tac
+cherry
+banana
+apple
 </code></pre><blockquote><p><img src=./images/warning.svg alt=warning> If the last line of input doesn't end with a newline, the output will also not have that newline character.</blockquote><pre><code class=language-bash>$ printf 'apple\nbanana\ncherry' | tac
 cherrybanana
 apple
-</code></pre><p>Reversing input lines makes some of the text processing tasks easier. For example, if there multiple matches but you want only the last such match. See my ebooks on <a href=https://github.com/learnbyexample/learn_gnused>GNU sed</a> and <a href=https://github.com/learnbyexample/learn_gnuawk>GNU awk</a> for more examples.<pre><code class=language-bash>$ cat log.txt
+</code></pre><p>Reversing input lines makes some of the text processing tasks easier. For example, if there multiple matches but you want only the last such match. See my ebooks on <a href=https://github.com/learnbyexample/learn_gnused>GNU sed</a> and <a href=https://github.com/learnbyexample/learn_gnuawk>GNU awk</a> for more such use cases.<pre><code class=language-bash>$ cat log.txt
 --> warning 1
 a,b,c,d
 42
@@ -223,13 +234,9 @@ $ tac log.txt | grep -m1 'warning'
 $ tac log.txt | sed '/warning/q' | tac
 --> warning 3
 4,3,1
-</code></pre><p>The <code>log.txt</code> input file has multiple lines containing <code>warning</code>. The task is to fetch lines based on the last match. Tools like <code>grep</code> and <code>sed</code> have features to easily match the first occurrence, so applying <code>tac</code> on the input helps to reverse the condition from last match to first match. Another benefit is that the first <code>tac</code> will stop reading input contents after the match is found in the above examples.<p>By default, the newline character is used to split the input content into <em>lines</em>. You can use the <code>-s</code> option to specify a different string to be used as the separator. Here's some examples:<pre><code class=language-bash>$ printf 'car\njeep\nbus\n' | tac
-bus
-jeep
-car
-# use NUL as the line separator
-# you can also use -s '' instead of -s $'\0'
-$ printf 'car\0jeep\0bus\0' | tac -s $'\0' | cat -v
+</code></pre><p>The <code>log.txt</code> input file has multiple lines containing <code>warning</code>. The task is to fetch lines based on the last match. Tools like <code>grep</code> and <code>sed</code> have features to easily match the first occurrence, so applying <code>tac</code> on the input helps to reverse the condition from last match to first match. Another benefit is that the first <code>tac</code> will stop reading input contents after the match is found in the above examples.<blockquote><p><img src=./images/info.svg alt=info> Use the <code>rev</code> command if you want each input line to be reversed character wise.</blockquote><h2 id=customize-line-separator-for-tac><a class=header href=#customize-line-separator-for-tac>Customize line separator for tac</a></h2><p>By default, the newline character is used to split the input content into <em>lines</em>. You can use the <code>-s</code> option to specify a different string to be used as the separator.<pre><code class=language-bash># use NUL as the line separator
+# -s $'\0' can also be used instead of -s '' if ANSI-C quoting is supported
+$ printf 'car\0jeep\0bus\0' | tac -s '' | cat -v
 bus^@jeep^@car^@
 
 # as seen before, last entry should also have the separator
@@ -253,7 +260,7 @@ green
 %=%=
 apple
 banana
-</code></pre><p>The separator will be treated as a regular expressions if you use the <code>-r</code> option as well.<pre><code class=language-bash>$ cat shopping.txt 
+</code></pre><p>The separator will be treated as a regular expression if you use the <code>-r</code> option as well.<pre><code class=language-bash>$ cat shopping.txt 
 apple   50
 toys    5
 Pizza   2
@@ -268,10 +275,11 @@ apple   50
 toys    5
 Pizza   2
 
-# alternate solution for this example: tac log.txt | sed '/warning/q' | tac
+# alternate solution for: tac log.txt | sed '/warning/q' | tac
+# separator is zero or more characters from the start of a line till 'warning'
 $ tac -b -rs '^.*warning' log.txt | awk '/warning/ && ++c==2{exit} 1'
 --> warning 3
 4,3,1
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote><blockquote><p><img src=./images/info.svg alt=info> Use the <code>rev</code> command if you want each input line to be reversed character wise.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
             window.playground_copyable = true;
         </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>

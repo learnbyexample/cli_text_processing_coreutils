@@ -38,9 +38,11 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=tr><a class=header href=#tr>tr</a></h1><p><code>tr</code> is a powerful command to map one set of characters to another set of characters. Features like range, repeats, character sets, squeeze, complement, etc makes it a must know text processing tool.<p>To be precise, <code>tr</code> can handle only bytes. Multibyte character processing isn't supported yet.<h2 id=translation><a class=header href=#translation>Translation</a></h2><p>Here's some basic examples that maps one set of characters to another. As a good practice, always enclose the sets in single quotes to avoid issues due to shell interpretation.<pre><code class=language-bash>$ echo 'leet speak' | tr 'lets' '1375'
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=tr><a class=header href=#tr>tr</a></h1><p><code>tr</code> helps you to map one set of characters to another set of characters. Features like range, repeats, character sets, squeeze, complement, etc makes it a must know text processing tool.<p>To be precise, <code>tr</code> can handle only bytes. Multibyte character processing isn't supported yet.<h2 id=translation><a class=header href=#translation>Translation</a></h2><p>Here's some examples that map one set of characters to another. As a good practice, always enclose the sets in single quotes to avoid issues due to shell metacharacters.<pre><code class=language-bash># 'l' maps to '1', 'e' to '3', 't' to '7' and 's' to '5'
+$ echo 'leet speak' | tr 'lets' '1375'
 1337 5p3ak
 
+# example with shell metacharacters
 $ echo 'apple;banana;cherry' | tr ; :
 tr: missing operand
 Try 'tr --help' for more information.
@@ -62,7 +64,7 @@ Hello World
 </code></pre><p><code>tr</code> works only on <code>stdin</code> data, so use shell input redirection for file input.<pre><code class=language-bash>$ tr 'a-z' 'A-Z' &LTgreeting.txt
 HI THERE
 HAVE A NICE DAY
-</code></pre><h2 id=different-length-sets><a class=header href=#different-length-sets>Different length sets</a></h2><p>If the second set is longer, the extra characters are simply ignored. If the first set is longer, the last character of the second set is used for the missing mappings.<pre><code class=language-bash># only abc gets converted to uppercase
+</code></pre><h2 id=different-length-sets><a class=header href=#different-length-sets>Different length sets</a></h2><p>If the second set is longer, the extra characters are simply ignored. If the first set is longer, the last character of the second set is reused for the missing mappings.<pre><code class=language-bash># only abc gets converted to uppercase
 $ echo 'apple banana cherry' | tr 'abc' 'A-Z'
 Apple BAnAnA Cherry
 
@@ -106,8 +108,12 @@ Hi there How are you All fine here
 # retain alphabets, whitespaces, period, exclamation and question mark
 $ echo "$s" | tr -cd 'a-zA-Z.!?[:space:]'
 Hi there! How are you? All fine here.
+</code></pre><p>If you use <code>-c</code> for translation, you can only provide a single character for the second set. In other words, all the characters except those provided by the first set will be mapped to the character specified by the second set.<pre><code class=language-bash>$ s='"Hi", there! How *are* you? All fine here.'
 
-# you can only translate to a single character with -c option
+$ echo "$s" | tr -c 'a-zA-Z.!?[:space:]' '1%'
+tr: when translating with complemented character classes,
+string2 must map all characters in the domain to one
+
 $ echo "$s" | tr -c 'a-zA-Z.!?[:space:]' '%'
 %Hi%% there! How %are% you? All fine here.
 </code></pre><h2 id=squeeze><a class=header href=#squeeze>Squeeze</a></h2><p>The <code>-s</code> option changes consecutive repeated characters to a single copy of that character.<pre><code class=language-bash># squeeze lowercase alphabets
