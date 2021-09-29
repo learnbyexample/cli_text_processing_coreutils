@@ -77,11 +77,13 @@ $ tail sample.txt
 13) Much ado about nothing
 14) He he he
 15) Adios amigo
-</code></pre><p>If there are less than 10 lines in the input, only those lines will be displayed.<pre><code class=language-bash># same as: seq 3 | tail
-$ seq 3 | head
+</code></pre><p>If there are less than 10 lines in the input, only those lines will be displayed.<pre><code class=language-bash># seq command will be discussed in detail later, generates 1 to 4 here
+# same as: seq 4 | tail
+$ seq 4 | head
 1
 2
 3
+4
 </code></pre><p>You can use the <code>-nN</code> option to customize the number of lines (<code>N</code>) needed.<pre><code class=language-bash># first three lines
 # space between -n and N is optional
 $ head -n3 sample.txt
@@ -160,6 +162,6 @@ car^@jeep^@
 
 $ printf 'car\0jeep\0bus\0' | tail -z -n2 | cat -v
 jeep^@bus^@
-</code></pre></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=cat-tac.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=tr.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=cat-tac.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=tr.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+</code></pre><h2 id=further-reading><a class=header href=#further-reading>Further Reading</a></h2><ul><li><a href=https://en.wikipedia.org/wiki/Tail_(Unix)#File_monitoring>wikipedia: File monitoring with tail -f and -F options</a><li><a href=https://unix.stackexchange.com/q/18760/109046>unix.stackexchange: How does the tail -f option work?</a><li><a href=https://mywiki.wooledge.org/BashFAQ/009>How to deal with output buffering?</a></ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=cat-tac.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=tr.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=cat-tac.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=tr.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
             window.playground_copyable = true;
         </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>

@@ -57,11 +57,10 @@ soap
 coffee
 washing powder
 tea
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> You can use the <code>--random-source=FILE</code> option to provide your own source for randomness. With this option, the output will be the same across multiple runs. See <a href=https://www.gnu.org/software/coreutils/manual/html_node/Random-sources.html>Sources of random data</a> for more details.</blockquote><blockquote><p><img src=./images/warning.svg alt=warning> <code>shuf</code> doesn't accept multiple input files. Use <code>cat</code> for such cases.</blockquote><h2 id=limit-output-lines><a class=header href=#limit-output-lines>Limit output lines</a></h2><p>Use the <code>-n</code> option to limit the number of lines you want in the output. If the value is greater than the number of lines in the input, it would be similar to not using the <code>-n</code> option.<pre><code class=language-bash># shuf will add a newline even if not present for the last input line
-$ printf 'apple\nbanana\ncherry' | shuf -n2
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> You can use the <code>--random-source=FILE</code> option to provide your own source for randomness. With this option, the output will be the same across multiple runs. See <a href=https://www.gnu.org/software/coreutils/manual/html_node/Random-sources.html>Sources of random data</a> for more details.</blockquote><blockquote><p><img src=./images/warning.svg alt=warning> <code>shuf</code> doesn't accept multiple input files. Use <code>cat</code> for such cases.</blockquote><h2 id=limit-output-lines><a class=header href=#limit-output-lines>Limit output lines</a></h2><p>Use the <code>-n</code> option to limit the number of lines you want in the output. If the value is greater than the number of lines in the input, it would be similar to not using the <code>-n</code> option.<pre><code class=language-bash>$ printf 'apple\nbanana\ncherry' | shuf -n2
 cherry
 apple
-</code></pre><h2 id=repeated-lines><a class=header href=#repeated-lines>Repeated lines</a></h2><p>The <code>-r</code> option helps if you want to allow input lines to be repeated. This option is usually paired with <code>-n</code> to limit the number of lines in the output.<pre><code class=language-bash>$ cat fruits.txt
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> As seen in the example above, <code>shuf</code> will add a newline character if it is not present for the last input line.</blockquote><h2 id=repeated-lines><a class=header href=#repeated-lines>Repeated lines</a></h2><p>The <code>-r</code> option helps if you want to allow input lines to be repeated. This option is usually paired with <code>-n</code> to limit the number of lines in the output.<pre><code class=language-bash>$ cat fruits.txt
 banana
 papaya
 mango
@@ -91,6 +90,12 @@ blue
 green
 red
 blue
+</code></pre><p>The shell will autocomplete unquoted glob patterns (provided there are files that match the given expression). You can thus easily construct a solution to get a random selection of files matching the given glob pattern.<pre><code class=language-bash>$ echo *.csv
+marks.csv mixed_fields.csv report_1.csv report_2.csv scores.csv
+
+$ shuf -n2 -e *.csv
+scores.csv
+marks.csv
 </code></pre><h2 id=generate-random-numbers><a class=header href=#generate-random-numbers>Generate random numbers</a></h2><p>The <code>-i</code> option will help you generate random positive integers.<pre><code class=language-bash>$ shuf -i 5-8
 5
 8

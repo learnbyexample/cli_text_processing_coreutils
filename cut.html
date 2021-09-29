@@ -38,21 +38,21 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=cut><a class=header href=#cut>cut</a></h1><p><code>cut</code> is a handy tool for many field processing use cases. The features are limited compared to say <code>awk</code> or <code>perl</code>, but the reduced scope also leads to faster processing.<h2 id=individual-field-selections><a class=header href=#individual-field-selections>Individual field selections</a></h2><p>You can use the <code>-f</code> option to select one or more fields separated by the comma character. By default, <code>cut</code> splits the input on tab character.<pre><code class=language-bash># second field
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=cut><a class=header href=#cut>cut</a></h1><p><code>cut</code> is a handy tool for many field processing use cases. The features are limited compared to <code>awk</code> and <code>perl</code> commands, but the reduced scope also leads to faster processing.<h2 id=individual-field-selections><a class=header href=#individual-field-selections>Individual field selections</a></h2><p>By default, <code>cut</code> splits the input content into fields based on the tab character. You can use the <code>-f</code> option to select a desired field from each input line. To extract multiple fields, specify the selections separated by the comma character.<pre><code class=language-bash># second field
 $ printf 'apple\tbanana\tcherry\n' | cut -f2
 banana
 
 # first and third field
 $ printf 'apple\tbanana\tcherry\n' | cut -f1,3
 apple   cherry
-</code></pre><p><code>cut</code> will always display the selected fields in the same order as input. Field duplication will be ignored as well.<pre><code class=language-bash># same as: cut -f1,3
+</code></pre><p><code>cut</code> will always display the selected fields in ascending order. Field duplication will be ignored as well.<pre><code class=language-bash># same as: cut -f1,3
 $ printf 'apple\tbanana\tcherry\n' | cut -f3,1
 apple   cherry
 
 # same as: cut -f1,2
 $ printf 'apple\tbanana\tcherry\n' | cut -f1,1,2,1,2,1,1,2
 apple   banana
-</code></pre><p>By default, <code>cut</code> uses the newline character as the line separator for both input and output.<pre><code class=language-bash>$ printf 'good\tfood\ntip\ttap' | cut -f2
+</code></pre><p>By default, <code>cut</code> uses the newline character as the line separator. <code>cut</code> will add a newline character to the output even if the last input line doesn't end with a newline.<pre><code class=language-bash>$ printf 'good\tfood\ntip\ttap' | cut -f2
 food
 tap
 </code></pre><h2 id=field-ranges><a class=header href=#field-ranges>Field ranges</a></h2><p>You can use the <code>-</code> character to specify field ranges. You can skip the starting or ending range, but not both.<pre><code class=language-bash># 2nd, 3rd and 4th fields
@@ -85,7 +85,7 @@ Try 'cut --help' for more information.
 -f3: command not found
 $ echo 'one;two;three;four' | cut -d';' -f3
 three
-</code></pre><h2 id=output-field-delimiter><a class=header href=#output-field-delimiter>Output field delimiter</a></h2><p>Use the <code>--output-delimiter</code> option to customize the output separator to any string of your choice. The string is treated literally, depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to allow escape sequences.<pre><code class=language-bash># same as: tr '\t' ','
+</code></pre><h2 id=output-field-delimiter><a class=header href=#output-field-delimiter>Output field delimiter</a></h2><p>Use the <code>--output-delimiter</code> option to customize the output separator to any string of your choice. The string is treated literally. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to allow escape sequences.<pre><code class=language-bash># same as: tr '\t' ','
 $ printf 'apple\tbanana\tcherry\n' | cut --output-delimiter=, -f1-
 apple,banana,cherry
 
@@ -111,24 +111,24 @@ apple cat
 $ printf 'apple ball cat\n1 2 3 4 5' | cut --complement -d' ' -f1,3
 ball
 2 4 5
-</code></pre><h2 id=suppress-lines-without-delimiters><a class=header href=#suppress-lines-without-delimiters>Suppress lines without delimiters</a></h2><p>By default, lines not containing the specified input delimiter will be part of the output. You can use the <code>-s</code> option to suppress such lines.<pre><code class=language-bash>$ printf '1,2,3,4\nhello\na,b,c\n'
+</code></pre><h2 id=suppress-lines-without-delimiters><a class=header href=#suppress-lines-without-delimiters>Suppress lines without delimiters</a></h2><p>By default, lines not containing the input delimiter will still be part of the output. You can use the <code>-s</code> option to suppress such lines.<pre><code class=language-bash>$ cat mixed_fields.csv
 1,2,3,4
 hello
 a,b,c
 
 # second line doesn't have the comma separator
 # by default, such lines will be part of the output
-$ printf '1,2,3,4\nhello\na,b,c\n' | cut -d, -f2
+$ cut -d, -f2 mixed_fields.csv
 2
 hello
 b
 
 # use -s option to suppress such lines
-$ printf '1,2,3,4\nhello\na,b,c\n' | cut -sd, -f2
+$ cut -sd, -f2 mixed_fields.csv
 2
 b
 
-$ printf '1,2,3,4\nhello\na,b,c\n' | cut --complement -sd, -f2
+$ cut --complement -sd, -f2 mixed_fields.csv
 1,3,4
 a,c
 </code></pre><p>If a line contains the specified delimiter but doesn't have the field number requested, you'll get a blank line. The <code>-s</code> option has no effect on such lines.<pre><code class=language-bash>$ printf 'apple ball cat\n1 2 3 4 5' | cut -d' ' -f4

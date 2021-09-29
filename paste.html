@@ -55,7 +55,7 @@ Orange
 Pink
 Red
 White
-</code></pre><p>By default, <code>paste</code> adds a tab character between corresponding lines of input files. Use <code>-</code> as the filename for <code>stdin</code> data.<pre><code class=language-bash>$ paste colors_1.txt colors_2.txt
+</code></pre><p>By default, <code>paste</code> adds a tab character between corresponding lines of input files.<pre><code class=language-bash>$ paste colors_1.txt colors_2.txt
 Blue    Black
 Brown   Blue
 Orange  Green
@@ -71,13 +71,11 @@ White   White
 5,10
 
 # quote the delimiter if it is a shell metacharacter
-$ paste -d'|' <(seq 3) <(seq 4 6) <(seq 7 10)
-1|4|7
-2|5|8
-3|6|9
-||10
-</code></pre><p>Use empty string or <code>\0</code> if you don't want any delimiter between the columns.<pre><code class=language-bash># you can also use paste -d'\0'
-# note that the space between -d and empty string is necessary here
+$ paste -d'|' <(seq 3) <(seq 4 5) <(seq 6 8)
+1|4|6
+2|5|7
+3||8
+</code></pre><p>Use empty string if you don't want any delimiter between the columns. You can also use <code>\0</code> for this case, but that'd be confusing since it is typically used to mean the NUL character.<pre><code class=language-bash># note that the space between -d and empty string is necessary here
 $ paste -d '' <(seq 3) <(seq 6 8)
 16
 27
@@ -107,7 +105,11 @@ $ &LTcolors_1.txt paste -d: - - -
 Blue:Brown:Orange
 Purple:Red:Teal
 White::
-</code></pre><p>If you don't want to manually type the number of <code>-</code> required, you can use the below <code>printf</code> trick (see <a href=https://stackoverflow.com/q/5349718/4082052>this stackoverflow thread</a> for more details).<pre><code class=language-bash># the string before %.s is repeated based on the number of arguments
+</code></pre><p>Here's an example with both <code>stdin</code> and file arguments:<pre><code class=language-bash>$ seq 6 | paste - nums.txt -
+1       3.14    2
+3       42      4
+5       1000    6
+</code></pre><p>If you don't want to manually type the number of <code>-</code> required, you can use the below <code>printf</code> trick<pre><code class=language-bash># the string before %.s is repeated based on the number of arguments
 $ printf 'x %.s' a b c
 x x x 
 $ printf -- '- %.s' {1..5}
@@ -116,11 +118,7 @@ $ printf -- '- %.s' {1..5}
 $ seq 10 | paste -d, $(printf -- '- %.s' {1..5})
 1,2,3,4,5
 6,7,8,9,10
-</code></pre><p>Here's an example with both <code>stdin</code> and file arguments:<pre><code class=language-bash>$ seq 6 | paste - nums.txt -
-1       3.14    2
-3       42      4
-5       1000    6
-</code></pre><h2 id=multicharacter-delimiters><a class=header href=#multicharacter-delimiters>Multicharacter delimiters</a></h2><p>The <code>-d</code> option accepts a list of characters (bytes to be precise) to be used one by one between the different columns. If the number of characters is less than the number of separators required, the characters are reused from the beginning and this cycle repeats until all the columns are done. If the number of characters is greater than the number of separators required, the extra characters are simply discarded.<pre><code class=language-bash># , is used between 1st and 2nd column
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://stackoverflow.com/q/5349718/4082052>this stackoverflow thread</a> for more details about the <code>printf</code> solution and other alternatives.</blockquote><h2 id=multicharacter-delimiters><a class=header href=#multicharacter-delimiters>Multicharacter delimiters</a></h2><p>The <code>-d</code> option accepts a list of characters (bytes to be precise) to be used one by one between the different columns. If the number of characters is less than the number of separators required, the characters are reused from the beginning and this cycle repeats until all the columns are done. If the number of characters is greater than the number of separators required, the extra characters are simply discarded.<pre><code class=language-bash># , is used between 1st and 2nd column
 # - is used between 2nd and 3rd column
 $ paste -d',-' <(seq 3) <(seq 4 6) <(seq 7 9)
 1,4-7

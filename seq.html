@@ -55,7 +55,7 @@ $ seq -5 -3
 -5
 -4
 -3
-</code></pre><p>When you want to specify all three numbers, the order is start, step and stop.<pre><code class=language-bash># start=1000, step=5 and stop=1010
+</code></pre><p>When you want to specify all the three numbers, the order is start, step and stop.<pre><code class=language-bash># start=1000, step=5 and stop=1010
 $ seq 1000 5 1010
 1000
 1005
@@ -92,7 +92,7 @@ $ seq 1.2e2 0.752 1.22e2
 120.000
 120.752
 121.504
-</code></pre><h2 id=customizing-separator><a class=header href=#customizing-separator>Customizing separator</a></h2><p>You can use the <code>-s</code> option to change the separator between the numbers of a sequence. Multiple characters are allowed. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character. A newline is always added at end.<pre><code class=language-bash>$ seq -s' ' 4
+</code></pre><h2 id=customizing-separator><a class=header href=#customizing-separator>Customizing separator</a></h2><p>You can use the <code>-s</code> option to change the separator between the numbers of a sequence. Multiple characters are allowed. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character. A newline is always added at the end of the output.<pre><code class=language-bash>$ seq -s' ' 4
 1 2 3 4
 
 $ seq -s: -2 0.75 3
@@ -122,7 +122,7 @@ $ seq -w 0003
 0001
 0002
 0003
-</code></pre><h2 id=printf-style-formatting><a class=header href=#printf-style-formatting>printf style formatting</a></h2><p>You can use the <code>-f</code> option for <code>printf</code> style floating-point number formatting.<pre><code class=language-bash>$ seq -f'%g' -s: 1 0.75 3
+</code></pre><h2 id=printf-style-formatting><a class=header href=#printf-style-formatting>printf style formatting</a></h2><p>You can use the <code>-f</code> option for <code>printf</code> style floating-point number formatting. See <a href=https://www.gnu.org/software/bash/manual/html_node/Bash-Builtins.html#index-printf>bash manual: printf</a> for more details on formatting options.<pre><code class=language-bash>$ seq -f'%g' -s: 1 0.75 3
 1:1.75:2.5
 
 $ seq -f'%.4f' -s: 1 0.75 3
@@ -132,12 +132,14 @@ $ seq -f'%.3e' 1.2e2 0.752 1.22e2
 1.200e+02
 1.208e+02
 1.215e+02
-</code></pre><h2 id=limitations><a class=header href=#limitations>Limitations</a></h2><p>As per <a href=https://www.gnu.org/software/coreutils/manual/html_node/seq-invocation.html#seq-invocation>the manual</a>:<blockquote><p>On most systems, <code>seq</code> can produce whole-number output for values up to at least <code>2^53</code>. Larger integers are approximated. The details differ depending on your floating-point implementation.</blockquote><pre><code class=language-bash>$ seq 100000000000000000000 3 100000000000000000010
+</code></pre><h2 id=limitations><a class=header href=#limitations>Limitations</a></h2><p>As per <a href=https://www.gnu.org/software/coreutils/manual/html_node/seq-invocation.html#seq-invocation>the manual</a>:<blockquote><p>On most systems, <code>seq</code> can produce whole-number output for values up to at least <code>2^53</code>. Larger integers are approximated. The details differ depending on your floating-point implementation.</blockquote><pre><code class=language-bash># example with approximate values
+$ seq 100000000000000000000 3 100000000000000000010
 100000000000000000000
 100000000000000000000
 100000000000000000008
 100000000000000000008
-</code></pre><blockquote><p>However, note that when limited to non-negative whole numbers, an increment of <code>1</code> and no format-specifying option, <code>seq</code> can print arbitrarily large numbers.</blockquote><pre><code class=language-bash>$ seq 100000000000000000000000000000 100000000000000000000000000005
+</code></pre><blockquote><p>However, note that when limited to non-negative whole numbers, an increment of <code>1</code> and no format-specifying option, <code>seq</code> can print arbitrarily large numbers.</blockquote><pre><code class=language-bash># no approximation for step value of 1
+$ seq 100000000000000000000000000000 100000000000000000000000000005
 100000000000000000000000000000
 100000000000000000000000000001
 100000000000000000000000000002
