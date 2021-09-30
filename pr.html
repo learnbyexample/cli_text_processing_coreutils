@@ -38,7 +38,7 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=pr><a class=header href=#pr>pr</a></h1><blockquote><p>Paginate or columnate FILE(s) for printing.</blockquote><p>As stated in the above quote from the manual, the <code>pr</code> command is mainly used for two tasks. This book will discuss only the columnate features and some miscellaneous tasks.<p>Here's a pagination example if you are interested in exploring further. The <code>pr</code> command will add blank lines, a header and so on to make it suitable for printing.<pre><code class=language-bash>$ pr greeting.txt | head
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=pr><a class=header href=#pr>pr</a></h1><blockquote><p>Paginate or columnate FILE(s) for printing.</blockquote><p>As stated in the above quote from the manual, the <code>pr</code> command is mainly used for those two tasks. This book will discuss only the columnate features and some miscellaneous tasks.<p>Here's a pagination example if you are interested in exploring further. The <code>pr</code> command will add blank lines, a header and so on to make it suitable for printing.<pre><code class=language-bash>$ pr greeting.txt | head
 
 
 2021-08-05 14:10                   greeting.txt                   Page 1
@@ -88,7 +88,7 @@ $ seq 10 | paste -d, - - - -
 9,10,,
 </code></pre><h2 id=customizing-page-width><a class=header href=#customizing-page-width>Customizing page width</a></h2><p>As mentioned before, the default page width is <code>72</code>. This can cause lines to be truncated, unless <code>-s</code> or <code>-J</code> options are used. There's another issue you might run into, for example:<pre><code class=language-bash>$ seq 100 | pr -50ats,
 pr: page width too narrow
-</code></pre><p><code>(N-1)*length(separator) + N</code> is the minimum page width you need, where <code>N</code> is the number of columns required. So, for <code>50</code> columns and a separator of length <code>1</code>, you'll need a minimum width of <code>99</code>. This calculation doesn't make any assumption about the size of input lines, so you'll need <code>-J</code> to ensure input lines aren't truncated.<p>You can use the <code>-w</code> option to change the page width. This option will truncate lines, so use <code>-J</code> option as well unless you really need truncation. If truncation is active, maximum column width is <code>(PageWidth - (N-1)*length(separator)) / N</code> rounded down to an integer value. Here's some examples:<pre><code class=language-bash># minimum width needed is 3 for N=2 and length=1
+</code></pre><p><code>(N-1)*length(separator) + N</code> is the minimum page width you need, where <code>N</code> is the number of columns required. So, for <code>50</code> columns and a separator of length <code>1</code>, you'll need a minimum width of <code>99</code>. This calculation doesn't make any assumption about the size of input lines, so you may need <code>-J</code> to ensure input lines aren't truncated.<p>You can use the <code>-w</code> option to change the page width. The <code>-w</code> option overrides the effect of <code>-s</code> option on line truncation, so use <code>-J</code> option as well unless you really need truncation. If truncation is active, maximum column width is <code>(PageWidth - (N-1)*length(separator)) / N</code> rounded down to an integer value. Here's some examples:<pre><code class=language-bash># minimum width needed is 3 for N=2 and length=1
 # maximum column width: (6 - 1) / 2 = 2
 $ pr -w6 -2ts, greeting.txt
 Hi,Ha
@@ -121,7 +121,7 @@ $ pr -mts' : ' <(seq 3) <(seq 4 6)
 1 : 4
 2 : 5
 3 : 6
-</code></pre><p>You can prefix the output with line numbers using the <code>-n</code> option. By default, this option supports up to <code>5</code> digit numbers and uses the tab character to separate the line contents. You can optionally pass two arguments to this option — maximum number of digits and the separator character. If both arguments are used, the separator should be specified first. If you want to customize the starting line number, use the <code>-N</code> option as well.<pre><code class=language-bash># maximum of 1 digit for numbering
+</code></pre><p>You can prefix the output with line numbers using the <code>-n</code> option. By default, this option supports up to <code>5</code> digit numbers and uses the tab character to separate the numbering and line contents. You can optionally pass two arguments to this option — maximum number of digits and the separator character. If both arguments are used, the separator should be specified first. If you want to customize the starting line number, use the <code>-N</code> option as well.<pre><code class=language-bash># maximum of 1 digit for numbering
 # use : as the separator between line number and line contents
 $ pr -n:1 -mts, colors_1.txt colors_2.txt
 1:Blue,Black
@@ -133,6 +133,7 @@ $ pr -n:1 -mts, colors_1.txt colors_2.txt
 7:White,White
 </code></pre><p>The string passed to <code>-s</code> is treated literally. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to allow escape sequences. Unlike columnate, the separator is added even if the data is missing for some of the files.<pre><code class=language-bash># greeting.txt has 2 lines
 # fruits.txt has 3 lines
+# same as: paste -d$'\n' greeting.txt fruits.txt
 $ pr -mts$'\n' greeting.txt fruits.txt
 Hi there
 banana
@@ -140,7 +141,7 @@ Have a nice day
 papaya
 
 mango
-</code></pre><h2 id=miscellaneous><a class=header href=#miscellaneous>Miscellaneous</a></h2><p>You can use the <code>-d</code> option to double space the input. That is, every newline character is doubled.<pre><code class=language-bash>$ pr -dt fruits.txt
+</code></pre><h2 id=miscellaneous><a class=header href=#miscellaneous>Miscellaneous</a></h2><p>You can use the <code>-d</code> option to double space the input contents. That is, every newline character is doubled.<pre><code class=language-bash>$ pr -dt fruits.txt
 banana
 
 papaya
@@ -150,8 +151,8 @@ mango
 </code></pre><p>The <code>-v</code> option will convert non-printing characters like carriage return, backspace, etc to their octal representations (<code>\NNN</code>).<pre><code class=language-bash>$ printf 'car\bt\r\nbike\0p\r\n' | pr -vt
 car\010t\015
 bike\000p\015
-</code></pre><p><code>pr -t</code> is a roundabout way of concatenating input files. But one advantage is that this will add a newline character at the end if not present in the input.<pre><code class=language-bash># cat will not add a newline character
-# so, use pr if newline is needed at the end
+</code></pre><p><code>pr -t</code> is a roundabout way of concatenating input files. But one advantage is that this will add a newline character at the end if not present in the input.<pre><code class=language-bash># 'cat' will not add a newline character
+# so, use 'pr' if newline is needed at the end
 $ printf 'a\nb\nc' | pr -t
 a
 b

@@ -38,16 +38,16 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=fold-and-fmt><a class=header href=#fold-and-fmt>fold and fmt</a></h1><p>These two commands are useful to split and join lines to meet a specific line length requirement. <code>fmt</code> is smarter and usually the tool you want, but <code>fold</code> can be handy for some cases.<h2 id=fold><a class=header href=#fold>fold</a></h2><p>By default, <code>fold</code> will wrap lines that are greater than <code>80</code> bytes long, which can be customized using the <code>-w</code> option. You might wonder if there are tasks where wrapping without context could be useful. One use case I can think of is the <a href=https://en.wikipedia.org/wiki/FASTA_format>FASTA format</a>.<pre><code class=language-bash>$ cat greeting.txt
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=fold-and-fmt><a class=header href=#fold-and-fmt>fold and fmt</a></h1><p>These two commands are useful to split and join lines to meet a specific line length requirement. <code>fmt</code> is smarter and usually the tool you want, but <code>fold</code> can be handy for some cases.<h2 id=fold><a class=header href=#fold>fold</a></h2><p>By default, <code>fold</code> will wrap lines that are greater than <code>80</code> bytes long, which can be customized using the <code>-w</code> option. The newline character isn't part of this line length calculation. You might wonder if there are tasks where wrapping without context could be useful. One use case I can think of is the <a href=https://en.wikipedia.org/wiki/FASTA_format>FASTA format</a>.<pre><code class=language-bash>$ cat greeting.txt
 Hi there
 Have a nice day
 
-# second line is greater than 10 bytes
+# splits second line since it is greater than 10 bytes
 $ fold -w10 greeting.txt
 Hi there
 Have a nic
 e day
-</code></pre><p>The <code>-s</code> option will look for spaces to break before the maximum width allowed.<pre><code class=language-bash>$ fold -s -w10 greeting.txt
+</code></pre><p>The <code>-s</code> option looks for the presence of spaces to determine the line splitting. This check is performed within the limits of the wrap length.<pre><code class=language-bash>$ fold -s -w10 greeting.txt
 Hi there
 Have a 
 nice day
@@ -86,8 +86,24 @@ is a variant of that given by Donald E. Knuth and Michael F. Plass in
 </code></pre><p>Unlike <code>fold</code>, words are not split even if they exceed the maximum line width. Another difference is that <code>fmt</code> will add a final newline character if it isn't present in the input.<pre><code class=language-bash>$ printf 'hi there' | fmt -w4
 hi
 there
-</code></pre><p>The <code>fmt</code> command also allows you to join lines together that are shorter than the specified width. As mentioned before, paragraphs are taken into consideration, so empty lines will prevent merging. The <code>-s</code> option will disable line merging.<pre><code class=language-bash># first 4 characters of sample.txt are ignored here,
-# since line numbering will hinder lines being merged
+</code></pre><p>The <code>fmt</code> command also allows you to join lines together that are shorter than the specified width. As mentioned before, paragraphs are taken into consideration, so empty lines will prevent merging. The <code>-s</code> option will disable line merging.<pre><code class=language-bash>$ cat sample.txt
+ 1) Hello World
+ 2) 
+ 3) Hi there
+ 4) How are you
+ 5) 
+ 6) Just do-it
+ 7) Believe it
+ 8) 
+ 9) banana
+10) papaya
+11) mango
+12) 
+13) Much ado about nothing
+14) He he he
+15) Adios amigo
+
+# 'cut' here helps to ignore first 4 characters of sample.txt
 $ cut -c5- sample.txt | fmt -w30
 Hello World
 

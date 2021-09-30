@@ -109,7 +109,7 @@ White::
 1       3.14    2
 3       42      4
 5       1000    6
-</code></pre><p>If you don't want to manually type the number of <code>-</code> required, you can use the below <code>printf</code> trick<pre><code class=language-bash># the string before %.s is repeated based on the number of arguments
+</code></pre><p>If you don't want to manually type the number of <code>-</code> required, you can use this <code>printf</code> trick:<pre><code class=language-bash># the string before %.s is repeated based on the number of arguments
 $ printf 'x %.s' a b c
 x x x 
 $ printf -- '- %.s' {1..5}
