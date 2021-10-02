@@ -38,23 +38,24 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=uniq><a class=header href=#uniq>uniq</a></h1><p>The <code>uniq</code> command identifies similar lines that are adjacent to each other. There are various options to help you filter unique or duplicate lines, count them, group them, etc.<h2 id=retain-single-copy-of-duplicates><a class=header href=#retain-single-copy-of-duplicates>Retain single copy of duplicates</a></h2><p>This is the default behavior of the <code>uniq</code> command. If adjacent lines are the same, only the first copy will be displayed in the output. Unlike <code>sort</code>, the <code>uniq</code> command doesn't have to read the entire input since it compares only the lines that are next to each other.<pre><code class=language-bash># uniq will add a newline even if not present for the last input line
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=uniq><a class=header href=#uniq>uniq</a></h1><p>The <code>uniq</code> command identifies similar lines that are adjacent to each other. There are various options to help you filter unique or duplicate lines, count them, group them, etc.<h2 id=retain-single-copy-of-duplicates><a class=header href=#retain-single-copy-of-duplicates>Retain single copy of duplicates</a></h2><p>This is the default behavior of the <code>uniq</code> command. If adjacent lines are the same, only the first copy will be displayed in the output.<pre><code class=language-bash># only the adjacent lines are compared to determine duplicates
+# which is why you get 'red' twice in the output for this input
 $ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | uniq
 red
 green
 red
 blue
-</code></pre><p>If you want to retain only a single copy based on the entire input contents, one option is to sort the input before applying <code>uniq</code>. Or, use <code>sort -u</code> if applicable.<pre><code class=language-bash># same as sort -u for this case
+</code></pre><p>You'll need sorted input to make sure all the input lines are considered to determine duplicates. For some cases, <code>sort -u</code> is enough, like the example shown below:<pre><code class=language-bash># same as sort -u for this case
 $ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | sort | uniq
 blue
 green
 red
-</code></pre><p>Sometimes though, you want to sort based on some specific criteria but identify duplicates based on the entire line contents. <code>uniq</code> will help in such cases.<pre><code class=language-bash># can't use sort -n -u here
+</code></pre><p>Sometimes though, you may need to sort based on some specific criteria and then identify duplicates based on the entire line contents. Here's an example:<pre><code class=language-bash># can't use sort -n -u here
 $ printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -n | uniq
 2 balls
 2 pins
 13 pens
-</code></pre><p>If you need to preserve input order, use alternatives like <code>awk</code>, <code>perl</code> and <code>huniq</code>.<pre><code class=language-bash># retain single copy of duplicates, maintain input order
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> <code>sort+uniq</code> won't be suitable if you need to preserve the input order as well. You can use alternatives like <code>awk</code>, <code>perl</code> and <a href=https://github.com/koraa/huniq>huniq</a> for such cases.</blockquote><pre><code class=language-bash># retain single copy of duplicates, maintain input order
 $ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | awk '!seen[$0]++'
 red
 green
@@ -83,6 +84,7 @@ soap
 toothpaste
 washing powder
 
+# just a reminder that uniq works based on adjacent lines only
 $ printf 'red\nred\nred\ngreen\nred\nblue\nblue' | uniq -u
 green
 red
@@ -131,12 +133,12 @@ $ sort purchases.txt | uniq -c | sort -nr
       1 toothpaste
       1 soap
 </code></pre><h2 id=ignoring-case><a class=header href=#ignoring-case>Ignoring case</a></h2><p>Use the <code>-i</code> option to ignore case while determining duplicates.<pre><code class=language-bash># depending on your locale, sort and sort -f can give the same results
-$ printf 'cat\nbat\nCAT\ncar\nbat\n' | sort -f | uniq -iD
+$ printf 'cat\nbat\nCAT\ncar\nbat\nmat\nmoat' | sort -f | uniq -iD
 bat
 bat
 cat
 CAT
-</code></pre><h2 id=partial-match><a class=header href=#partial-match>Partial match</a></h2><p><code>uniq</code> has three options to change the matching criteria to partial parts of the input line. These aren't as powerful as the <code>sort -k</code> option, but they do come in handy for some use cases.<p>The <code>-f</code> option allows you to skip first <code>N</code> fields. Field separation is based on one or more space/tab characters only. Note that these separators will still be part of the field contents, so this will not work with variable number of blanks.<pre><code class=language-bash># skip first field
+</code></pre><h2 id=partial-match><a class=header href=#partial-match>Partial match</a></h2><p><code>uniq</code> has three options to change the matching criteria to partial parts of the input line. These aren't as powerful as the <code>sort -k</code> option, but they do come in handy for some use cases.<p>The <code>-f</code> option allows you to skip first <code>N</code> fields. Field separation is based on one or more space/tab characters only. Note that these separators will still be part of the field contents, so this will not work with variable number of blanks.<pre><code class=language-bash># skip first field, works as expected since no. of blanks is consistent
 $ printf '2 cars\n5 cars\n10 jeeps\n5 jeeps\n3 trucks\n' | uniq -f1 --group
 2 cars
 5 cars
@@ -147,9 +149,10 @@ $ printf '2 cars\n5 cars\n10 jeeps\n5 jeeps\n3 trucks\n' | uniq -f1 --group
 3 trucks
 
 # example with variable number of blanks
-$ printf '2 cars\n5 cars\n10 jeeps\n5  jeeps\n3 trucks\n' | uniq -f1
+# 'cars' entries were identified as duplicates, but not 'jeeps'
+$ printf '2 cars\n5 cars\n1 jeeps\n5  jeeps\n3 trucks\n' | uniq -f1
 2 cars
-10 jeeps
+1 jeeps
 5  jeeps
 3 trucks
 </code></pre><p>The <code>-s</code> option allows you to skip first <code>N</code> characters (calculated as bytes).<pre><code class=language-bash># skip first character
@@ -157,12 +160,12 @@ $ printf '* red\n* green\n- green\n* blue\n= blue' | uniq -s1
 * red
 * green
 * blue
-</code></pre><p>The <code>-w</code> option allows you to specify a maximum of <code>N</code> characters to be used for comparison (calculated as bytes).<pre><code class=language-bash># compare only first 2 characters
+</code></pre><p>The <code>-w</code> option restricts the comparison to the first <code>N</code> characters (calculated as bytes).<pre><code class=language-bash># compare only first 2 characters
 $ printf '1) apple\n1) almond\n2) banana\n3) cherry' | uniq -w2
 1) apple
 2) banana
 3) cherry
-</code></pre><p>When these options are used simultaneously, the priority is <code>-f</code> first, then <code>-s</code> and then <code>-w</code> option. Remember that blanks are part of the field content.<pre><code class=language-bash># skip first field
+</code></pre><p>When these options are used simultaneously, the priority is <code>-f</code> first, then <code>-s</code> and finally <code>-w</code> option. Remember that blanks are part of the field content.<pre><code class=language-bash># skip first field
 # then skip first two characters (including the blank character)
 # use next two characters for comparison ('bl' and 'ch' in this example)
 $ printf '2 @blue\n10 :black\n5 :cherry\n3 @chalk' | uniq -f1 -s2 -w2
