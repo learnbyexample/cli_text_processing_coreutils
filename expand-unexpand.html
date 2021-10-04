@@ -52,7 +52,7 @@ a       b       c
 # 'αλε' = 6 bytes, \t converts to 2 spaces
 $ printf 'αλε\tπού\n' | expand
 αλε  πού
-</code></pre><p>Here's an example with <code>7</code> and <code>8</code> byte strings before the tab character:<pre><code class=language-bash>$ printf 'deviate\treached\nbackdrop\toverhang\n' | expand
+</code></pre><p>Here's an example with strings of size <code>7</code> and <code>8</code> bytes before the tab character:<pre><code class=language-bash>$ printf 'deviate\treached\nbackdrop\toverhang\n' | expand
 deviate reached
 backdrop        overhang
 </code></pre><p>The <code>expand</code> command also considers backspace characters to determine the number of spaces needed.<pre><code class=language-bash># sample input with a backspace character
@@ -140,7 +140,7 @@ $ printf '\t\ta\tb\tc\n' | expand | unexpand | cat -T
 ^I^Ia       b       c
 
 # input has 4 spaces and a tab character (that expands till 8th column)
-# output will have only the tab character at the start
+# output will have a single tab character at the start
 $ printf '    \ta b\n' | unexpand | cat -T
 ^Ia b
 </code></pre><blockquote><p><img src=./images/info.svg alt=info> The current <code>locale</code> determines which characters are considered as blanks. Also, <code>unexpand</code> will concatenate multiple files passed as input source, so <code>cat</code> will not be needed for such cases.</blockquote><h2 id=unexpand-all-blanks><a class=header href=#unexpand-all-blanks>Unexpand all blanks</a></h2><p>The <code>-a</code> option will allow you to convert all sequences of two or more blanks at tab boundaries. Here's some examples:<pre><code class=language-bash># default unexpand stops at first non-blank character

@@ -44,7 +44,7 @@ Have a nice day
 
 $ wc greeting.txt
  2  6 25 greeting.txt
-</code></pre><p>If you are wondering why there are leading spaces, they help in aligning results for multiple files (discussed later).<h2 id=individual-counts><a class=header href=#individual-counts>Individual counts</a></h2><p>Instead of the three default values, you can use options to get only the particular count(s) you are interested in. These options are:<ul><li><code>-l</code> for line count<li><code>-w</code> for word count<li><code>-c</code> for byte count</ul><pre><code class=language-bash>$ wc -l greeting.txt
+</code></pre><p>Wondering why there are leading spaces in the output? They help in aligning results for multiple files (discussed later).<h2 id=individual-counts><a class=header href=#individual-counts>Individual counts</a></h2><p>Instead of the three default values, you can use options to get only the particular count(s) you are interested in. These options are:<ul><li><code>-l</code> for line count<li><code>-w</code> for word count<li><code>-c</code> for byte count</ul><pre><code class=language-bash>$ wc -l greeting.txt
 2 greeting.txt
 
 $ wc -w greeting.txt
@@ -60,9 +60,10 @@ $ wc -wc greeting.txt
 $ printf 'hello' | wc -c -
 5 -
 
-$ wc -l &LTgreeting.txt 
+$ lines=$(wc -l &LTgreeting.txt)
+$ echo "$lines"
 2
-</code></pre><h2 id=multiple-files><a class=header href=#multiple-files>Multiple files</a></h2><p>If you pass multiple files to the <code>wc</code> command, the count values will be displayed separately for each file. You'll also get a summary at the end, which is the sum of all the input files.<pre><code class=language-bash>$ wc greeting.txt nums.txt purchases.txt
+</code></pre><h2 id=multiple-files><a class=header href=#multiple-files>Multiple files</a></h2><p>If you pass multiple files to the <code>wc</code> command, the count values will be displayed separately for each file. You'll also get a summary at the end, which sums the respective count of all the input files.<pre><code class=language-bash>$ wc greeting.txt nums.txt purchases.txt
  2  6 25 greeting.txt
  3  3 13 nums.txt
  8  9 57 purchases.txt
@@ -70,7 +71,7 @@ $ wc -l &LTgreeting.txt
 $ wc greeting.txt nums.txt purchases.txt | tail -n1
 13 18 95 total
 
-$ wc *.csv
+$ wc *[ck]*.csv
   9   9 101 marks.csv
   4   4  70 scores.csv
  13  13 171 total
@@ -122,16 +123,20 @@ $ echo 'apple ; banana ; cherry' | tr -cd 'a-zA-Z[:space:]' | wc -w
 # allow numbers as well
 $ echo '2 : apples ;' | tr -cd '[:alnum:][:space:]' | wc -w
 2
-</code></pre><p><code>-L</code> won't count non-printable characters and tabs are converted to equivalent spaces. Multibyte characters will each be counted as <code>1</code> (depending on the locale, they might become non-printable too).<pre><code class=language-bash>$ printf '\t' | wc -L
+</code></pre><p><code>-L</code> won't count non-printable characters and tabs are converted to equivalent spaces. Multibyte characters will each be counted as <code>1</code> (depending on the locale, they might become non-printable too).<pre><code class=language-bash># tab characters can occupy up to 8 columns
+$ printf '\t' | wc -L
 8
 $ printf 'a\tb' | wc -L
 9
 
+# example for non-printable character
 $ printf 'a\34b' | wc -L
 2
 
+# multibyte characters are counted as 1 each in supported locales
 $ printf 'αλεπού' | wc -L
 6
+# non-supported locales can cause them to be treated as non-printable
 $ printf 'αλεπού' | LC_ALL=C wc -L
 0
 </code></pre><p><code>-m</code> and <code>-L</code> options count <a href=https://unicode.org/reports/tr29/#Grapheme_Cluster_Boundaries>grapheme clusters</a> differently.<pre><code class=language-bash>$ printf 'cag̈e' | wc -m

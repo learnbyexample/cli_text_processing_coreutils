@@ -134,7 +134,7 @@ Amy,CSE,67
 Raj,ECE,53
 Raj,EEE,88
 Tia,EEE,72
-</code></pre><h2 id=customize-output-field-list><a class=header href=#customize-output-field-list>Customize output field list</a></h2><p>You can use the <code>-o</code> option to customize the fields required in the output and their order. Especially useful when the first field isn't the key. Each output field is specified as file number, followed by a <code>.</code> character and then the field number. You can specify multiple fields separated by a <code>,</code> character. As a special case, you can use <code>0</code> to indicate the key field.<pre><code class=language-bash># output field order is 1st, 2nd and 3rd fields from the first file
+</code></pre><h2 id=customize-output-field-list><a class=header href=#customize-output-field-list>Customize output field list</a></h2><p>You can use the <code>-o</code> option to customize the fields required in the output and their order. Especially useful when the first field isn't the key. Each output field is specified as file number followed by a <code>.</code> character and then the field number. You can specify multiple fields separated by a <code>,</code> character. As a special case, you can use <code>0</code> to indicate the key field.<pre><code class=language-bash># output field order is 1st, 2nd and 3rd fields from the first file
 $ join -t, -1 2 -o 1.1,1.2,1.3 <(sort -t, -k2,2 marks.csv) names.txt
 CSE,Amy,67
 ECE,Raj,53
@@ -174,7 +174,15 @@ fig NA 100
 pen NA 2
 soap 3 1
 tshirt 3 NA
-</code></pre><h2 id=set-operations><a class=header href=#set-operations>Set operations</a></h2><p>This section covers whole line set operations you can perform on already sorted input files. Equivalent <code>sort</code> and <code>uniq</code> (if required) solutions will also be mentioned as comments (useful for unsorted inputs). Assume that there are no duplicate lines within an input file.<pre><code class=language-bash># union
+</code></pre><h2 id=set-operations><a class=header href=#set-operations>Set operations</a></h2><p>This section covers whole line set operations you can perform on already sorted input files. Equivalent <code>sort</code> and <code>uniq</code> solutions will also be mentioned as comments (useful for unsorted inputs). Assume that there are no duplicate lines within an input file.<p>These two sorted input files will be used for the examples to follow:<pre><code class=language-bash>$ paste colors_1.txt colors_2.txt
+Blue    Black
+Brown   Blue
+Orange  Green
+Purple  Orange
+Red     Pink
+Teal    Red
+White   White
+</code></pre><p>Here's how you can get <em>union</em> and <em>symmetric difference</em> results. Recall that <code>-t ''</code> will cause entire input line content to be considered as keys.<pre><code class=language-bash># union
 # unsorted input: sort -u colors_1.txt colors_2.txt
 $ join -t '' -a1 -a2 colors_1.txt colors_2.txt
 Black
@@ -197,7 +205,7 @@ Green
 Pink
 Purple
 Teal
-</code></pre><p>The below examples also include the equivalent <code>comm</code> solutions.<pre><code class=language-bash># intersection, same as: comm -12 colors_1.txt colors_2.txt
+</code></pre><p>Here's how you can get <em>intersection</em> and <em>difference</em> results. The equivalent <code>comm</code> solutions for sorted input is also mentioned in the comments.<pre><code class=language-bash># intersection, same as: comm -12 colors_1.txt colors_2.txt
 # unsorted input: sort colors_1.txt colors_2.txt | uniq -d
 $ join -t '' colors_1.txt colors_2.txt
 Blue
@@ -218,7 +226,7 @@ $ join -t '' -v1 colors_1.txt colors_2.txt
 Brown
 Purple
 Teal
-</code></pre><p>As mentioned before, <code>join</code> will display all the combinations if there are duplicate entries. Here's an example for displaying common lines:<pre><code class=language-bash>$ paste list_1.txt list_2.txt
+</code></pre><p>As mentioned before, <code>join</code> will display all the combinations if there are duplicate entries. Here's an example to show the differences between <code>sort</code>, <code>comm</code> and <code>join</code> solutions for displaying common lines:<pre><code class=language-bash>$ paste list_1.txt list_2.txt
 apple   cherry
 banana  cherry
 cherry  mango

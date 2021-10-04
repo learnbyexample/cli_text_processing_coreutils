@@ -61,8 +61,8 @@ $ head xx*
 10
 
 $ rm xx*
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> As seen in the example above, <code>csplit</code> will also display the number of bytes written for each output file. You can use the <code>-q</code> option to suppress this message.</blockquote><blockquote><p><img src=./images/info.svg alt=info> <img src=./images/warning.svg alt=warning> As mentioned earlier, remove the output files after every illustration.</blockquote><h2 id=split-on-regexp><a class=header href=#split-on-regexp>Split on regexp</a></h2><p>You can also split the input based on a line matching the given regular expression. The output produced will vary based on <code>//</code> or <code>%%</code> being used to surround the regexp.<p>When <code>/regexp/</code> is used, output is similar to the line number based splitting. The first output file will have the input lines <em>before</em> the first occurrence of a line matching the given regexp and the second output file will have the rest of the contents.<pre><code class=language-bash># match a line containing 't' followed by zero or more characters and then 'p'
-# 'toothpaste' matches for this input file
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> As seen in the example above, <code>csplit</code> will also display the number of bytes written for each output file. You can use the <code>-q</code> option to suppress this message.</blockquote><blockquote><p><img src=./images/info.svg alt=info> <img src=./images/warning.svg alt=warning> As mentioned earlier, remove the output files after every illustration.</blockquote><h2 id=split-on-regexp><a class=header href=#split-on-regexp>Split on regexp</a></h2><p>You can also split the input based on a line matching the given regular expression. The output produced will vary based on <code>//</code> or <code>%%</code> delimiters being used to surround the regexp.<p>When <code>/regexp/</code> is used, output is similar to the line number based splitting. The first output file will have the input lines <em>before</em> the first occurrence of a line matching the given regexp and the second output file will have the rest of the contents.<pre><code class=language-bash># match a line containing 't' followed by zero or more characters and then 'p'
+# 'toothpaste' is the only match for this input file
 $ csplit -q purchases.txt '/t.*p/'
 
 $ head xx*
@@ -127,8 +127,8 @@ csplit: ‘/t.*p/5’: line number out of range
 
 $ csplit -q purchases.txt '/t.*p/-5'
 csplit: ‘/t.*p/-5’: line number out of range
-</code></pre><h2 id=repeat-split><a class=header href=#repeat-split>Repeat split</a></h2><p>You can perform line number and regexp based split more than once by adding <code>{N}</code> argument after the pattern. Default behavior is same as specifying <code>{0}</code>. Any number greater than zero will result in that many more splits.<pre><code class=language-bash># {1} means split one more time
-# so two splits in total and three output files
+</code></pre><h2 id=repeat-split><a class=header href=#repeat-split>Repeat split</a></h2><p>You can perform line number and regexp based split more than once by adding <code>{N}</code> argument after the pattern. Default behavior examples seen so far is same as specifying <code>{0}</code>. Any number greater than zero will result in that many more splits.<pre><code class=language-bash># {1} means split one time more than the default split
+# so, two splits in total and three output files
 # in this example, split happens on 4th and 8th line numbers
 $ seq 10 | csplit -q - 4 '{1}'
 

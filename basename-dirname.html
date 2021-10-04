@@ -45,7 +45,7 @@ scores.csv
 $ basename 'path with spaces/report.log'
 report.log
 
-# trailing slashes will not affect the output
+# one or more trailing slashes will not affect the output
 $ basename /home/learnbyexample/example_files/
 example_files
 </code></pre><p>If there's no leading directory component or if slash alone is the input, the argument will be returned as is after removing any trailing slashes.<pre><code class=language-bash>$ basename filename.txt
@@ -65,13 +65,15 @@ jan_2021
 $ basename -s'.txt' purchases.txt.txt
 purchases.txt
 
-$ basename -s'report' report
+# -s will be ignored if it would have resulted in empty output
+$ basename -s'report' /backups/report
 report
 </code></pre><p>You can also pass the suffix to be removed after the path argument, but the <code>-s</code> option is preferred as it makes the intention clearer and works for multiple path arguments.<pre><code class=language-bash>$ basename example_files/scores.csv .csv
 scores
 </code></pre><h2 id=remove-filename-from-path><a class=header href=#remove-filename-from-path>Remove filename from path</a></h2><p>By default, the <code>dirname</code> command removes the trailing path component (after removing any trailing slashes).<pre><code class=language-bash>$ dirname /home/learnbyexample/example_files/scores.csv
 /home/learnbyexample/example_files
 
+# one or more trailing slashes will not affect the output
 $ dirname /home/learnbyexample/example_files/
 /home/learnbyexample
 </code></pre><h2 id=multiple-arguments><a class=header href=#multiple-arguments>Multiple arguments</a></h2><p>The <code>dirname</code> command accepts multiple path arguments by default. The <code>basename</code> command requires <code>-a</code> or <code>-s</code> (which implies <code>-a</code>) to work with multiple arguments.<pre><code class=language-bash>$ basename -a /backups/jan_2021.tar.gz /home/learnbyexample/report.log
@@ -86,7 +88,7 @@ report
 $ dirname /home/learnbyexample/example_files/scores.csv ../report/backups/
 /home/learnbyexample/example_files
 ../report
-</code></pre><h2 id=combining-basename-and-dirname><a class=header href=#combining-basename-and-dirname>Combining basename and dirname</a></h2><p>You can use shell features like command substitution to combine the effects of <code>basename</code> and <code>dirname</code> commands.<pre><code class=language-bash># extract the second last component
+</code></pre><h2 id=combining-basename-and-dirname><a class=header href=#combining-basename-and-dirname>Combining basename and dirname</a></h2><p>You can use shell features like command substitution to combine the effects of <code>basename</code> and <code>dirname</code> commands.<pre><code class=language-bash># extract the second last path component
 $ basename $(dirname /home/learnbyexample/example_files/scores.csv)
 example_files
 </code></pre><h2 id=nul-separator><a class=header href=#nul-separator>NUL separator</a></h2><p>Use <code>-z</code> option if you want to use NUL character as the output path separator.<pre><code class=language-bash>
