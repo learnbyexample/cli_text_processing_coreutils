@@ -1,0 +1,5 @@
+apple   50
+toys    5
+Pizza   2
+mango   25
+Banana  10

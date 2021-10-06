@@ -1,14 +1,18 @@
 # Command line text processing with GNU Coreutils
 
-<br>
-
-## About
-
 ⚠️ ⚠️ ⚠️ This is a **work-in-progress** book on command line text processing with GNU Coreutils.
 
-**GNU Coreutils 8.30** is the version used at the time of writing this book.
+<br>
 
-My [Command Line Text Processing](https://github.com/learnbyexample/Command-line-text-processing) repository includes chapters on various Coreutils commands. Those chapters have been significantly edited and expanded for this book.
+You might be already aware of popular coreutils commands like `head`, `tail`, `tr`, `sort`, etc. This book will teach you more than twenty of such specialized text processing tools provided by the `GNU coreutils` package.
+
+My [Command Line Text Processing](https://github.com/learnbyexample/Command-line-text-processing) repo includes chapters on some of these coreutils commands. Those chapters have been significantly edited for this book and new chapters have been added to cover more commands.
+
+<p align="center">
+    <img src="./images/cli_coreutils.png" width="320px" height="400px" />
+</p>
+
+See [Version_changes.md](./Version_changes.md) to keep track of changes made to the book.
 
 <br>
 
@@ -36,11 +40,11 @@ Twitter: https://twitter.com/learn_byexample
 
 ## Acknowledgements
 
-* [/r/commandline/](https://www.reddit.com/r/commandline) and [/r/linux4noobs/](https://www.reddit.com/r/linux4noobs/) — helpful forums
-* [stackoverflow](https://stackoverflow.com/) and [unix.stackexchange](https://unix.stackexchange.com/) — for getting answers on pertinent questions related to command line
+* [/r/commandline/](https://www.reddit.com/r/commandline), [/r/linux4noobs/](https://www.reddit.com/r/linux4noobs/) and [/r/linux/](https://www.reddit.com/r/linux/) — helpful forums
+* [stackoverflow](https://stackoverflow.com/) and [unix.stackexchange](https://unix.stackexchange.com/) — for getting answers on pertinent questions related to cli tools
+* [canva](https://www.canva.com/) — cover image
 * [Warning](https://commons.wikimedia.org/wiki/File:Warning_icon.svg) and [Info](https://commons.wikimedia.org/wiki/File:Info_icon_002.svg) icons by [Amada44](https://commons.wikimedia.org/wiki/User:Amada44) under public domain
 * [pngquant](https://pngquant.org/) and [svgcleaner](https://github.com/RazrFalcon/svgcleaner) for optimizing images
-* [softwareengineering.stackexchange](https://softwareengineering.stackexchange.com/questions/39/whats-your-favourite-quote-about-programming) and [skolakoda](https://skolakoda.org/programming-quotes) for programming quotes
 * [Inkscape](https://inkscape.org/) for favicon
 * [mdBook](https://github.com/rust-lang/mdBook) — for web version of the book
     * [mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc) — for adding table of contents for each page
@@ -53,3 +57,4 @@ Twitter: https://twitter.com/learn_byexample
 The book is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 The code snippets are licensed under MIT, see [LICENSE](./LICENSE) file
+

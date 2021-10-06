@@ -1,0 +1,12 @@
+\:\:\:
+Header
+red
+\:\:
+Hi there
+How are you
+\:\:
+banana
+papaya
+mango
+\:
+Footer
