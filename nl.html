@@ -97,7 +97,7 @@ $ nl -v-1 fruits.txt
 11) 3.14
 13) 42
 15) 1000
-</code></pre><h2 id=section-wise-numbering><a class=header href=#section-wise-numbering>Section wise numbering</a></h2><p>If you organize your input with special lines conforming to specific patterns, you can control their numbering separately. <code>nl</code> recognizes three types of sections with the following default patterns:<ul><li><code>\:\:\:</code> as header<li><code>\:\:</code> as body<li><code>\:</code> as footer</ul><p>These special lines will be replaced with an empty line after numbering. The numbering will be reset at the start of every section. Here's an example with multiple body sections:<pre><code class=language-bash>$ cat body.txt
+</code></pre><h2 id=section-wise-numbering><a class=header href=#section-wise-numbering>Section wise numbering</a></h2><p>If you organize your input with lines conforming to specific patterns, you can control their numbering separately. <code>nl</code> recognizes three types of sections with the following default patterns:<ul><li><code>\:\:\:</code> as header<li><code>\:\:</code> as body<li><code>\:</code> as footer</ul><p>These special lines will be replaced with an empty line after numbering. The numbering will be reset at the start of every section. Here's an example with multiple body sections:<pre><code class=language-bash>$ cat body.txt
 \:\:
 Hi there
 How are you
@@ -170,7 +170,7 @@ $ nl -w1 -s' ' all_sections.txt
 3 mango
 
   Footer
-</code></pre><p>The <code>-b</code>, <code>-h</code> and <code>-f</code> options control which lines should be numbered for the three types of sections. The various features will discussed later. For now, use <code>a</code> to number all lines of a particular section.<pre><code class=language-bash>$ nl -w1 -s' ' -ha -fa all_sections.txt
+</code></pre><p>The <code>-b</code>, <code>-h</code> and <code>-f</code> options control which lines should be numbered for the three types of sections. Use <code>a</code> to number all lines of a particular section (other features will discussed later).<pre><code class=language-bash>$ nl -w1 -s' ' -ha -fa all_sections.txt
 
 1 Header
 2 red
@@ -210,7 +210,7 @@ $ nl -p -w1 -s' ' -ha -fa all_sections.txt
 7 mango
 
 8 Footer
-</code></pre><p>You can change the two character pattern that is used to identify the different sections using the <code>-d</code> option.<pre><code class=language-bash># pattern changed from \: to %=
+</code></pre><p>The <code>-d</code> option allows you to customize the two character pattern used for sections.<pre><code class=language-bash># pattern changed from \: to %=
 $ cat body_sep.txt
 %=%=
 apple

@@ -41,7 +41,6 @@
                 </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=sort><a class=header href=#sort>sort</a></h1><p>The <code>sort</code> command provides a wide variety of features. In addition to <a href=https://en.wikipedia.org/wiki/Lexicographic_order>lexicographic ordering</a>, it supports various numerical formats. You can also sort based on particular column(s). And there are nifty features like merging already sorted input, debugging, whether input is sorted and so on.<h2 id=default-sort-and-collating-order><a class=header href=#default-sort-and-collating-order>Default sort and Collating order</a></h2><p>By default, <code>sort</code> orders the input in ascending order. If you know about <a href=https://ascii.cl/>ASCII codepoints</a>, do you agree that the following two examples are showing the correct expected output?<pre><code class=language-bash>$ cat greeting.txt
 Hi there
 Have a nice day
-
 # extract and sort space separated words
 $ &LTgreeting.txt tr ' ' '\n' | sort
 a
@@ -87,7 +86,7 @@ Lin,78,83,80
 rest
 quiet
 peace
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> In case you haven't noticed yet, <code>sort</code> adds a newline character to the final input line if it isn't present.</blockquote><h2 id=numeric-sort><a class=header href=#numeric-sort>Numeric sort</a></h2><p><code>sort</code> provides various options to work with numeric formats. For most cases, the <code>-n</code> option is enough. Here's an example:<pre><code class=language-bash># default sort isn't suited for numbers
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> In case you haven't noticed yet, <code>sort</code> adds a newline character to the final input line if it isn't present.</blockquote><h2 id=numeric-sort><a class=header href=#numeric-sort>Numeric sort</a></h2><p><code>sort</code> provides various options to work with numeric formats. For most cases, the <code>-n</code> option is enough. Here's an example:<pre><code class=language-bash># lexicographic ordering isn't suited for numbers
 $ printf '20\n2\n3' | sort
 2
 20
@@ -257,7 +256,7 @@ toys    5
 Banana  10
 mango   25
 apple   50
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Note that in the above example, the <code>-n</code> option was also appended to the <code>-k</code> option. This makes it specific to that column and overrides global options, if any. Also, remember that the entire line will be used to break ties, unless otherwise specified.</blockquote><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. Use <code>\0</code> to specify NUL as the separator. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character. When <code>-t</code> option is used, the field separator won't be part of the field contents. Here's an example:<pre><code class=language-bash># department,name,marks
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Note that in the above example, the <code>-n</code> option was also appended to the <code>-k</code> option. This makes it specific to that column and overrides global options, if any. Also, remember that the entire line will be used to break ties, unless otherwise specified.</blockquote><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. Use <code>\0</code> to specify NUL as the separator. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character. When <code>-t</code> option is used, the field separator won't be part of the field contents.<pre><code class=language-bash># department,name,marks
 $ cat marks.csv
 ECE,Raj,53
 ECE,Joel,72

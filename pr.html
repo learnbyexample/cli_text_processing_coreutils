@@ -49,7 +49,7 @@ Have a nice day
 
 
 
-</code></pre><h2 id=columnate><a class=header href=#columnate>Columnate</a></h2><p>The <code>--columns</code> and <code>-a</code> options can be used to merge the input lines in two different ways:<ul><li>merge consecutive lines, similar to the <code>paste</code> command<li>split the input file and then merge them as columns</ul><p>Here's an example to get started. Note that <code>-N</code> is same as using <code>--columns=N</code> where <code>N</code> is the number of columns you want in the output. The default page width is <code>72</code>, which means each column can only have a maximum of <code>72/N</code> characters (including the separator). Tab and space characters will be used to fill the columns as needed. You can use the <code>-J</code> option to prevent <code>pr</code> from truncating longer columns. The <code>-t</code> option is used here to turn off the pagination features.<pre><code class=language-bash># split input into three parts
+</code></pre><h2 id=columnate><a class=header href=#columnate>Columnate</a></h2><p>The <code>--columns</code> and <code>-a</code> options can be used to merge the input lines in two different ways:<ul><li>split the input file and then merge them as columns<li>merge consecutive lines, similar to the <code>paste</code> command</ul><p>Here's an example to get started. Note that <code>-N</code> is same as using <code>--columns=N</code> where <code>N</code> is the number of columns you want in the output. The default page width is <code>72</code>, which means each column can only have a maximum of <code>72/N</code> characters (including the separator). Tab and space characters will be used to fill the columns as needed. You can use the <code>-J</code> option to prevent <code>pr</code> from truncating longer columns. The <code>-t</code> option is used here to turn off the pagination features.<pre><code class=language-bash># split input into three parts
 # each column width is 72/3 = 24 characters max
 $ seq 9 | pr -3t
 1                       4                       7
@@ -102,6 +102,7 @@ pr: page width too narrow
 $ seq 6 | pr -J -w11 -3ats'::::'
 1::::2::::3
 4::::5::::6
+
 # you can also use a large number to avoid having to calculate the width
 $ seq 6 | pr -J -w500 -3ats'::::'
 1::::2::::3

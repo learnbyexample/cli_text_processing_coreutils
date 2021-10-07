@@ -55,7 +55,7 @@ $ wc -c greeting.txt
 
 $ wc -wc greeting.txt
  6 25 greeting.txt
-</code></pre><p>With <code>stdin</code> data, you'll get only the count value (unless you use <code>-</code> as the filename for <code>stdin</code>). Useful for assigning the output to shell variables.<pre><code class=language-bash>$ printf 'hello' | wc -c
+</code></pre><p>With <code>stdin</code> data, you'll get only the count value (unless you use <code>-</code> for <code>stdin</code>). Useful for assigning the output to shell variables.<pre><code class=language-bash>$ printf 'hello' | wc -c
 5
 $ printf 'hello' | wc -c -
 5 -

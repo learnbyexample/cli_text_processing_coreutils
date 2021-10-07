@@ -134,7 +134,6 @@ apple
 banana
 </code></pre><h2 id=divide-based-on-file-size><a class=header href=#divide-based-on-file-size>Divide based on file size</a></h2><p>The <code>-n</code> option has several features. If you pass only a numeric argument <code>N</code>, the given input file will be divided into <code>N</code> chunks. The output files will be roughly the same size.<pre><code class=language-bash># divide the file into 2 parts
 $ split -n2 purchases.txt
-
 $ head x*
 ==> xaa <==
 coffee
@@ -162,7 +161,6 @@ Hi there
 Hav
 </code></pre><p>To avoid splitting a line, use <code>l/</code> as a prefix. Quoting from the <a href=https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html>manual</a>:<blockquote><p>For <code>l</code> mode, chunks are approximately <code>input size / N</code>. The input is partitioned into <code>N</code> equal sized portions, with the last assigned any excess. If a line starts within a partition it is written completely to the corresponding file. Since lines or records are not split even if they overlap a partition, the files written can be larger or smaller than the partition size, and even empty if a line/record is so long as to completely overlap the partition.</blockquote><pre><code class=language-bash># divide input into 2 parts, don't split lines
 $ split -nl/2 purchases.txt
-
 $ head x*
 ==> xaa <==
 coffee
@@ -234,7 +232,7 @@ split: output file suffixes exhausted
 $ ls x*
 xa  xc  xe  xg  xi  xk  xm  xo  xq  xs  xu  xw  xy
 xb  xd  xf  xh  xj  xl  xn  xp  xr  xt  xv  xx  xz
-</code></pre><p>You can use the <code>-d</code> option to use numeric suffixes, starting from <code>00</code> (length depends on the <code>-a</code> setting). You can use the long option <code>--numeric-suffixes</code> to specify a different starting number.<pre><code class=language-bash>$ seq 10 | split -l1 -d
+</code></pre><p>You can use the <code>-d</code> option to use numeric suffixes, starting from <code>00</code> (length can be changed using the <code>-a</code> option). You can use the long option <code>--numeric-suffixes</code> to specify a different starting number.<pre><code class=language-bash>$ seq 10 | split -l1 -d
 $ ls x*
 x00  x01  x02  x03  x04  x05  x06  x07  x08  x09
 $ rm x*

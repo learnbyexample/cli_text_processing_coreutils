@@ -76,7 +76,8 @@ banana
 mango
 papaya
 papaya
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> If a limit using <code>-n</code> is not specified, <code>shuf -r</code> will produce output lines indefinitely.</blockquote><h2 id=specify-input-as-arguments><a class=header href=#specify-input-as-arguments>Specify input as arguments</a></h2><p>You can use the <code>-e</code> option to specify multiple input lines as arguments to the command.<pre><code class=language-bash>$ shuf -e hi there 'hello world' good
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> If a limit using <code>-n</code> is not specified, <code>shuf -r</code> will produce output lines indefinitely.</blockquote><h2 id=specify-input-as-arguments><a class=header href=#specify-input-as-arguments>Specify input as arguments</a></h2><p>You can use the <code>-e</code> option to specify multiple input lines as arguments to the command.<pre><code class=language-bash># quote the arguments as necessary
+$ shuf -e hi there 'hello world' good
 hello world
 good
 hi

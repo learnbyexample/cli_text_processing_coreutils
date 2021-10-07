@@ -46,7 +46,6 @@ Purple
 Red
 Teal
 White
-
 $ cat colors_2.txt
 Black
 Blue
@@ -94,7 +93,6 @@ $ seq 10 | paste -d, - -
 5,6
 7,8
 9,10
-
 # five columns
 $ seq 10 | paste -d: - - - - -
 1:2:3:4:5
@@ -159,7 +157,6 @@ apple-banana-cherry
 Blue:Brown:Orange:Purple:Red:Teal:White
 Black:Blue:Green:Orange:Pink:Red:White
 
-# multiple input files need not have the same number of lines
 $ paste -sd, <(seq 3) <(seq 5 9)
 1,2,3
 5,6,7,8,9

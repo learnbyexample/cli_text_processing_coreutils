@@ -83,7 +83,7 @@ apple 10
 fig 100
 pen 2
 tshirt 3
-</code></pre><h2 id=change-field-separator><a class=header href=#change-field-separator>Change field separator</a></h2><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. Use <code>\0</code> to specify NUL as the separator. Empty string will cause entire input line content to be considered as keys. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character.<p>The output field separator will be same as the value used for the <code>-t</code> option. Here's an example:<pre><code class=language-bash>$ cat marks.csv 
+</code></pre><h2 id=change-field-separator><a class=header href=#change-field-separator>Change field separator</a></h2><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. The output field separator will be same as the value used for the <code>-t</code> option. Use <code>\0</code> to specify NUL as the separator. Empty string will cause entire input line content to be considered as keys. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character.<pre><code class=language-bash>$ cat marks.csv 
 ECE,Raj,53
 ECE,Joel,72
 EEE,Moi,68
@@ -147,7 +147,7 @@ $ join --header -t, -o 1.1,2.2,1.2,1.3 report_1.csv report_2.csv
 Name,Chemistry,Maths,Physics
 Amy,85,78,95
 Raj,72,67,76
-</code></pre><h2 id=same-number-of-output-fields><a class=header href=#same-number-of-output-fields>Same number of output fields</a></h2><p>If you use <code>auto</code> as the argument for the <code>-o</code> option, first line of both the files will be used to determine the number of output fields. If the other lines have extra fields, they will be discarded.<pre><code class=language-bash>$ join <(printf 'a 1 2\nb p q r') <(printf 'a 3 4\nb x y z')
+</code></pre><h2 id=same-number-of-output-fields><a class=header href=#same-number-of-output-fields>Same number of output fields</a></h2><p>If you use <code>auto</code> as the argument for the <code>-o</code> option, first line of both the input files will be used to determine the number of output fields. If the other lines have extra fields, they will be discarded.<pre><code class=language-bash>$ join <(printf 'a 1 2\nb p q r') <(printf 'a 3 4\nb x y z')
 a 1 2 3 4
 b p q r x y z
 

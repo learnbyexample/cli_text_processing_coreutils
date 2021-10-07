@@ -86,7 +86,7 @@ soap
 tea
 </code></pre><blockquote><p><img src=./images/warning.svg alt=warning> You'll get an error if the given regexp isn't found in the input.</blockquote><pre><code class=language-bash>$ csplit -q purchases.txt '/xyz/'
 csplit: ‘/xyz/’: match not found
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote><h2 id=regexp-offset><a class=header href=#regexp-offset>Regexp offset</a></h2><p>You can also provide offset numbers that'll affect where the matching line and its surrounding lines should be placed. When the offset is greater than zero, the split will happen that many lines after the matching line. The default offset is zero.<pre><code class=language-bash># matching line will be part of the first file
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote><h2 id=regexp-offset><a class=header href=#regexp-offset>Regexp offset</a></h2><p>You can also provide offset numbers that'll affect where the matching line and its surrounding lines should be placed. When the offset is greater than zero, the split will happen that many lines after the matching line. The default offset is zero.<pre><code class=language-bash># when the offset is '1', matching line will be part of the first file
 $ csplit -q purchases.txt '/t.*p/1'
 $ head xx*
 ==> xx00 <==
@@ -183,7 +183,7 @@ csplit: ‘4’: line number out of range on repetition 2
 
 $ csplit -q purchases.txt '/tea/' '{4}'
 csplit: ‘/tea/’: match not found on repetition 3
-</code></pre><h2 id=keep-files-on-error><a class=header href=#keep-files-on-error>Keep files on error</a></h2><p>By default, <code>csplit</code> will remove the created output files if there's an error or a signal that causes the command to stop. You can use the <code>-k</code> option to keep such files. One use case is line number based splitting with <code>{*}</code> modifier.<pre><code class=language-bash>$ seq 10 | csplit -q - 4 '{*}'
+</code></pre><h2 id=keep-files-on-error><a class=header href=#keep-files-on-error>Keep files on error</a></h2><p>By default, <code>csplit</code> will remove the created output files if there's an error or a signal that causes the command to stop. You can use the <code>-k</code> option to keep such files. One use case is line number based splitting with the <code>{*}</code> modifier.<pre><code class=language-bash>$ seq 10 | csplit -q - 4 '{*}'
 csplit: ‘4’: line number out of range on repetition 2
 $ ls xx*
 ls: cannot access 'xx*': No such file or directory
