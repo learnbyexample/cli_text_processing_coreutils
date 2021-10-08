@@ -14,7 +14,11 @@ See [Version_changes.md](./Version_changes.md) to keep track of changes made to 
 
 # E-book
 
-TODO: pdf/epub versions
+You can purchase the book using these links:
+
+* https://learnbyexample.gumroad.com/l/cli_coreutils
+* https://leanpub.com/cli_coreutils
+* See https://learnbyexample.github.io/books/ for list of other books
 
 For a preview of the book, see [sample chapters](https://github.com/learnbyexample/cli_text_processing_coreutils/blob/main/sample_chapters/cli_text_processing_coreutils_sample.pdf)
 
