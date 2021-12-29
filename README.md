@@ -29,6 +29,14 @@ For web version of the book, visit https://learnbyexample.github.io/cli_text_pro
 
 <br>
 
+# Testimonials
+
+>In my opinion the book does a great job of quickly presenting examples of how commands can be used and then paired up to achieve new or interesting ways of manipulating data. Throughout the text there are little highlights offering tips on extra functionality or limitations of certain commands. For instance, when discussing the *shuf* command we're warned that *shuf* will not work with multiple files. However, we can merge multiple files together (using the *cat* command) and then pass them to *shuf*. These little gems of wisdom add a dimension to the book and will likely save the reader some time wondering why their scripts are not working as expected.
+>
+> — book review by Jesse Smith on [distrowatch.com](https://distrowatch.com/weekly.php?issue=20211206#book)
+
+<br>
+
 # Feedback and Contributing
 
 [Open an issue](https://github.com/learnbyexample/cli_text_processing_coreutils/issues) if you spot any typo/errors.
