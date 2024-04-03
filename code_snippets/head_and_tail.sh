@@ -6,7 +6,7 @@ head sample.txt
 
 tail sample.txt
 
-seq 4 | head
+seq 3 | head
 
 head -n3 sample.txt
 
@@ -16,7 +16,7 @@ tail -n2 sample.txt
 
 head -n -11 sample.txt
 
-## Starting from Nth line
+## Starting from the Nth line
 
 tail -n +11 sample.txt
 
@@ -44,7 +44,7 @@ printf 'cag̈e' | tail -c4
 
 tail -n +9 sample.txt | head -n3
 
-head -n7 sample.txt | tail -n2
+head -n7 sample.txt | tail -n +6
 
 ## NUL separator
 

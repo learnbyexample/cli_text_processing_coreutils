@@ -1,4 +1,4 @@
-## Extract filename from path
+## Extract filename from paths
 
 basename /home/learnbyexample/example_files/scores.csv
 

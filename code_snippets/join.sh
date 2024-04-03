@@ -14,13 +14,13 @@ join -a1 shopping_jan.txt shopping_feb.txt
 
 join -a1 -a2 shopping_jan.txt shopping_feb.txt
 
-join -v1 shopping_jan.txt shopping_feb.txt
+join -v2 shopping_jan.txt shopping_feb.txt
 
 join -v1 -v2 shopping_jan.txt shopping_feb.txt
 
 ## Change field separator
 
-cat marks.csv 
+cat marks.csv
 
 cat dept.txt
 

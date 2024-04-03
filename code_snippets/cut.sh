@@ -12,11 +12,11 @@ printf 'good\tfood\ntip\ttap' | cut -f2
 
 ## Field ranges
 
-printf 'apple\tbanana\tcherry\tdates\n' | cut -f2-4
+printf 'apple\tbanana\tcherry\tfig\tmango\n' | cut -f2-4
 
-printf 'apple\tbanana\tcherry\tdates\n' | cut -f-3
+printf 'apple\tbanana\tcherry\tfig\tmango\n' | cut -f-3
 
-printf 'apple\tbanana\tcherry\tdates\n' | cut -f3-
+printf 'apple\tbanana\tcherry\tfig\tmango\n' | cut -f3-
 
 ## Input field delimiter
 

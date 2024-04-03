@@ -1,0 +1,4 @@
+apple   2
+fig     5
+lemon   10
+tomato  22

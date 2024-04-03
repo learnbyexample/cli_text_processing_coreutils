@@ -24,8 +24,6 @@ csplit -q purchases.txt '/t.*p/1'
 
 head xx*
 
-rm xx*
-
 csplit -q purchases.txt '%t.*p%2'
 
 cat xx00
@@ -44,11 +42,11 @@ seq 10 | csplit -q - 4 '{1}'
 
 head xx*
 
-cat log.txt 
+cat log.txt
 
 csplit -q log.txt '%warning%' '{2}'
 
-cat xx00 
+cat xx00
 
 csplit -q purchases.txt '/paste\|powder/' '{*}'
 
@@ -60,11 +58,11 @@ csplit -q purchases.txt '/tea/' '{4}'
 
 ## Keep files on error
 
-seq 10 | csplit -q - 4 '{*}'
+seq 7 | csplit -q - 4 '{*}'
 
 ls xx*
 
-seq 10 | csplit -qk - 4 '{*}'
+seq 7 | csplit -qk - 4 '{*}'
 
 head xx*
 
@@ -84,15 +82,11 @@ csplit -q --suppress-matched purchases.txt '/soap\|powder/' '{*}'
 
 head xx*
 
-seq 11 14 | csplit -q --suppress-matched - '/3/'
+seq 11 16 | csplit -q --suppress-matched - '/[35]/' '{1}'
 
 head xx*
 
 rm xx*
-
-seq 11 16 | csplit -q --suppress-matched - '/[35]/' '{1}'
-
-head xx*
 
 ## Exclude empty files
 

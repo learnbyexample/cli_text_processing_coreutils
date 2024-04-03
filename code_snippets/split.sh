@@ -22,7 +22,7 @@ head x*
 
 cat x*
 
-split -C20 purchases.txt 
+split -C20 purchases.txt
 
 head x*
 
@@ -44,7 +44,7 @@ wc x*
 
 seq 6 | split -n2
 
-split -n1/2 greeting.txt 
+split -n1/2 greeting.txt
 
 split -nl/2 purchases.txt
 
@@ -88,6 +88,8 @@ seq 100 | split -l1 -a1
 
 ls x*
 
+rm x*
+
 seq 10 | split -l1 -d
 
 ls x*
@@ -114,7 +116,7 @@ ls num_*
 
 ## Exclude empty files
 
-split -nl/3 greeting.txt 
+split -nl/3 greeting.txt
 
 head x*
 
@@ -126,15 +128,15 @@ head x*
 
 ## Process parts through another command
 
-split -l1 --filter='gzip > $FILE.gz' greeting.txt 
+split -l1 --filter='gzip > $FILE.gz' greeting.txt
 
 ls x*
 
-zcat xaa.gz 
+zcat xaa.gz
 
 zcat xab.gz
 
-cat body_sep.txt 
+cat body_sep.txt
 
 split -l3 --filter='tail -n +2 > $FILE' body_sep.txt
 

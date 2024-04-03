@@ -37,9 +37,9 @@ printf 'Some\nNumbers' | cat - nums.txt
 
 ## Squeeze consecutive empty lines
 
-printf 'hello\n\n\nworld\n\nhave a nice day\n'
+printf 'hello\n\n\nworld\n\nhave a nice day\n\n\n\n\n\napple\n'
 
-printf 'hello\n\n\nworld\n\nhave a nice day\n' | cat -s
+printf 'hello\n\n\nworld\n\nhave a nice day\n\n\n\n\n\napple\n' | cat -s
 
 ## Prefix line numbers
 
@@ -51,19 +51,19 @@ printf 'apple\n\nbanana\n\ncherry\n' | cat -b
 
 ## Viewing special characters
 
-printf 'car\bt\nbike\rp\n'
+printf 'mar\bt\nbike\rp\n'
 
-printf 'car\bt\nbike\rp\n' | cat -v
+printf 'mar\bt\nbike\rp\n' | cat -v
 
 printf 'car\0jeep\0bus\0' | cat -v
 
 printf '1 2\t3\f4\v5\n' | cat -v
 
-printf 'good food\tnice dice\n' | cat -T
+printf 'good food\tnice dice\napple\tbanana\tcherry\n' | cat -T
 
-printf 'ice   \nwater\n cool  \n' | cat -E
+printf 'ice   \nwater\n cool  \n chill\n' | cat -E
 
-printf 'car\bt\nbike\rp\n' | cat -e
+printf 'mar\bt\nbike\rp\n' | cat -e
 
 printf '1 2\t3\f4\v5\n' | cat -t
 
@@ -113,7 +113,7 @@ cat body_sep.txt
 
 tac -b -s '%=%=' body_sep.txt
 
-cat shopping.txt 
+cat shopping.txt
 
 tac -b -rs '^[am]' shopping.txt
 

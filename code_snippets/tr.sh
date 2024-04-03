@@ -1,4 +1,4 @@
-## Translation
+## Transliteration
 
 echo 'leet speak' | tr 'lets' '1375'
 
@@ -40,7 +40,7 @@ echo '/python-projects/programs' | tr '/-' '\\_'
 
 ## Deleting characters
 
-echo '2021-08-12' | tr -d '-'
+echo '2024-08-12' | tr -d '-'
 
 s='"Hi", there! How *are* you? All fine here.'
 
@@ -60,11 +60,11 @@ echo "$s" | tr -c 'a-zA-Z.!?[:space:]' '%'
 
 ## Squeeze
 
-echo 'hhoowwww aaaaaareeeeee yyouuuu!!' | tr -s 'a-z'
+echo 'HELLO... hhoowwww aaaaaareeeeee yyouuuu!!' | tr -s 'a-z'
 
 echo 'hhoowwww aaaaaareeeeee yyouuuu!!' | tr -s 'a-z' 'A-Z'
 
 echo 'hhoowwww aaaaaareeeeee yyouuuu!!' | tr -sd '!' 'a-z'
 
-echo 'how    are     you!!!!!' | tr -cs 'a-z'
+echo 'apple    noon     banana!!!!!' | tr -cs 'a-z'
 

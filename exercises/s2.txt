@@ -1,0 +1,8 @@
+banana
+coffee
+eclair
+fig
+honey
+milk
+tea
+yeast

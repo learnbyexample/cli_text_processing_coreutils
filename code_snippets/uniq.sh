@@ -40,7 +40,7 @@ sort purchases.txt | uniq -c | sort -nr
 
 ## Ignoring case
 
-printf 'cat\nbat\nCAT\ncar\nbat\nmat\nmoat' | sort -f | uniq -iD
+printf 'hat\nbat\nHAT\ncar\nbat\nmat\nmoat' | sort -f | uniq -iD
 
 ## Partial match
 
@@ -48,7 +48,7 @@ printf '2 cars\n5 cars\n10 jeeps\n5 jeeps\n3 trucks\n' | uniq -f1 --group
 
 printf '2 cars\n5 cars\n1 jeeps\n5  jeeps\n3 trucks\n' | uniq -f1
 
-printf '* red\n* green\n- green\n* blue\n= blue' | uniq -s1
+printf '* red\n- green\n* green\n* blue\n= blue' | uniq -s1
 
 printf '1) apple\n1) almond\n2) banana\n3) cherry' | uniq -w2
 

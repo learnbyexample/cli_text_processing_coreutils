@@ -6,7 +6,7 @@ cat colors_2.txt
 
 paste colors_1.txt colors_2.txt
 
-seq 5 | paste -d, - <(seq 6 10)
+seq 4 | paste -d, - <(seq 6 9)
 
 paste -d'|' <(seq 3) <(seq 4 5) <(seq 6 8)
 
@@ -48,6 +48,8 @@ paste -d' :  - ' <(seq 3) e e <(seq 4 6) e e <(seq 7 9)
 
 ## Serialize
 
+<colors_1.txt tr '\n' ','
+
 paste -sd, colors_1.txt
 
 printf 'apple\nbanana\ncherry' | paste -sd-
@@ -58,5 +60,5 @@ paste -sd, <(seq 3) <(seq 5 9)
 
 ## NUL separator
 
-printf 'a\0b\0c\0d\0' | paste -z -d: - - | cat -v
+printf 'a\0b\0c\0d\0e\0f\0g\0h' | paste -z -d: - - - - | cat -v
 

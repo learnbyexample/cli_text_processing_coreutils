@@ -2,5 +2,5 @@
 apple
 banana
 %=%=
-red
+teal
 green

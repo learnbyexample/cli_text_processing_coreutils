@@ -14,7 +14,7 @@ printf 'cart\bd\tbard\n' | expand
 
 printf 'cart\bd\tbard\n' | expand | cat -t
 
-## Expand only initial tabs
+## Expand only the initial tabs
 
 printf 'a\tb\tc\n' | expand -i | cat -T
 
@@ -22,7 +22,7 @@ printf '\ta\tb\tc\n' | expand -i | cat -T
 
 printf '\t \ta\tb\tc\n' | expand -i | cat -T
 
-## Customize tab stop width
+## Customize the tab stop width
 
 cat -T code.py
 
@@ -68,7 +68,7 @@ printf 'cart\bd    bard\n' | unexpand -a | cat -T
 
 printf 'cart\bd    bard\n' | unexpand -a | cat -t
 
-## Change tab stop width
+## Change the tab stop width
 
 printf '\ta\n\t\tb\n' | expand -t 2
 

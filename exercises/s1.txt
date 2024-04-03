@@ -1,0 +1,8 @@
+apple
+coffee
+fig
+honey
+mango
+pasta
+sugar
+tea

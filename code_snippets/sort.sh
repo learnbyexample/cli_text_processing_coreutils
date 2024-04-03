@@ -26,9 +26,9 @@ printf 'peace\nrest\nquiet' | sort -r
 
 ## Numeric sort
 
-printf '20\n2\n3' | sort
+printf '20\n2\n3\n111\n314' | sort
 
-printf '20\n2\n3' | sort -n
+printf '20\n2\n3\n111\n314' | sort -n
 
 cat mixed_numbers.txt
 
@@ -80,9 +80,9 @@ printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -r -nu
 
 printf '2 balls\n13 pens\n2 pins\n13 pens\n' | sort -n | uniq
 
-printf 'cat\nbat\nCAT\ncar\nbat\n' | sort -u
+printf 'mat\nbat\nMAT\ncar\nbat\n' | sort -u
 
-printf 'cat\nbat\nCAT\ncar\nbat\n' | sort -fu
+printf 'mat\nbat\nMAT\ncar\nbat\n' | sort -fu
 
 ## Column sort
 
@@ -155,6 +155,8 @@ time sort -mn n1_sorted.txt n2_sorted.txt > op3.txt
 diff -sq op1.txt op2.txt
 
 diff -sq op1.txt op3.txt
+
+rm n{1,2}{,_sorted}.txt op{1..3}.txt
 
 ## NUL separator
 

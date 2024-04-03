@@ -1,0 +1,4 @@
+almond  33
+fig     115
+mango   20
+pista   42

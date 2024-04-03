@@ -14,6 +14,8 @@ nl -n'ln' greeting.txt
 
 ## Customize width
 
+nl greeting.txt
+
 nl -w2 greeting.txt
 
 ## Customize separator
@@ -22,13 +24,15 @@ nl -w2 -s' ' greeting.txt
 
 nl -w1 -s' --> ' greeting.txt
 
-## Starting number and increment
+## Starting number and step value
 
 nl -v10 greeting.txt
 
 nl -v-1 fruits.txt
 
 nl -w2 -s') ' -i2 greeting.txt fruits.txt nums.txt
+
+nl -w1 -s'. ' -v8 -i-1 greeting.txt fruits.txt
 
 ## Section wise numbering
 

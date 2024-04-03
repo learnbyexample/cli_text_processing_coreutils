@@ -1,12 +1,12 @@
 ## Randomize input lines
 
-cat purchases.txt 
+cat purchases.txt
 
 shuf purchases.txt
 
 ## Limit output lines
 
-printf 'apple\nbanana\ncherry' | shuf -n2
+printf 'apple\nbanana\ncherry\nfig\nmango' | shuf -n2
 
 ## Repeated lines
 
@@ -16,13 +16,13 @@ shuf -n3 -r fruits.txt
 
 shuf -n5 -r fruits.txt
 
-## Specify input as arguments
+## Specify input lines as arguments
 
 shuf -e hi there 'hello world' good
 
-shuf -n1 -e red green blue
+shuf -n1 -e brown green blue
 
-shuf -n4 -r -e red green blue
+shuf -n4 -r -e brown green blue
 
 echo *.csv
 
@@ -48,11 +48,13 @@ seq -f'%.4f' 100 0.25 3000 | shuf -n3
 
 ## Specifying output file
 
-shuf nums.txt -o rand_nums.txt
+cat book_list.txt
 
-cat rand_nums.txt
+shuf book_list.txt -o book_list.txt
+
+cat book_list.txt
 
 ## NUL separator
 
-printf 'apple\0banana\0cherry' | shuf -z -n2 | cat -v
+printf 'apple\0banana\0cherry\0fig\0mango' | shuf -z -n3 | cat -v
 
