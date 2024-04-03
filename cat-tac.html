@@ -1,8 +1,5 @@
-<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>cat and tac - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script><script>
-            try {
+<!doctypehtml><html class="sidebar-visible no-js light"lang=en><head><meta charset=UTF-8><title>cat and tac - CLI text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta content="Example based guide for specialized text processing with GNU Coreutils"name=description><meta content=width=device-width,initial-scale=1 name=viewport><meta content=#ffffff name=theme-color><meta content="CLI text processing with GNU Coreutils"property=og:title><meta content=website property=og:type><meta content="Example based guide for specialized text processing with GNU Coreutils"property=og:description><meta content=https://learnbyexample.github.io/cli_text_processing_coreutils/ property=og:url><meta content=https://raw.githubusercontent.com/learnbyexample/cli_text_processing_coreutils/main/images/cli_coreutils_ls.png property=og:image><meta content=1280 property=og:image:width><meta content=720 property=og:image:height><meta content=summary_large_image property=twitter:card><meta content=@learn_byexample property=twitter:site><link href=favicon.svg rel=icon><link rel="shortcut icon"href=favicon.png><link href=css/variables.css rel=stylesheet><link href=css/general.css rel=stylesheet><link href=css/chrome.css rel=stylesheet><link href=FontAwesome/css/font-awesome.css rel=stylesheet><link href=fonts/fonts.css rel=stylesheet><link href=highlight.css rel=stylesheet><link href=tomorrow-night.css rel=stylesheet><link href=ayu-highlight.css rel=stylesheet><link href=style.css rel=stylesheet><body><script>var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";</script><script>try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
 
@@ -13,39 +10,32 @@
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
-            } catch (e) { }
-        </script><script>
-            var theme;
+            } catch (e) { }</script><script>var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
-        </script><script>
-            var html = document.querySelector('html');
+            html.classList.add('js');</script><script>var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
             html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html class=active><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i id=mail-button class="fa fa-envelope"></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            html.classList.add("sidebar-" + sidebar);</script><nav aria-label="Table of contents"class=sidebar id=sidebar><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a class=active href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a><li class="chapter-item expanded affix"><a href=Exercise_solutions.html>Exercise solutions</a></li><br><hr><li class="chapter-item expanded"><i class="fa fa-github"id=git-repository-button></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i class="fa fa-home"id=home-button></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i class="fa fa-book"id=book-button></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i class="fa fa-envelope"id=mail-button></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a><li class="chapter-item expanded"><i class="fa fa-twitter"id=twitter-button></i><a href=https://twitter.com/learn_byexample>   Twitter</a></ol></div><div class=sidebar-resize-handle id=sidebar-resize-handle></div></nav><div class=page-wrapper id=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div class="menu-bar sticky bordered"id=menu-bar><div class=left-buttons><button aria-label="Toggle Table of Contents"title="Toggle Table of Contents"aria-controls=sidebar class=icon-button id=sidebar-toggle type=button><i class="fa fa-bars"></i></button><button aria-label="Change theme"title="Change theme"aria-controls=theme-list aria-expanded=false aria-haspopup=true class=icon-button id=theme-toggle type=button><i class="fa fa-paint-brush"></i></button><ul aria-label=Themes class=theme-popup id=theme-list role=menu><li role=none><button class=theme id=light role=menuitem>Light (default)</button><li role=none><button class=theme id=rust role=menuitem>Rust</button><li role=none><button class=theme id=coal role=menuitem>Coal</button><li role=none><button class=theme id=navy role=menuitem>Navy</button><li role=none><button class=theme id=ayu role=menuitem>Ayu</button></ul><button aria-label="Toggle Searchbar"title="Search. (Shortkey: s)"aria-controls=searchbar aria-expanded=false aria-keyshortcuts=S class=icon-button id=search-toggle type=button><i class="fa fa-search"></i></button></div><h1 class=menu-title>CLI text processing with GNU Coreutils</h1><div class=right-buttons><a aria-label=Blog href=https://learnbyexample.github.io title=Blog> <i class="fa fa-home"id=home-button></i> </a><a aria-label=Twitter href=https://twitter.com/learn_byexample title=Twitter> <i class="fa fa-twitter"id=twitter-button></i> </a><a aria-label="Git repository"title="Git repository"href=https://github.com/learnbyexample/cli_text_processing_coreutils> <i class="fa fa-github"id=git-repository-button></i> </a></div></div><div class=hidden id=search-wrapper><form class=searchbar-outer id=searchbar-outer><input placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header id=searchbar name=searchbar type=search></form><div class="searchresults-outer hidden"id=searchresults-outer><div class=searchresults-header id=searchresults-header></div><ul id=searchresults></ul></div></div><script>document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=cat-and-tac><a class=header href=#cat-and-tac>cat and tac</a></h1><p><code>cat</code> derives its name from con<strong>cat</strong>enation and provides other nifty options too.<p><code>tac</code> helps you to reverse the input line wise, usually used for further text processing.<h2 id=creating-text-files><a class=header href=#creating-text-files>Creating text files</a></h2><p>Yeah, <code>cat</code> can be used to write contents to a file by typing them from the terminal itself. If you invoke <code>cat</code> without providing file arguments or <code>stdin</code> from a pipe, it will wait for you to type the content. After you are done typing all the text you want to save, press Enter key and then <code>Ctrl+d</code> key combination. If you don't want the last line to have a newline character, press <code>Ctrl+d</code> twice instead of Enter and <code>Ctrl+d</code>. See also <a href=https://unix.stackexchange.com/q/16333/109046>unix.stackexchange: difference between Ctrl+c and Ctrl+d</a>.<pre><code class=language-bash># press Enter key and Ctrl+d after typing all the required characters
+                    });</script><div class=content id=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=cat-and-tac><a class=header href=#cat-and-tac>cat and tac</a></h1><p><code>cat</code> derives its name from con<strong>cat</strong>enation and provides other nifty options too.<p><code>tac</code> helps you to reverse the input line wise, usually used for further text processing.<h2 id=creating-text-files><a class=header href=#creating-text-files>Creating text files</a></h2><p>Yeah, <code>cat</code> can be used to write contents to a file by typing them from the terminal itself. If you invoke <code>cat</code> without providing file arguments or <code>stdin</code> data from a pipe, it will wait for you to type the content. After you are done typing all the text you want to save, press Enter and then the <code>Ctrl+d</code> key combinations. If you don't want the last line to have a newline character, press <code>Ctrl+d</code> twice instead of Enter and <code>Ctrl+d</code>. See also <a href=https://unix.stackexchange.com/q/16333/109046>unix.stackexchange: difference between Ctrl+c and Ctrl+d</a>.<pre><code class=language-bash># press Enter and Ctrl+d after typing all the required characters
 $ cat > greeting.txt
 Hi there
 Have a nice day
-</code></pre><p>In the above example, the output of <code>cat</code> is redirected to a file named <code>greeting.txt</code>. If you don't redirect the <code>stdout</code>, each line will be echoed as you type. You can check the contents of the file you just created by using <code>cat</code> again.<pre><code class=language-bash>$ cat greeting.txt
+</code></pre><p>In the above example, the output of <code>cat</code> is redirected to a file named <code>greeting.txt</code>. If you don't redirect the <code>stdout</code> data, each line will be echoed as you type. You can check the contents of the file you just created by using <code>cat</code> again.<pre><code class=language-bash>$ cat greeting.txt
 Hi there
 Have a nice day
-</code></pre><p><strong>Here Documents</strong> is another popular way to create such files. Especially in shell scripts, since pressing <code>Ctrl+d</code> interactively won't be possible. Here's an example:<pre><code class=language-bash># > and a space at the start of lines are only present in interactive mode
+</code></pre><p><strong>Here Documents</strong> is another popular way to create such files. In this case, the termination condition is a line matching a predefined string which is specified after the <code><<</code> redirection operator. This is especially helpful for automation, since pressing <code>Ctrl+d</code> interactively isn't desirable. Here's an example:<pre><code class=language-bash># > and a space at the start of lines represents the secondary prompt PS2
 # don't type them in a shell script
 # EOF is typically used as the identifier
 $ cat << 'EOF' > fruits.txt
@@ -58,7 +48,7 @@ $ cat fruits.txt
 banana
 papaya
 mango
-</code></pre><p>The termination string is enclosed in single quotes to prevent parameter expansion, command substitution, etc. You can also use <code>\string</code> for this purpose. If you use <code><&LT-</code> instead of <code><<</code>, you can use leading tab characters for indentation purposes. See <a href=https://www.gnu.org/software/bash/manual/bash.html#Here-Documents>bash manual: Here Documents</a> and <a href=https://stackoverflow.com/q/2953081/4082052>stackoverflow: here-documents</a> for more details.<blockquote><p><img src=./images/info.svg alt=info> Note that creating files as shown above isn't restricted to <code>cat</code>, it can be applied to any command waiting for <code>stdin</code>.</blockquote><pre><code class=language-bash># 'tr' converts lowercase alphabets to uppercase in this example
+</code></pre><p>The termination string is enclosed in single quotes to prevent parameter expansion, command substitution, etc. You can also use <code>\string</code> for this purpose. If you use <code><&LT-</code> instead of <code><<</code>, you can use leading tab characters for indentation purposes. See <a href=https://www.gnu.org/software/bash/manual/bash.html#Here-Documents>bash manual: Here Documents</a> and <a href=https://stackoverflow.com/q/2953081/4082052>stackoverflow: here-documents</a> for more examples and details.<blockquote><p><img alt=info src=./images/info.svg> Note that creating files as shown above isn't restricted to <code>cat</code>, it can be applied to any command waiting for <code>stdin</code>.<pre><code class=language-bash># 'tr' converts lowercase alphabets to uppercase in this example
 $ tr 'a-z' 'A-Z' << 'end' > op.txt
 > hi there
 > have a nice day
@@ -67,7 +57,7 @@ $ tr 'a-z' 'A-Z' << 'end' > op.txt
 $ cat op.txt
 HI THERE
 HAVE A NICE DAY
-</code></pre><h2 id=concatenate-files><a class=header href=#concatenate-files>Concatenate files</a></h2><p>Here's some examples to showcase <code>cat</code>'s main utility. One or more files can be given as arguments.<blockquote><p><img src=./images/info.svg alt=info> Visit the <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/example_files>cli_text_processing_coreutils repo</a> to get all the example files used in this book.</blockquote><pre><code class=language-bash>$ cat greeting.txt fruits.txt nums.txt
+</code></pre></blockquote><h2 id=concatenate-files><a class=header href=#concatenate-files>Concatenate files</a></h2><p>Here are some examples to showcase <code>cat</code>'s main utility. One or more files can be passed as arguments.<pre><code class=language-bash>$ cat greeting.txt fruits.txt nums.txt
 Hi there
 Have a nice day
 banana
@@ -76,7 +66,7 @@ mango
 3.14
 42
 1000
-</code></pre><p>To save the output of concatenation, use your shell's redirection features.<pre><code class=language-bash>$ cat greeting.txt fruits.txt nums.txt > op.txt
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> Visit the <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/example_files>cli_text_processing_coreutils repo</a> to get all the example files used in this book.</blockquote><p>To save the output of concatenation, use the shell's redirection features.<pre><code class=language-bash>$ cat greeting.txt fruits.txt nums.txt > op.txt
 
 $ cat op.txt
 Hi there
@@ -87,7 +77,7 @@ mango
 3.14
 42
 1000
-</code></pre><h2 id=accepting-stdin-data><a class=header href=#accepting-stdin-data>Accepting stdin data</a></h2><p>You can represent <code>stdin</code> data using <code>-</code> as a file argument. If file arguments are not present, <code>cat</code> will read from <code>stdin</code> data if present or wait for interactive input as seen earlier.<pre><code class=language-bash># only stdin (- is optional in this case)
+</code></pre><h2 id=accepting-stdin-data><a class=header href=#accepting-stdin-data>Accepting stdin data</a></h2><p>You can represent the <code>stdin</code> data using <code>-</code> as a file argument. If the file arguments are not present, <code>cat</code> will read the <code>stdin</code> data if present or wait for interactive input as seen earlier.<pre><code class=language-bash># only stdin (- is optional in this case)
 $ echo 'apple banana cherry' | cat
 apple banana cherry
 
@@ -97,26 +87,34 @@ Hi there
 Have a nice day
 apple banana cherry
 
-# here's an example without newline character at the end of first input
+# here's an example without a newline character at the end of the first input
 $ printf 'Some\nNumbers' | cat - nums.txt
 Some
 Numbers3.14
 42
 1000
-</code></pre><h2 id=squeeze-consecutive-empty-lines><a class=header href=#squeeze-consecutive-empty-lines>Squeeze consecutive empty lines</a></h2><p>As mentioned before, <code>cat</code> provides many features beyond concatenation. Consider this sample <code>stdin</code> data:<pre><code class=language-bash>$ printf 'hello\n\n\nworld\n\nhave a nice day\n'
+</code></pre><h2 id=squeeze-consecutive-empty-lines><a class=header href=#squeeze-consecutive-empty-lines>Squeeze consecutive empty lines</a></h2><p>As mentioned before, <code>cat</code> provides many features beyond concatenation. Consider this sample <code>stdin</code> data:<pre><code class=language-bash>$ printf 'hello\n\n\nworld\n\nhave a nice day\n\n\n\n\n\napple\n'
 hello
 
 
 world
 
 have a nice day
-</code></pre><p>You can use the <code>-s</code> option to squeeze consecutive empty lines to a single empty line. If present, leading and trailing empty lines will also be squeezed, won't be completely removed. You can modify the below example to test it out.<pre><code class=language-bash>$ printf 'hello\n\n\nworld\n\nhave a nice day\n' | cat -s
+
+
+
+
+
+apple
+</code></pre><p>You can use the <code>-s</code> option to squeeze consecutive empty lines to a single empty line. If present, leading and trailing empty lines will also be squeezed (won't be completely removed). You can modify the below example to test it out.<pre><code class=language-bash>$ printf 'hello\n\n\nworld\n\nhave a nice day\n\n\n\n\n\napple\n' | cat -s
 hello
 
 world
 
 have a nice day
-</code></pre><h2 id=prefix-line-numbers><a class=header href=#prefix-line-numbers>Prefix line numbers</a></h2><p>The <code>-n</code> option will prefix line number and a tab character to each input line. The line numbers are right justified to occupy a minimum of <code>6</code> characters, with space as the filler.<pre><code class=language-bash>$ cat -n greeting.txt fruits.txt nums.txt
+
+apple
+</code></pre><h2 id=prefix-line-numbers><a class=header href=#prefix-line-numbers>Prefix line numbers</a></h2><p>The <code>-n</code> option will prefix line numbers and a tab character to each input line. The line numbers are right justified to occupy a minimum of <code>6</code> characters, with space as the filler.<pre><code class=language-bash>$ cat -n greeting.txt fruits.txt nums.txt
      1  Hi there
      2  Have a nice day
      3  banana
@@ -125,27 +123,27 @@ have a nice day
      6  3.14
      7  42
      8  1000
-</code></pre><p>Use <code>-b</code> option instead of <code>-n</code> option if you don't want empty lines to be numbered.<pre><code class=language-bash># -n option numbers all the input lines
+</code></pre><p>Use the <code>-b</code> option instead of <code>-n</code> if you don't want empty lines to be numbered.<pre><code class=language-bash># -n option numbers all the input lines
 $ printf 'apple\n\nbanana\n\ncherry\n' | cat -n
-     1	apple
-     2	
-     3	banana
-     4	
-     5	cherry
+     1  apple
+     2  
+     3  banana
+     4  
+     5  cherry
 
-# -b option numbers only the non-empty input lines
+# -b option numbers only the non-empty lines
 $ printf 'apple\n\nbanana\n\ncherry\n' | cat -b
      1  apple
 
      2  banana
 
      3  cherry
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Use <code>nl</code> command if you want more customization options for numbering.</blockquote><h2 id=viewing-special-characters><a class=header href=#viewing-special-characters>Viewing special characters</a></h2><p>Characters like backspace and carriage return will mangle the contents if viewed naively on the terminal. Characters like NUL won't even be visible. You can use the <code>-v</code> option to show such characters using the caret notation (see <a href=https://en.wikipedia.org/wiki/ASCII_control_characters#Control_code_chart>wikipedia: Control code chart</a> for details). See <a href=https://unix.stackexchange.com/q/522297/109046>this unix.stackexchange thread</a> for non-ASCII character examples.<pre><code class=language-bash># example for backspace and carriage return
-$ printf 'car\bt\nbike\rp\n'
-cat
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> Use the <code>nl</code> command if you want more customization options like number formatting, separator string, regular expression based filtering and so on.</blockquote><h2 id=viewing-special-characters><a class=header href=#viewing-special-characters>Viewing special characters</a></h2><p>Characters like backspace and carriage return will mangle the contents if viewed naively on the terminal. Characters like NUL won't even be visible. You can use the <code>-v</code> option to show such characters using the caret notation (see <a href=https://en.wikipedia.org/wiki/ASCII_control_characters#Control_code_chart>wikipedia: Control code chart</a> for details). See <a href=https://unix.stackexchange.com/q/522297/109046>this unix.stackexchange thread</a> for non-ASCII examples.<pre><code class=language-bash># example for backspace and carriage return characters
+$ printf 'mar\bt\nbike\rp\n'
+mat
 pike
-$ printf 'car\bt\nbike\rp\n' | cat -v
-car^Ht
+$ printf 'mar\bt\nbike\rp\n' | cat -v
+mar^Ht
 bike^Mp
 
 # NUL character
@@ -155,14 +153,16 @@ car^@jeep^@bus^@
 # form-feed and vertical-tab
 $ printf '1 2\t3\f4\v5\n' | cat -v
 1 2     3^L4^K5
-</code></pre><p>The <code>-v</code> option doesn't cover the newline and tab characters. You can use the <code>-T</code> option to spot tab characters.<pre><code class=language-bash>$ printf 'good food\tnice dice\n' | cat -T
+</code></pre><p>The <code>-v</code> option doesn't cover the newline and tab characters. You can use the <code>-T</code> option to spot tab characters.<pre><code class=language-bash>$ printf 'good food\tnice dice\napple\tbanana\tcherry\n' | cat -T
 good food^Inice dice
-</code></pre><p>The <code>-E</code> option adds a <code>$</code> marker at the end of input lines. This is useful to spot invisible trailing characters.<pre><code class=language-bash>$ printf 'ice   \nwater\n cool  \n' | cat -E
+apple^Ibanana^Icherry
+</code></pre><p>The <code>-E</code> option adds a <code>$</code> marker at the end of input lines. This is useful to spot trailing whitespace characters.<pre><code class=language-bash>$ printf 'ice   \nwater\n cool  \n chill\n' | cat -E
 ice   $
 water$
  cool  $
-</code></pre><p>The following options combine two or more of the above options:<ul><li><code>-e</code> option is equivalent to <code>-vE</code><li><code>-t</code> option is equivalent to <code>-vT</code><li><code>-A</code> option is equivalent to <code>-vET</code></ul><pre><code class=language-bash>$ printf 'car\bt\nbike\rp\n' | cat -e
-car^Ht$
+ chill$
+</code></pre><p>The following options combine two or more of the above options:<ul><li><code>-e</code> option is equivalent to <code>-vE</code><li><code>-t</code> option is equivalent to <code>-vT</code><li><code>-A</code> option is equivalent to <code>-vET</code></ul><pre><code class=language-bash>$ printf 'mar\bt\nbike\rp\n' | cat -e
+mar^Ht$
 bike^Mp$
 
 $ printf '1 2\t3\f4\v5\n' | cat -t
@@ -170,7 +170,7 @@ $ printf '1 2\t3\f4\v5\n' | cat -t
 
 $ printf '1 2\t3\f4\v5\n' | cat -A
 1 2^I3^L4^K5$
-</code></pre><h2 id=useless-use-of-cat><a class=header href=#useless-use-of-cat>Useless use of cat</a></h2><p>Using <code>cat</code> to view the contents of a file, to concatenate them, etc is well and good. But, using <code>cat</code> when it is not needed is a bad habit that you should avoid. See <a href=https://en.wikipedia.org/wiki/Cat_(Unix)#Useless_use_of_cat>wikipedia: UUOC</a> and <a href=https://porkmail.org/era/unix/award.html>Useless Use of Cat Award</a> for more details.<p>Most commands that you'll see in this book can directly work with file arguments, so you shouldn't use <code>cat</code> and pipe the contents for such cases. Here's a single file example:<pre><code class=language-bash># useless use of cat
+</code></pre><h2 id=useless-use-of-cat><a class=header href=#useless-use-of-cat>Useless use of cat</a></h2><p>Using <code>cat</code> to view the contents of a file, to concatenate them, etc are well and good. But, using <code>cat</code> when it is not needed is a bad habit that you should avoid. See <a href=https://en.wikipedia.org/wiki/Cat_(Unix)#Useless_use_of_cat>wikipedia: UUOC</a> and <a href=https://porkmail.org/era/unix/award.html>Useless Use of Cat Award</a> for more details.<p>Most commands that you'll see in this book can directly work with file arguments, so you shouldn't use <code>cat</code> to pipe the contents for such cases. Here's a single file example:<pre><code class=language-bash># useless use of cat
 $ cat greeting.txt | sed -E 's/\w+/\L\u&/g'
 Hi There
 Have A Nice Day
@@ -179,7 +179,7 @@ Have A Nice Day
 $ sed -E 's/\w+/\L\u&/g' greeting.txt
 Hi There
 Have A Nice Day
-</code></pre><p>If you prefer having the file argument before the command, you can still use your shell's redirection feature to supply input data instead of <code>cat</code>. This also applies to commands like <code>tr</code> that do not accept file arguments.<pre><code class=language-bash># useless use of cat
+</code></pre><p>If you prefer having the file argument before the command, you can use the shell's redirection feature to supply input data instead of <code>cat</code>. This also applies to commands like <code>tr</code> that do not accept file arguments.<pre><code class=language-bash># useless use of cat
 $ cat greeting.txt | tr 'a-z' 'A-Z'
 HI THERE
 HAVE A NICE DAY
@@ -188,7 +188,7 @@ HAVE A NICE DAY
 $ &LTgreeting.txt tr 'a-z' 'A-Z'
 HI THERE
 HAVE A NICE DAY
-</code></pre><p>Such useless use of <code>cat</code> might not have a noticeable negative impact unless you are dealing with large input files. Especially for commands like <code>tac</code> and <code>tail</code> which will have to wait for all the data to be read instead of directly processing from the end of the file if they had been passed as arguments (or using shell redirection).<p>If you are dealing with multiple files, then the use of <code>cat</code> will depend upon the results desired. Here's some examples:<pre><code class=language-bash># match lines containing 'o' or '0'
+</code></pre><p>Such useless use of <code>cat</code> might not have a noticeable negative impact for most cases. But it becomes important if you are dealing with large input files. Especially for commands like <code>tac</code> and <code>tail</code> which will have to wait for all the data to be read instead of directly processing from the end of the file if they had been passed as arguments (or using shell redirection).<p>If you are dealing with multiple files, then the use of <code>cat</code> will depend upon the desired result. Here are some examples:<pre><code class=language-bash># match lines containing 'o' or '0'
 # -n option adds line number prefix
 $ cat greeting.txt fruits.txt nums.txt | grep -n '[o0]'
 5:mango
@@ -204,7 +204,7 @@ fruits.txt:1
 nums.txt:1
 $ cat greeting.txt fruits.txt nums.txt | grep -c '[o0]'
 2
-</code></pre><p>For some use cases like in-place editing with <code>sed</code>, you can't use <code>cat</code> or shell redirection at all. The files have to be passed as arguments only. To conclude, don't use <code>cat</code> just to pass the input as <code>stdin</code> for another command unless you really need to.<h2 id=tac><a class=header href=#tac>tac</a></h2><p><code>tac</code> will display the input lines in reversed order. If you pass multiple input files, each file content will be reversed separately. Here's some examples:<pre><code class=language-bash># won't be same as: cat greeting.txt fruits.txt | tac
+</code></pre><p>For some use cases like in-place editing with <code>sed</code>, you can't use <code>cat</code> or shell redirection at all. The files have to be passed as arguments only. To conclude, don't use <code>cat</code> just to pass the input as <code>stdin</code> to another command, unless necessary.<h2 id=tac><a class=header href=#tac>tac</a></h2><p><code>tac</code> will reverse the order of the input lines. If you pass multiple input files, each file content will be reversed separately. Here are some examples:<pre><code class=language-bash># won't be the same as: cat greeting.txt fruits.txt | tac
 $ tac greeting.txt fruits.txt
 Have a nice day
 Hi there
@@ -216,10 +216,10 @@ $ printf 'apple\nbanana\ncherry\n' | tac
 cherry
 banana
 apple
-</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> If the last line of input doesn't end with a newline, the output will also not have that newline character.</blockquote><pre><code class=language-bash>$ printf 'apple\nbanana\ncherry' | tac
+</code></pre><blockquote><p><img alt=warning src=./images/warning.svg> If the last input line doesn't end with a newline, the output will also not have that newline character.<pre><code class=language-bash>$ printf 'apple\nbanana\ncherry' | tac
 cherrybanana
 apple
-</code></pre><p>Reversing input lines makes some of the text processing tasks easier. For example, if there multiple matches but you want only the last such match. See my ebooks on <a href=https://github.com/learnbyexample/learn_gnused>GNU sed</a> and <a href=https://github.com/learnbyexample/learn_gnuawk>GNU awk</a> for more such use cases.<pre><code class=language-bash>$ cat log.txt
+</code></pre></blockquote><p>Reversing input lines makes some of the text processing tasks easier. For example, if there are multiple matches but you want only the last one. See my ebooks on <a href=https://github.com/learnbyexample/learn_gnused>GNU sed</a> and <a href=https://github.com/learnbyexample/learn_gnuawk>GNU awk</a> for more such use cases.<pre><code class=language-bash>$ cat log.txt
 --> warning 1
 a,b,c,d
 42
@@ -234,33 +234,33 @@ $ tac log.txt | grep -m1 'warning'
 $ tac log.txt | sed '/warning/q' | tac
 --> warning 3
 4,3,1
-</code></pre><p>The <code>log.txt</code> input file has multiple lines containing <code>warning</code>. The task is to fetch lines based on the last match. Tools like <code>grep</code> and <code>sed</code> have features to easily match the first occurrence, so applying <code>tac</code> on the input helps to reverse the condition from last match to first match. Another benefit is that the first <code>tac</code> will stop reading input contents after the match is found in the above examples.<blockquote><p><img src=./images/info.svg alt=info> Use the <code>rev</code> command if you want each input line to be reversed character wise.</blockquote><h2 id=customize-line-separator-for-tac><a class=header href=#customize-line-separator-for-tac>Customize line separator for tac</a></h2><p>By default, the newline character is used to split the input content into <em>lines</em>. You can use the <code>-s</code> option to specify a different string to be used as the separator.<pre><code class=language-bash># use NUL as the line separator
+</code></pre><p>In the above example, <code>log.txt</code> has multiple lines containing <code>warning</code>. The task is to fetch lines based on the last match, which isn't usually supported by CLI tools. Matching the first occurrence is easy with tools like <code>grep</code> and <code>sed</code>. Hence, <code>tac</code> is helpful to reverse the condition from the last match to the first match. After processing with tools like <code>sed</code>, the result is then reversed again to get back the original order of input lines. Another benefit is that the first <code>tac</code> command will stop reading the input contents after the match is found.<blockquote><p><img alt=info src=./images/info.svg> Use the <code>rev</code> command if you want each input line to be reversed character wise.</blockquote><h2 id=customize-line-separator-for-tac><a class=header href=#customize-line-separator-for-tac>Customize line separator for tac</a></h2><p>By default, the newline character is used to split the input content into <em>lines</em>. You can use the <code>-s</code> option to specify a different string to be used as the separator.<pre><code class=language-bash># use NUL as the line separator
 # -s $'\0' can also be used instead of -s '' if ANSI-C quoting is supported
 $ printf 'car\0jeep\0bus\0' | tac -s '' | cat -v
 bus^@jeep^@car^@
 
-# as seen before, last entry should also have the separator
+# as seen before, the last entry should also have the separator
 # otherwise it won't be present in the output
 $ printf 'apple banana cherry' | tac -s ' ' | cat -e
-cherrybanana apple $ 
+cherrybanana apple $
 $ printf 'apple banana cherry ' | tac -s ' ' | cat -e
-cherry banana apple $ 
+cherry banana apple $
 </code></pre><p>When the custom separator occurs before the content of interest, use the <code>-b</code> option to print those separators before the content in the output as well.<pre><code class=language-bash>$ cat body_sep.txt
 %=%=
 apple
 banana
 %=%=
-red
+teal
 green
 
 $ tac -b -s '%=%=' body_sep.txt
 %=%=
-red
+teal
 green
 %=%=
 apple
 banana
-</code></pre><p>The separator will be treated as a regular expression if you use the <code>-r</code> option as well.<pre><code class=language-bash>$ cat shopping.txt 
+</code></pre><p>The separator will be treated as a regular expression if you use the <code>-r</code> option as well.<pre><code class=language-bash>$ cat shopping.txt
 apple   50
 toys    5
 Pizza   2
@@ -280,6 +280,81 @@ Pizza   2
 $ tac -b -rs '^.*warning' log.txt | awk '/warning/ && ++c==2{exit} 1'
 --> warning 3
 4,3,1
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=head-tail.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
-            window.playground_copyable = true;
-        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote><h2 id=exercises><a class=header href=#exercises>Exercises</a></h2><blockquote><p><img alt=info src=images/info.svg> All the exercises are also collated together in one place at <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/exercises/Exercises.md>Exercises.md</a>. For solutions, see <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/exercises/Exercise_solutions.md>Exercise_solutions.md</a>.</blockquote><blockquote><p><img alt=info src=images/info.svg> The <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/exercises>exercises</a> directory has all the files used in this section.</blockquote><p><strong>1)</strong> The given sample data has empty lines at the start and end of the input. Also, there are multiple empty lines between the paragraphs. How would you get the output shown below?<pre><code class=language-bash># note that there's an empty line at the end of the output
+$ printf '\n\n\ndragon\n\n\n\nunicorn\nbee\n\n\n' | ##### add your solution here
+
+     1  dragon
+
+     2  unicorn
+     3  bee
+
+</code></pre><p><strong>2)</strong> Pass appropriate arguments to the <code>cat</code> command to get the output shown below.<pre><code class=language-bash>$ cat greeting.txt
+Hi there
+Have a nice day
+
+$ echo '42 apples and 100 bananas' | cat ##### add your solution here
+42 apples and 100 bananas
+Hi there
+Have a nice day
+</code></pre><p><strong>3)</strong> What does the <code>-v</code> option of the <code>cat</code> command do?<p><strong>4)</strong> Which options of the <code>cat</code> command do the following stand in for?<ul><li><code>-e</code> option is equivalent to<li><code>-t</code> option is equivalent to<li><code>-A</code> option is equivalent to</ul><p><strong>5)</strong> Will the two commands shown below produce the same output? If not, why not?<pre><code class=language-bash>$ cat fruits.txt ip.txt | tac
+
+$ tac fruits.txt ip.txt
+</code></pre><p><strong>6)</strong> Reverse the contents of <code>blocks.txt</code> file as shown below, considering <code>----</code> as the separator.<pre><code class=language-bash>$ cat blocks.txt
+----
+apple--banana
+mango---fig
+----
+3.14
+-42
+1000
+----
+sky blue
+dark green
+----
+hi hello
+
+##### add your solution here
+----
+hi hello
+----
+sky blue
+dark green
+----
+3.14
+-42
+1000
+----
+apple--banana
+mango---fig
+</code></pre><p><strong>7)</strong> For the <code>blocks.txt</code> file, write solutions to display only the last such group and last two groups.<pre><code class=language-bash>##### add your solution here
+----
+hi hello
+
+##### add your solution here
+----
+sky blue
+dark green
+----
+hi hello
+</code></pre><p><strong>8)</strong> Reverse the contents of <code>items.txt</code> as shown below. Consider digits at the start of lines as the separator.<pre><code class=language-bash>$ cat items.txt
+1) fruits
+apple 5
+banana 10
+2) colors
+green
+sky blue
+3) magical beasts
+dragon 3
+unicorn 42
+
+##### add your solution here
+3) magical beasts
+dragon 3
+unicorn 42
+2) colors
+green
+sky blue
+1) fruits
+apple 5
+banana 10
+</code></pre></main><nav aria-label="Page navigation"class=nav-wrapper><a aria-label="Previous chapter"class="mobile-nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=introduction.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="mobile-nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=head-tail.html rel=next> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav aria-label="Page navigation"class=nav-wide-wrapper><a aria-label="Previous chapter"class="nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=introduction.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=head-tail.html rel=next> <i class="fa fa-angle-right"></i> </a></nav></div><script>window.playground_copyable = true;</script><script charset=utf-8 src=elasticlunr.min.js></script><script charset=utf-8 src=mark.min.js></script><script charset=utf-8 src=searcher.js></script><script charset=utf-8 src=clipboard.min.js></script><script charset=utf-8 src=highlight.js></script><script charset=utf-8 src=book.js></script><script src=sidebar.js></script>

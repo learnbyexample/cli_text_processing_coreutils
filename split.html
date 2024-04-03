@@ -1,8 +1,5 @@
-<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>split - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script><script>
-            try {
+<!doctypehtml><html class="sidebar-visible no-js light"lang=en><head><meta charset=UTF-8><title>split - CLI text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta content="Example based guide for specialized text processing with GNU Coreutils"name=description><meta content=width=device-width,initial-scale=1 name=viewport><meta content=#ffffff name=theme-color><meta content="CLI text processing with GNU Coreutils"property=og:title><meta content=website property=og:type><meta content="Example based guide for specialized text processing with GNU Coreutils"property=og:description><meta content=https://learnbyexample.github.io/cli_text_processing_coreutils/ property=og:url><meta content=https://raw.githubusercontent.com/learnbyexample/cli_text_processing_coreutils/main/images/cli_coreutils_ls.png property=og:image><meta content=1280 property=og:image:width><meta content=720 property=og:image:height><meta content=summary_large_image property=twitter:card><meta content=@learn_byexample property=twitter:site><link href=favicon.svg rel=icon><link rel="shortcut icon"href=favicon.png><link href=css/variables.css rel=stylesheet><link href=css/general.css rel=stylesheet><link href=css/chrome.css rel=stylesheet><link href=FontAwesome/css/font-awesome.css rel=stylesheet><link href=fonts/fonts.css rel=stylesheet><link href=highlight.css rel=stylesheet><link href=tomorrow-night.css rel=stylesheet><link href=ayu-highlight.css rel=stylesheet><link href=style.css rel=stylesheet><body><script>var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";</script><script>try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
 
@@ -13,32 +10,25 @@
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
-            } catch (e) { }
-        </script><script>
-            var theme;
+            } catch (e) { }</script><script>var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
-        </script><script>
-            var html = document.querySelector('html');
+            html.classList.add('js');</script><script>var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
             html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html class=active><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i id=mail-button class="fa fa-envelope"></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            html.classList.add("sidebar-" + sidebar);</script><nav aria-label="Table of contents"class=sidebar id=sidebar><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a class=active href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a><li class="chapter-item expanded affix"><a href=Exercise_solutions.html>Exercise solutions</a></li><br><hr><li class="chapter-item expanded"><i class="fa fa-github"id=git-repository-button></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i class="fa fa-home"id=home-button></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i class="fa fa-book"id=book-button></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i class="fa fa-envelope"id=mail-button></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a><li class="chapter-item expanded"><i class="fa fa-twitter"id=twitter-button></i><a href=https://twitter.com/learn_byexample>   Twitter</a></ol></div><div class=sidebar-resize-handle id=sidebar-resize-handle></div></nav><div class=page-wrapper id=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div class="menu-bar sticky bordered"id=menu-bar><div class=left-buttons><button aria-label="Toggle Table of Contents"title="Toggle Table of Contents"aria-controls=sidebar class=icon-button id=sidebar-toggle type=button><i class="fa fa-bars"></i></button><button aria-label="Change theme"title="Change theme"aria-controls=theme-list aria-expanded=false aria-haspopup=true class=icon-button id=theme-toggle type=button><i class="fa fa-paint-brush"></i></button><ul aria-label=Themes class=theme-popup id=theme-list role=menu><li role=none><button class=theme id=light role=menuitem>Light (default)</button><li role=none><button class=theme id=rust role=menuitem>Rust</button><li role=none><button class=theme id=coal role=menuitem>Coal</button><li role=none><button class=theme id=navy role=menuitem>Navy</button><li role=none><button class=theme id=ayu role=menuitem>Ayu</button></ul><button aria-label="Toggle Searchbar"title="Search. (Shortkey: s)"aria-controls=searchbar aria-expanded=false aria-keyshortcuts=S class=icon-button id=search-toggle type=button><i class="fa fa-search"></i></button></div><h1 class=menu-title>CLI text processing with GNU Coreutils</h1><div class=right-buttons><a aria-label=Blog href=https://learnbyexample.github.io title=Blog> <i class="fa fa-home"id=home-button></i> </a><a aria-label=Twitter href=https://twitter.com/learn_byexample title=Twitter> <i class="fa fa-twitter"id=twitter-button></i> </a><a aria-label="Git repository"title="Git repository"href=https://github.com/learnbyexample/cli_text_processing_coreutils> <i class="fa fa-github"id=git-repository-button></i> </a></div></div><div class=hidden id=search-wrapper><form class=searchbar-outer id=searchbar-outer><input placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header id=searchbar name=searchbar type=search></form><div class="searchresults-outer hidden"id=searchresults-outer><div class=searchresults-header id=searchresults-header></div><ul id=searchresults></ul></div></div><script>document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=split><a class=header href=#split>split</a></h1><p>The <code>split</code> command is useful to divide the input into smaller parts based on number of lines, bytes, file size, etc. You can also execute another command on the divided parts before saving the results. An example use case is sending a large file as multiple parts as a workaround for online transfer size limits.<blockquote><p><img src=./images/info.svg alt=info> Since a lot of output files will be generated in this chapter (often with same filenames), remove these files after every illustration.</blockquote><h2 id=default-split><a class=header href=#default-split>Default split</a></h2><p>By default, the <code>split</code> command divides the input <code>1000</code> lines at a time. Newline character is the default line separator. You can pass a single file or <code>stdin</code> data as the input. Use <code>cat</code> if you need to concatenate multiple input sources.<p>By default, the output files will be named <code>xaa</code>, <code>xab</code>, <code>xac</code> and so on (where <code>x</code> is the prefix). If the filenames are exhausted, two more letters will be appended and the pattern will continue as needed. If the number of input lines is not evenly divisible, the last file will contain less than <code>1000</code> lines.<pre><code class=language-bash># divide input 1000 lines at a time
+                    });</script><div class=content id=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=split><a class=header href=#split>split</a></h1><p>The <code>split</code> command is useful to divide the input into smaller parts based on the number of lines, bytes, file size, etc. You can also execute another command on the divided parts before saving the results. An example use case is sending a large file as multiple parts as a workaround for online transfer size limits.<blockquote><p><img alt=info src=./images/info.svg> Since a lot of output files will be generated in this chapter (often with the same filenames), remove these files after every illustration.</blockquote><h2 id=default-split><a class=header href=#default-split>Default split</a></h2><p>By default, the <code>split</code> command divides the input <code>1000</code> lines at a time. Newline character is the default line separator. You can pass a single file or <code>stdin</code> data as the input. Use <code>cat</code> if you need to concatenate multiple input sources.<p>By default, the output files will be named <code>xaa</code>, <code>xab</code>, <code>xac</code> and so on (where <code>x</code> is the prefix). If the filenames are exhausted, two more letters will be appended and the pattern will continue as needed. If the number of input lines is not evenly divisible, the last file will contain less than <code>1000</code> lines.<pre><code class=language-bash># divide input 1000 lines at a time
 $ seq 10000 | split
 
 # output filenames
@@ -60,7 +50,7 @@ $ head -n1 xaa xab xae xaj
 9001
 
 $ rm x*
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> <img src=./images/warning.svg alt=warning> As mentioned earlier, remove the output files after every illustration.</blockquote><h2 id=change-number-of-lines><a class=header href=#change-number-of-lines>Change number of lines</a></h2><p>You can use the <code>-l</code> option to change the number of lines to be saved in each output file.<pre><code class=language-bash># maximum of 3 lines at a time
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> <img alt=warning src=./images/warning.svg> As mentioned earlier, remove the output files after every illustration.</blockquote><h2 id=change-number-of-lines><a class=header href=#change-number-of-lines>Change number of lines</a></h2><p>You can use the <code>-l</code> option to change the number of lines to be saved in each output file.<pre><code class=language-bash># maximum of 3 lines at a time
 $ split -l3 purchases.txt
 
 $ head x*
@@ -77,7 +67,7 @@ tea
 ==> xac <==
 soap
 tea
-</code></pre><h2 id=split-by-byte-count><a class=header href=#split-by-byte-count>Split by byte count</a></h2><p>The <code>-b</code> option allows you to split the input by number of bytes. Similar to line based splitting, you can always reconstruct the input by concatenating the output files. This option also accepts suffixes such as <code>K</code> for <code>1024</code> bytes, <code>KB</code> for <code>1000</code> bytes, <code>M</code> for <code>1024 * 1024</code> bytes and so on.<pre><code class=language-bash># maximum of 15 bytes at a time
+</code></pre><h2 id=split-by-byte-count><a class=header href=#split-by-byte-count>Split by byte count</a></h2><p>The <code>-b</code> option allows you to split the input by the number of bytes. Similar to line based splitting, you can always reconstruct the input by concatenating the output files. This option also accepts suffixes such as <code>K</code> for <code>1024</code> bytes, <code>KB</code> for <code>1000</code> bytes, <code>M</code> for <code>1024 * 1024</code> bytes and so on.<pre><code class=language-bash># maximum of 15 bytes at a time
 $ split -b15 greeting.txt
 
 $ head x*
@@ -91,7 +81,7 @@ Have a
 $ cat x*
 Hi there
 Have a nice day
-</code></pre><p>The <code>-C</code> option is similar to the <code>-b</code> option, but it will try to break on line boundaries if possible. The break will happen before the given byte limit. Here's an example where input lines do not exceed the given byte limit:<pre><code class=language-bash>$ split -C20 purchases.txt 
+</code></pre><p>The <code>-C</code> option is similar to the <code>-b</code> option, but it will try to break on line boundaries if possible. The break will happen before the given byte limit. Here's an example where input lines do not exceed the given byte limit:<pre><code class=language-bash>$ split -C20 purchases.txt
 
 $ head x*
 ==> xaa <==
@@ -152,14 +142,14 @@ $ wc x*
  3  5 28 xaa
  5  5 29 xab
  8 10 57 total
-</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> Since the division is based on file size, <code>stdin</code> data cannot be used.</blockquote><pre><code class=language-bash>$ seq 6 | split -n2
+</code></pre><blockquote><p><img alt=warning src=./images/warning.svg> Since the division is based on file size, <code>stdin</code> data cannot be used. Newer versions of the coreutils package supports this use case by creating a temporary file before splitting.<pre><code class=language-bash>$ seq 6 | split -n2
 split: -: cannot determine file size
-</code></pre><p>By using <code>K/N</code> as the argument, you can view the <code>K</code>th chunk of <code>N</code> parts on <code>stdout</code>. No output file will be created in this scenario.<pre><code class=language-bash># divide the input into 2 parts
+</code></pre></blockquote><p>By using <code>K/N</code> as the argument, you can view the <code>K</code>th chunk of <code>N</code> parts on <code>stdout</code>. No output file will be created in this scenario.<pre><code class=language-bash># divide the input into 2 parts
 # view only the 1st chunk on stdout
-$ split -n1/2 greeting.txt 
+$ split -n1/2 greeting.txt
 Hi there
 Hav
-</code></pre><p>To avoid splitting a line, use <code>l/</code> as a prefix. Quoting from the <a href=https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html>manual</a>:<blockquote><p>For <code>l</code> mode, chunks are approximately <code>input size / N</code>. The input is partitioned into <code>N</code> equal sized portions, with the last assigned any excess. If a line starts within a partition it is written completely to the corresponding file. Since lines or records are not split even if they overlap a partition, the files written can be larger or smaller than the partition size, and even empty if a line/record is so long as to completely overlap the partition.</blockquote><pre><code class=language-bash># divide input into 2 parts, don't split lines
+</code></pre><p>To avoid splitting a line, use <code>l/</code> as a prefix. Quoting from the <a href=https://www.gnu.org/software/coreutils/manual/html_node/split-invocation.html>manual</a>:<blockquote><p>For <code>l</code> mode, chunks are approximately <code>input size / N</code>. The input is partitioned into <code>N</code> equal sized portions, with the last assigned any excess. If a line starts within a partition it is written completely to the corresponding file. Since lines or records are not split even if they overlap a partition, the files written can be larger or smaller than the partition size, and even empty if a line/record is so long as to completely overlap the partition.</blockquote><pre><code class=language-bash># divide input into 2 parts, but don't split lines
 $ split -nl/2 purchases.txt
 $ head x*
 ==> xaa <==
@@ -173,14 +163,14 @@ toothpaste
 tea
 soap
 tea
-</code></pre><p>Here's an example to view <code>K</code>th chunk without splitting lines:<pre><code class=language-bash># 2nd chunk of 3 parts, don't split lines
+</code></pre><p>Here's an example to view the <code>K</code>th chunk without splitting lines:<pre><code class=language-bash># 2nd chunk of 3 parts without splitting lines
 $ split -nl/2/3 sample.txt
  7) Believe it
  8) 
  9) banana
 10) papaya
 11) mango
-</code></pre><h2 id=interleaved-lines><a class=header href=#interleaved-lines>Interleaved lines</a></h2><p>The <code>-n</code> option will also help you create output files with interleaved lines. Since this is based on the line separator and not file size, <code>stdin</code> data can also be used. Use <code>r/</code> prefix to enable this feature.<pre><code class=language-bash># two parts, lines distributed in round robin fashion
+</code></pre><h2 id=interleaved-lines><a class=header href=#interleaved-lines>Interleaved lines</a></h2><p>The <code>-n</code> option will also help you create output files with interleaved lines. Since this is based on the line separator and not file size, <code>stdin</code> data can also be used. Use the <code>r/</code> prefix to enable this feature.<pre><code class=language-bash># two parts, lines distributed in round robin fashion
 $ seq 5 | split -nr/2
 
 $ head x*
@@ -192,7 +182,7 @@ $ head x*
 ==> xab <==
 2
 4
-</code></pre><p>Here's an example to view <code>K</code>th chunk:<pre><code class=language-bash>$ split -nr/1/3 sample.txt
+</code></pre><p>Here's an example to view the <code>K</code>th chunk:<pre><code class=language-bash>$ split -nr/1/3 sample.txt
  1) Hello World
  4) How are you
  7) Believe it
@@ -232,6 +222,7 @@ split: output file suffixes exhausted
 $ ls x*
 xa  xc  xe  xg  xi  xk  xm  xo  xq  xs  xu  xw  xy
 xb  xd  xf  xh  xj  xl  xn  xp  xr  xt  xv  xx  xz
+$ rm x*
 </code></pre><p>You can use the <code>-d</code> option to use numeric suffixes, starting from <code>00</code> (length can be changed using the <code>-a</code> option). You can use the long option <code>--numeric-suffixes</code> to specify a different starting number.<pre><code class=language-bash>$ seq 10 | split -l1 -d
 $ ls x*
 x00  x01  x02  x03  x04  x05  x06  x07  x08  x09
@@ -252,7 +243,7 @@ $ seq 10 | split -l2 -a1 -d --additional-suffix='.txt' - num_
 $ ls num_*
 num_0.txt  num_1.txt  num_2.txt  num_3.txt  num_4.txt
 </code></pre><h2 id=exclude-empty-files><a class=header href=#exclude-empty-files>Exclude empty files</a></h2><p>You can sometimes end up with empty files. For example, trying to split into more parts than possible with the given criteria. In such cases, you can use the <code>-e</code> option to prevent empty files in the output. The <code>split</code> command will ensure that the filenames are sequential even if files in the middle are empty.<pre><code class=language-bash># 'xac' is empty in this example
-$ split -nl/3 greeting.txt 
+$ split -nl/3 greeting.txt
 $ head x*
 ==> xaa <==
 Hi there
@@ -272,16 +263,16 @@ Hi there
 
 ==> xab <==
 Have a nice day
-</code></pre><h2 id=process-parts-through-another-command><a class=header href=#process-parts-through-another-command>Process parts through another command</a></h2><p>The <code>--filter</code> option will allow you to apply another command on the intermediate <code>split</code> results before saving the output files. Use <code>$FILE</code> to refer to the output filename of the intermediate parts. Here's an example of compressing the results:<pre><code class=language-bash>$ split -l1 --filter='gzip > $FILE.gz' greeting.txt 
+</code></pre><h2 id=process-parts-through-another-command><a class=header href=#process-parts-through-another-command>Process parts through another command</a></h2><p>The <code>--filter</code> option will allow you to apply another command on the intermediate <code>split</code> results before saving the output files. Use <code>$FILE</code> to refer to the output filename of the intermediate parts. Here's an example of compressing the results:<pre><code class=language-bash>$ split -l1 --filter='gzip > $FILE.gz' greeting.txt
 
 $ ls x*
 xaa.gz  xab.gz
 
-$ zcat xaa.gz 
+$ zcat xaa.gz
 Hi there
 $ zcat xab.gz
 Have a nice day
-</code></pre><p>Here's an example of ignoring the first line of the results:<pre><code class=language-bash>$ cat body_sep.txt 
+</code></pre><p>Here's an example of ignoring the first line of the results:<pre><code class=language-bash>$ cat body_sep.txt
 %=%=
 apple
 banana
@@ -299,6 +290,87 @@ banana
 ==> xab <==
 red
 green
-</code></pre></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=wc.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=csplit.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=wc.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=csplit.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
-            window.playground_copyable = true;
-        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
+</code></pre><h2 id=exercises><a class=header href=#exercises>Exercises</a></h2><blockquote><p><img alt=info src=images/info.svg> The <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/exercises>exercises</a> directory has all the files used in this section.</blockquote><blockquote><p><img alt=info src=./images/info.svg> Remove the output files after every exercise.</blockquote><p><strong>1)</strong> Split the <code>s1.txt</code> file 3 lines at a time.<pre><code class=language-bash>##### add your solution here
+
+$ head xa?
+==> xaa <==
+apple
+coffee
+fig
+
+==> xab <==
+honey
+mango
+pasta
+
+==> xac <==
+sugar
+tea
+
+$ rm xa?
+</code></pre><p><strong>2)</strong> Use appropriate options to get the output shown below.<pre><code class=language-bash>$ echo 'apple,banana,cherry,dates' | ##### add your solution here
+
+$ head xa?
+==> xaa <==
+apple,
+==> xab <==
+banana,
+==> xac <==
+cherry,
+==> xad <==
+dates
+
+$ rm xa?
+</code></pre><p><strong>3)</strong> What do the <code>-b</code> and <code>-C</code> options do?<p><strong>4)</strong> Display the 2nd chunk of the <code>ip.txt</code> file after splitting it 4 times as shown below.<pre><code class=language-bash>##### add your solution here
+come back before the sky turns dark
+
+There are so many delights to cherish
+</code></pre><p><strong>5)</strong> What does the <code>r</code> prefix do when used with the <code>-n</code> option?<p><strong>6)</strong> Split the <code>ip.txt</code> file 2 lines at a time. Customize the output filenames as shown below.<pre><code class=language-bash>##### add your solution here
+
+$ head ip_*
+==> ip_0.txt <==
+it is a warm and cozy day
+listen to what I say
+
+==> ip_1.txt <==
+go play in the park
+come back before the sky turns dark
+
+==> ip_2.txt <==
+
+There are so many delights to cherish
+
+==> ip_3.txt <==
+Apple, Banana and Cherry
+Bread, Butter and Jelly
+
+==> ip_4.txt <==
+Try them all before you perish
+
+$ rm ip_*
+</code></pre><p><strong>7)</strong> Which option would you use to prevent empty files in the output?<p><strong>8)</strong> Split the <code>items.txt</code> file 5 lines at a time. Additionally, remove lines starting with a digit character as shown below.<pre><code class=language-bash>$ cat items.txt
+1) fruits
+apple 5
+banana 10
+2) colors
+green
+sky blue
+3) magical beasts
+dragon 3
+unicorn 42
+
+##### add your solution here
+
+$ head xa?
+==> xaa <==
+apple 5
+banana 10
+green
+
+==> xab <==
+sky blue
+dragon 3
+unicorn 42
+
+$ rm xa?
+</code></pre></main><nav aria-label="Page navigation"class=nav-wrapper><a aria-label="Previous chapter"class="mobile-nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=wc.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="mobile-nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=csplit.html rel=next> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav aria-label="Page navigation"class=nav-wide-wrapper><a aria-label="Previous chapter"class="nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=wc.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=csplit.html rel=next> <i class="fa fa-angle-right"></i> </a></nav></div><script>window.playground_copyable = true;</script><script charset=utf-8 src=elasticlunr.min.js></script><script charset=utf-8 src=mark.min.js></script><script charset=utf-8 src=searcher.js></script><script charset=utf-8 src=clipboard.min.js></script><script charset=utf-8 src=highlight.js></script><script charset=utf-8 src=book.js></script><script src=sidebar.js></script>

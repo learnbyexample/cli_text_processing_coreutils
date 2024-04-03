@@ -1,8 +1,5 @@
-<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>join - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script><script>
-            try {
+<!doctypehtml><html class="sidebar-visible no-js light"lang=en><head><meta charset=UTF-8><title>join - CLI text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta content="Example based guide for specialized text processing with GNU Coreutils"name=description><meta content=width=device-width,initial-scale=1 name=viewport><meta content=#ffffff name=theme-color><meta content="CLI text processing with GNU Coreutils"property=og:title><meta content=website property=og:type><meta content="Example based guide for specialized text processing with GNU Coreutils"property=og:description><meta content=https://learnbyexample.github.io/cli_text_processing_coreutils/ property=og:url><meta content=https://raw.githubusercontent.com/learnbyexample/cli_text_processing_coreutils/main/images/cli_coreutils_ls.png property=og:image><meta content=1280 property=og:image:width><meta content=720 property=og:image:height><meta content=summary_large_image property=twitter:card><meta content=@learn_byexample property=twitter:site><link href=favicon.svg rel=icon><link rel="shortcut icon"href=favicon.png><link href=css/variables.css rel=stylesheet><link href=css/general.css rel=stylesheet><link href=css/chrome.css rel=stylesheet><link href=FontAwesome/css/font-awesome.css rel=stylesheet><link href=fonts/fonts.css rel=stylesheet><link href=highlight.css rel=stylesheet><link href=tomorrow-night.css rel=stylesheet><link href=ayu-highlight.css rel=stylesheet><link href=style.css rel=stylesheet><body><script>var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";</script><script>try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
 
@@ -13,32 +10,25 @@
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
-            } catch (e) { }
-        </script><script>
-            var theme;
+            } catch (e) { }</script><script>var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
-        </script><script>
-            var html = document.querySelector('html');
+            html.classList.add('js');</script><script>var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
             html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html class=active><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i id=mail-button class="fa fa-envelope"></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            html.classList.add("sidebar-" + sidebar);</script><nav aria-label="Table of contents"class=sidebar id=sidebar><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a class=active href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a><li class="chapter-item expanded affix"><a href=Exercise_solutions.html>Exercise solutions</a></li><br><hr><li class="chapter-item expanded"><i class="fa fa-github"id=git-repository-button></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i class="fa fa-home"id=home-button></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i class="fa fa-book"id=book-button></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i class="fa fa-envelope"id=mail-button></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a><li class="chapter-item expanded"><i class="fa fa-twitter"id=twitter-button></i><a href=https://twitter.com/learn_byexample>   Twitter</a></ol></div><div class=sidebar-resize-handle id=sidebar-resize-handle></div></nav><div class=page-wrapper id=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div class="menu-bar sticky bordered"id=menu-bar><div class=left-buttons><button aria-label="Toggle Table of Contents"title="Toggle Table of Contents"aria-controls=sidebar class=icon-button id=sidebar-toggle type=button><i class="fa fa-bars"></i></button><button aria-label="Change theme"title="Change theme"aria-controls=theme-list aria-expanded=false aria-haspopup=true class=icon-button id=theme-toggle type=button><i class="fa fa-paint-brush"></i></button><ul aria-label=Themes class=theme-popup id=theme-list role=menu><li role=none><button class=theme id=light role=menuitem>Light (default)</button><li role=none><button class=theme id=rust role=menuitem>Rust</button><li role=none><button class=theme id=coal role=menuitem>Coal</button><li role=none><button class=theme id=navy role=menuitem>Navy</button><li role=none><button class=theme id=ayu role=menuitem>Ayu</button></ul><button aria-label="Toggle Searchbar"title="Search. (Shortkey: s)"aria-controls=searchbar aria-expanded=false aria-keyshortcuts=S class=icon-button id=search-toggle type=button><i class="fa fa-search"></i></button></div><h1 class=menu-title>CLI text processing with GNU Coreutils</h1><div class=right-buttons><a aria-label=Blog href=https://learnbyexample.github.io title=Blog> <i class="fa fa-home"id=home-button></i> </a><a aria-label=Twitter href=https://twitter.com/learn_byexample title=Twitter> <i class="fa fa-twitter"id=twitter-button></i> </a><a aria-label="Git repository"title="Git repository"href=https://github.com/learnbyexample/cli_text_processing_coreutils> <i class="fa fa-github"id=git-repository-button></i> </a></div></div><div class=hidden id=search-wrapper><form class=searchbar-outer id=searchbar-outer><input placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header id=searchbar name=searchbar type=search></form><div class="searchresults-outer hidden"id=searchresults-outer><div class=searchresults-header id=searchresults-header></div><ul id=searchresults></ul></div></div><script>document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=join><a class=header href=#join>join</a></h1><p>The <code>join</code> command helps you to combine lines from two files based on a common field. This works best when the input is already sorted by that field.<h2 id=default-join><a class=header href=#default-join>Default join</a></h2><p>By default, <code>join</code> combines two files based on the first field content (also referred as <strong>key</strong>). Only the lines with common keys will be part of the output.<p>The key field will be displayed first in the output (this distinction will come into play if the first field isn't the key). Rest of the line will have the remaining fields from the first and second files, in that order. One or more blanks (space or tab) will be considered as the input field separator and a single space will be used as the output field separator. If present, blank characters at the start of the input lines will be ignored.<pre><code class=language-bash># sample sorted input files
+                    });</script><div class=content id=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=join><a class=header href=#join>join</a></h1><p>The <code>join</code> command helps you to combine lines from two files based on a common field. This works best when the input is already sorted by that field.<h2 id=default-join><a class=header href=#default-join>Default join</a></h2><p>By default, <code>join</code> combines two files based on the first field content (also referred as <strong>key</strong>). Only the lines with common keys will be part of the output.<p>The key field will be displayed first in the output (this distinction will come into play if the first field isn't the key). Rest of the line will have the remaining fields from the first and second files, in that order. One or more blanks (space or tab) will be considered as the input field separator and a single space will be used as the output field separator. If present, blank characters at the start of the input lines will be ignored.<pre><code class=language-bash># sample sorted input files
 $ cat shopping_jan.txt
 apple   10
 banana  20
@@ -54,12 +44,12 @@ soap    1
 $ join shopping_jan.txt shopping_feb.txt
 banana 20 15
 soap 3 1
-</code></pre><p>If a field value is present multiple times in the same input file, all possible combinations will be present in the output. As shown below, <code>join</code> will also ensure to add a final newline character even if not present in the input.<pre><code class=language-bash>$ join <(printf 'a f1_x\na f1_y') <(printf 'a f2_x\na f2_y')
+</code></pre><p>If a field value is present multiple times in the same input file, all possible combinations will be present in the output. As shown below, <code>join</code> will also ensure to add a final newline character even if it wasn't present in the input.<pre><code class=language-bash>$ join <(printf 'a f1_x\na f1_y') <(printf 'a f2_x\na f2_y')
 a f1_x f2_x
 a f1_x f2_y
 a f1_y f2_x
 a f1_y f2_y
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Note that the collating order used for <code>join</code> should be same as the one used to <code>sort</code> the input files. Use <code>join -i</code> to ignore case, similar to <code>sort -f</code> usage.</blockquote><blockquote><p><img src=./images/info.svg alt=info> If the input files are not sorted, <code>join</code> will produce an error if there are unpairable lines. You can use the <code>--nocheck-order</code> option to ignore this error. However, as per the documentation, this option "is not guaranteed to produce any particular output."</blockquote><h2 id=non-matching-lines><a class=header href=#non-matching-lines>Non-matching lines</a></h2><p>By default, only the lines having common keys are part of the output. You can use the <code>-a</code> option to also include the non-matching lines from the input files. Use <code>1</code> and <code>2</code> as the argument for the first and second file respectively. You'll later see how to fill missing fields with a custom string.<pre><code class=language-bash># includes non-matching lines from the first file
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> Note that the collating order used for <code>join</code> should be same as the one used to <code>sort</code> the input files. Use <code>join -i</code> to ignore case, similar to <code>sort -f</code> usage.</blockquote><blockquote><p><img alt=info src=./images/info.svg> If the input files are not sorted, <code>join</code> will produce an error if there are unpairable lines. You can use the <code>--nocheck-order</code> option to ignore this error. However, as per the documentation, this option "is not guaranteed to produce any particular output."</blockquote><h2 id=non-matching-lines><a class=header href=#non-matching-lines>Non-matching lines</a></h2><p>By default, only the lines having common keys are part of the output. You can use the <code>-a</code> option to also include the non-matching lines from the input files. Use <code>1</code> and <code>2</code> as the argument for the first and second file respectively. You'll later see how to fill missing fields with a custom string.<pre><code class=language-bash># includes non-matching lines from the first file
 $ join -a1 shopping_jan.txt shopping_feb.txt
 apple 10
 banana 20 15
@@ -74,16 +64,16 @@ fig 100
 pen 2
 soap 3 1
 tshirt 3
-</code></pre><p>If you use <code>-v</code> instead of <code>-a</code>, the output will have only the non-matching lines.<pre><code class=language-bash>$ join -v1 shopping_jan.txt shopping_feb.txt
-apple 10
-tshirt 3
+</code></pre><p>If you use <code>-v</code> instead of <code>-a</code>, the output will have only the non-matching lines.<pre><code class=language-bash>$ join -v2 shopping_jan.txt shopping_feb.txt
+fig 100
+pen 2
 
 $ join -v1 -v2 shopping_jan.txt shopping_feb.txt
 apple 10
 fig 100
 pen 2
 tshirt 3
-</code></pre><h2 id=change-field-separator><a class=header href=#change-field-separator>Change field separator</a></h2><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. The output field separator will be same as the value used for the <code>-t</code> option. Use <code>\0</code> to specify NUL as the separator. Empty string will cause entire input line content to be considered as keys. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character.<pre><code class=language-bash>$ cat marks.csv 
+</code></pre><h2 id=change-field-separator><a class=header href=#change-field-separator>Change field separator</a></h2><p>You can use the <code>-t</code> option to specify a single byte character as the field separator. The output field separator will be same as the value used for the <code>-t</code> option. Use <code>\0</code> to specify NUL as the separator. Empty string will cause entire input line content to be considered as keys. Depending on your shell you can use <a href=https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html>ANSI-C quoting</a> to use escapes like <code>\t</code> instead of a literal tab character.<pre><code class=language-bash>$ cat marks.csv
 ECE,Raj,53
 ECE,Joel,72
 EEE,Moi,68
@@ -127,14 +117,14 @@ Amy
 Raj
 Tia
 
-# combine based on second field of the first file
-# and first field of the second file (default)
+# combine based on the second field of the first file
+# and the first field of the second file (default)
 $ join -t, -1 2 <(sort -t, -k2,2 marks.csv) names.txt
 Amy,CSE,67
 Raj,ECE,53
 Raj,EEE,88
 Tia,EEE,72
-</code></pre><h2 id=customize-output-field-list><a class=header href=#customize-output-field-list>Customize output field list</a></h2><p>You can use the <code>-o</code> option to customize the fields required in the output and their order. Especially useful when the first field isn't the key. Each output field is specified as file number followed by a <code>.</code> character and then the field number. You can specify multiple fields separated by a <code>,</code> character. As a special case, you can use <code>0</code> to indicate the key field.<pre><code class=language-bash># output field order is 1st, 2nd and 3rd fields from the first file
+</code></pre><h2 id=customize-output-field-list><a class=header href=#customize-output-field-list>Customize output field list</a></h2><p>Use the <code>-o</code> option to customize the fields required in the output and their order. Especially useful when the first field isn't the key. Each output field is specified as file number followed by a <code>.</code> character and then the field number. You can specify multiple fields separated by a <code>,</code> character. As a special case, you can use <code>0</code> to indicate the key field.<pre><code class=language-bash># output field order is 1st, 2nd and 3rd fields from the first file
 $ join -t, -1 2 -o 1.1,1.2,1.3 <(sort -t, -k2,2 marks.csv) names.txt
 CSE,Amy,67
 ECE,Raj,53
@@ -154,14 +144,15 @@ b p q r x y z
 $ join -o auto <(printf 'a 1 2\nb p q r') <(printf 'a 3 4\nb x y z')
 a 1 2 3 4
 b p q x y
-</code></pre><p>If the other lines have lesser number of fields, the <code>-e</code> option will determine the string to be used as a filler (default is empty string).<pre><code class=language-bash>$ join -o auto <(printf 'a 1 2\nb p') <(printf 'a 3 4\nb x')
+</code></pre><p>If the other lines have lesser number of fields, the <code>-e</code> option will determine the string to be used as a filler (empty string is the default).<pre><code class=language-bash># the second line has two empty fields
+$ join -o auto <(printf 'a 1 2\nb p') <(printf 'a 3 4\nb x')
 a 1 2 3 4
 b p  x 
 
 $ join -o auto -e '-' <(printf 'a 1 2\nb p') <(printf 'a 3 4\nb x')
 a 1 2 3 4
 b p - x -
-</code></pre><p>As promised earlier, here's an example of filling fields for non-matching lines:<pre><code class=language-bash>$ join -o auto -a1 -e 'NA' shopping_jan.txt shopping_feb.txt
+</code></pre><p>As promised earlier, here are some examples of filling fields for non-matching lines:<pre><code class=language-bash>$ join -o auto -a1 -e 'NA' shopping_jan.txt shopping_feb.txt
 apple 10 NA
 banana 20 15
 soap 3 1
@@ -182,7 +173,7 @@ Purple  Orange
 Red     Pink
 Teal    Red
 White   White
-</code></pre><p>Here's how you can get <em>union</em> and <em>symmetric difference</em> results. Recall that <code>-t ''</code> will cause entire input line content to be considered as keys.<pre><code class=language-bash># union
+</code></pre><p>Here's how you can get <em>union</em> and <em>symmetric difference</em> results. Recall that <code>-t ''</code> will cause the entire input line content to be considered as keys.<pre><code class=language-bash># union
 # unsorted input: sort -u colors_1.txt colors_2.txt
 $ join -t '' -a1 -a2 colors_1.txt colors_2.txt
 Black
@@ -253,8 +244,118 @@ cherry
 cherry
 cherry
 cherry
-</code></pre><h2 id=nul-separator><a class=header href=#nul-separator>NUL separator</a></h2><p>Use <code>-z</code> option if you want to use NUL character as the line separator. In this scenario, <code>join</code> will ensure to add a final NUL character even if not present in the input.<pre><code class=language-bash>$ join -z <(printf 'a 1\0b x') <(printf 'a 2\0b y') | cat -v
+</code></pre><h2 id=nul-separator><a class=header href=#nul-separator>NUL separator</a></h2><p>Use the <code>-z</code> option if you want to use NUL character as the line separator. In this scenario, <code>join</code> will ensure to add a final NUL character even if not present in the input.<pre><code class=language-bash>$ join -z <(printf 'a 1\0b x') <(printf 'a 2\0b y') | cat -v
 a 1 2^@b x y^@
-</code></pre><h2 id=alternatives><a class=header href=#alternatives>Alternatives</a></h2><p>Here's some alternate commands you can explore if <code>join</code> isn't enough to solve your task. These alternatives do not require input to be sorted.<ul><li><a href=https://github.com/yarrow/zet>zet</a> — set operations on one or more input files<li><a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/frequently-used-options.html#comparing-lines-between-files>Comparing lines between files</a> section from my <strong>GNU grep</strong> ebook<li><a href=https://learnbyexample.github.io/learn_gnuawk/two-file-processing.html>Two file processing</a> chapter from my <strong>GNU awk</strong> ebook, both line and field based comparison<li><a href=https://learnbyexample.github.io/learn_perl_oneliners/two-file-processing.html>Two file processing</a> chapter from my <strong>Perl one-liners</strong> ebook, both line and field based comparison</ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=comm.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=nl.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=comm.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=nl.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
-            window.playground_copyable = true;
-        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
+</code></pre><h2 id=alternatives><a class=header href=#alternatives>Alternatives</a></h2><p>Here are some alternate commands you can explore if <code>join</code> isn't enough to solve your task. These alternatives do not require input to be sorted.<ul><li><a href=https://github.com/yarrow/zet>zet</a> — set operations on one or more input files<li><a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/frequently-used-options.html#comparing-lines-between-files>Comparing lines between files</a> section from my <strong>GNU grep</strong> ebook<li><a href=https://learnbyexample.github.io/learn_gnuawk/two-file-processing.html>Two file processing</a> chapter from my <strong>GNU awk</strong> ebook, has examples for both line and field based comparisons<li><a href=https://learnbyexample.github.io/learn_perl_oneliners/two-file-processing.html>Two file processing</a> chapter from my <strong>Perl one-liners</strong> ebook, has examples for both line and field based comparisons</ul><h2 id=exercises><a class=header href=#exercises>Exercises</a></h2><blockquote><p><img alt=info src=images/info.svg> The <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/exercises>exercises</a> directory has all the files used in this section.</blockquote><blockquote><p><img alt=info src=./images/info.svg> Assume that the input files are already sorted for these exercises.</blockquote><p><strong>1)</strong> Use appropriate options to get the expected outputs shown below.<pre><code class=language-bash># no output
+$ join <(printf 'apple 2\nfig 5') <(printf 'Fig 10\nmango 4')
+
+# expected output 1
+##### add your solution here
+fig 5 10
+
+# expected output 2
+##### add your solution here
+apple 2
+fig 5 10
+mango 4
+</code></pre><p><strong>2)</strong> Use the <code>join</code> command to display only the non-matching lines based on the first field.<pre><code class=language-bash>$ cat j1.txt
+apple   2
+fig     5
+lemon   10
+tomato  22
+$ cat j2.txt
+almond  33
+fig     115
+mango   20
+pista   42
+
+# first field items present in j1.txt but not j2.txt
+##### add your solution here
+apple 2
+lemon 10
+tomato 22
+
+# first field items present in j2.txt but not j1.txt
+##### add your solution here
+almond 33
+mango 20
+pista 42
+</code></pre><p><strong>3)</strong> Filter lines from <code>j1.txt</code> and <code>j2.txt</code> that match the items from <code>s1.txt</code>.<pre><code class=language-bash>$ cat s1.txt
+apple
+coffee
+fig
+honey
+mango
+pasta
+sugar
+tea
+
+##### add your solution here
+apple 2
+fig 115
+fig 5
+mango 20
+</code></pre><p><strong>4)</strong> Join the <code>marks_1.csv</code> and <code>marks_2.csv</code> files to get the expected output shown below.<pre><code class=language-bash>$ cat marks_1.csv
+Name,Biology,Programming
+Er,92,77
+Ith,100,100
+Lin,92,100
+Sil,86,98
+$ cat marks_2.csv
+Name,Maths,Physics,Chemistry
+Cy,97,98,95
+Ith,100,100,100
+Lin,78,83,80
+
+##### add your solution here
+Name,Biology,Programming,Maths,Physics,Chemistry
+Ith,100,100,100,100,100
+Lin,92,100,78,83,80
+</code></pre><p><strong>5)</strong> By default, the first field is used to combine the lines. Which options are helpful if you want to change the key field to be used for joining?<p><strong>6)</strong> Join the <code>marks_1.csv</code> and <code>marks_2.csv</code> files to get the expected output with specific fields as shown below.<pre><code class=language-bash>##### add your solution here
+Name,Programming,Maths,Biology
+Ith,100,100,100
+Lin,100,78,92
+</code></pre><p><strong>7)</strong> Join the <code>marks_1.csv</code> and <code>marks_2.csv</code> files to get the expected output shown below. Use <code>50</code> as the filler data.<pre><code class=language-bash>##### add your solution here
+Name,Biology,Programming,Maths,Physics,Chemistry
+Cy,50,50,97,98,95
+Er,92,77,50,50,50
+Ith,100,100,100,100,100
+Lin,92,100,78,83,80
+Sil,86,98,50,50,50
+</code></pre><p><strong>8)</strong> When you use the <code>-o auto</code> option, what'd happen to the extra fields compared to those in the first lines of the input data?<p><strong>9)</strong> From the input files <code>j3.txt</code> and <code>j4.txt</code>, filter only the lines are unique — i.e. lines that are not common to these files. Assume that the input files do not have duplicate entries.<pre><code class=language-bash>$ cat j3.txt
+almond
+apple pie
+cold coffee
+honey
+mango shake
+pasta
+sugar
+tea
+$ cat j4.txt
+apple
+banana shake
+coffee
+fig
+honey
+mango shake
+milk
+tea
+yeast
+
+##### add your solution here
+almond
+apple
+apple pie
+banana shake
+coffee
+cold coffee
+fig
+milk
+pasta
+sugar
+yeast
+</code></pre><p><strong>10)</strong> From the input files <code>j3.txt</code> and <code>j4.txt</code>, filter only the lines are common to these files.<pre><code class=language-bash>##### add your solution here
+honey
+mango shake
+tea
+</code></pre></main><nav aria-label="Page navigation"class=nav-wrapper><a aria-label="Previous chapter"class="mobile-nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=comm.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="mobile-nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=nl.html rel=next> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav aria-label="Page navigation"class=nav-wide-wrapper><a aria-label="Previous chapter"class="nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=comm.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=nl.html rel=next> <i class="fa fa-angle-right"></i> </a></nav></div><script>window.playground_copyable = true;</script><script charset=utf-8 src=elasticlunr.min.js></script><script charset=utf-8 src=mark.min.js></script><script charset=utf-8 src=searcher.js></script><script charset=utf-8 src=clipboard.min.js></script><script charset=utf-8 src=highlight.js></script><script charset=utf-8 src=book.js></script><script src=sidebar.js></script>

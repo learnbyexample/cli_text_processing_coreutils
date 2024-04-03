@@ -1,8 +1,5 @@
-<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>csplit - Command line text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Command line text processing with GNU Coreutils"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script><script>
-            try {
+<!doctypehtml><html class="sidebar-visible no-js light"lang=en><head><meta charset=UTF-8><title>csplit - CLI text processing with GNU Coreutils</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta content="Example based guide for specialized text processing with GNU Coreutils"name=description><meta content=width=device-width,initial-scale=1 name=viewport><meta content=#ffffff name=theme-color><meta content="CLI text processing with GNU Coreutils"property=og:title><meta content=website property=og:type><meta content="Example based guide for specialized text processing with GNU Coreutils"property=og:description><meta content=https://learnbyexample.github.io/cli_text_processing_coreutils/ property=og:url><meta content=https://raw.githubusercontent.com/learnbyexample/cli_text_processing_coreutils/main/images/cli_coreutils_ls.png property=og:image><meta content=1280 property=og:image:width><meta content=720 property=og:image:height><meta content=summary_large_image property=twitter:card><meta content=@learn_byexample property=twitter:site><link href=favicon.svg rel=icon><link rel="shortcut icon"href=favicon.png><link href=css/variables.css rel=stylesheet><link href=css/general.css rel=stylesheet><link href=css/chrome.css rel=stylesheet><link href=FontAwesome/css/font-awesome.css rel=stylesheet><link href=fonts/fonts.css rel=stylesheet><link href=highlight.css rel=stylesheet><link href=tomorrow-night.css rel=stylesheet><link href=ayu-highlight.css rel=stylesheet><link href=style.css rel=stylesheet><body><script>var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";</script><script>try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
 
@@ -13,32 +10,25 @@
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
-            } catch (e) { }
-        </script><script>
-            var theme;
+            } catch (e) { }</script><script>var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
-        </script><script>
-            var html = document.querySelector('html');
+            html.classList.add('js');</script><script>var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
             html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a href=csplit.html class=active><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i id=mail-button class="fa fa-envelope"></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>Command line text processing with GNU Coreutils</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/cli_text_processing_coreutils title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            html.classList.add("sidebar-" + sidebar);</script><nav aria-label="Table of contents"class=sidebar id=sidebar><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded affix"><a href=preface.html>Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>1.</strong> Introduction</a><li class="chapter-item expanded"><a href=cat-tac.html><strong aria-hidden=true>2.</strong> cat and tac</a><li class="chapter-item expanded"><a href=head-tail.html><strong aria-hidden=true>3.</strong> head and tail</a><li class="chapter-item expanded"><a href=tr.html><strong aria-hidden=true>4.</strong> tr</a><li class="chapter-item expanded"><a href=cut.html><strong aria-hidden=true>5.</strong> cut</a><li class="chapter-item expanded"><a href=seq.html><strong aria-hidden=true>6.</strong> seq</a><li class="chapter-item expanded"><a href=shuf.html><strong aria-hidden=true>7.</strong> shuf</a><li class="chapter-item expanded"><a href=paste.html><strong aria-hidden=true>8.</strong> paste</a><li class="chapter-item expanded"><a href=pr.html><strong aria-hidden=true>9.</strong> pr</a><li class="chapter-item expanded"><a href=fold-fmt.html><strong aria-hidden=true>10.</strong> fold and fmt</a><li class="chapter-item expanded"><a href=sort.html><strong aria-hidden=true>11.</strong> sort</a><li class="chapter-item expanded"><a href=uniq.html><strong aria-hidden=true>12.</strong> uniq</a><li class="chapter-item expanded"><a href=comm.html><strong aria-hidden=true>13.</strong> comm</a><li class="chapter-item expanded"><a href=join.html><strong aria-hidden=true>14.</strong> join</a><li class="chapter-item expanded"><a href=nl.html><strong aria-hidden=true>15.</strong> nl</a><li class="chapter-item expanded"><a href=wc.html><strong aria-hidden=true>16.</strong> wc</a><li class="chapter-item expanded"><a href=split.html><strong aria-hidden=true>17.</strong> split</a><li class="chapter-item expanded"><a class=active href=csplit.html><strong aria-hidden=true>18.</strong> csplit</a><li class="chapter-item expanded"><a href=expand-unexpand.html><strong aria-hidden=true>19.</strong> expand and unexpand</a><li class="chapter-item expanded"><a href=basename-dirname.html><strong aria-hidden=true>20.</strong> basename and dirname</a><li class="chapter-item expanded affix"><a href=what_next.html>What next?</a><li class="chapter-item expanded affix"><a href=Exercise_solutions.html>Exercise solutions</a></li><br><hr><li class="chapter-item expanded"><i class="fa fa-github"id=git-repository-button></i><a href=https://github.com/learnbyexample/cli_text_processing_coreutils>   Source code</a><li class="chapter-item expanded"><i class="fa fa-home"id=home-button></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i class="fa fa-book"id=book-button></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i class="fa fa-envelope"id=mail-button></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a><li class="chapter-item expanded"><i class="fa fa-twitter"id=twitter-button></i><a href=https://twitter.com/learn_byexample>   Twitter</a></ol></div><div class=sidebar-resize-handle id=sidebar-resize-handle></div></nav><div class=page-wrapper id=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div class="menu-bar sticky bordered"id=menu-bar><div class=left-buttons><button aria-label="Toggle Table of Contents"title="Toggle Table of Contents"aria-controls=sidebar class=icon-button id=sidebar-toggle type=button><i class="fa fa-bars"></i></button><button aria-label="Change theme"title="Change theme"aria-controls=theme-list aria-expanded=false aria-haspopup=true class=icon-button id=theme-toggle type=button><i class="fa fa-paint-brush"></i></button><ul aria-label=Themes class=theme-popup id=theme-list role=menu><li role=none><button class=theme id=light role=menuitem>Light (default)</button><li role=none><button class=theme id=rust role=menuitem>Rust</button><li role=none><button class=theme id=coal role=menuitem>Coal</button><li role=none><button class=theme id=navy role=menuitem>Navy</button><li role=none><button class=theme id=ayu role=menuitem>Ayu</button></ul><button aria-label="Toggle Searchbar"title="Search. (Shortkey: s)"aria-controls=searchbar aria-expanded=false aria-keyshortcuts=S class=icon-button id=search-toggle type=button><i class="fa fa-search"></i></button></div><h1 class=menu-title>CLI text processing with GNU Coreutils</h1><div class=right-buttons><a aria-label=Blog href=https://learnbyexample.github.io title=Blog> <i class="fa fa-home"id=home-button></i> </a><a aria-label=Twitter href=https://twitter.com/learn_byexample title=Twitter> <i class="fa fa-twitter"id=twitter-button></i> </a><a aria-label="Git repository"title="Git repository"href=https://github.com/learnbyexample/cli_text_processing_coreutils> <i class="fa fa-github"id=git-repository-button></i> </a></div></div><div class=hidden id=search-wrapper><form class=searchbar-outer id=searchbar-outer><input placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header id=searchbar name=searchbar type=search></form><div class="searchresults-outer hidden"id=searchresults-outer><div class=searchresults-header id=searchresults-header></div><ul id=searchresults></ul></div></div><script>document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=csplit><a class=header href=#csplit>csplit</a></h1><p>The <code>csplit</code> command is useful to divide the input into smaller parts based on line numbers and regular expression patterns. Similar to <code>split</code>, this command also supports customizing output filenames.<blockquote><p><img src=./images/info.svg alt=info> Since a lot of output files will be generated in this chapter (often with same filenames), remove these files after every illustration.</blockquote><h2 id=split-on-nth-line><a class=header href=#split-on-nth-line>Split on Nth line</a></h2><p>You can split the input into two based on a particular line number. To do so, specify the line number after the input source (filename or <code>stdin</code> data). The first output file will have the input lines <em>before</em> the given line number and the second output file will have the rest of the contents.<p>By default, the output files will be named <code>xx00</code>, <code>xx01</code>, <code>xx02</code> and so on (where <code>xx</code> is the prefix). The numerical suffix will automatically use more digits if needed. You'll see examples with more than two output files later.<pre><code class=language-bash># split input into two based on line number 4
+                    });</script><div class=content id=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=csplit><a class=header href=#csplit>csplit</a></h1><p>The <code>csplit</code> command is useful to divide the input into smaller parts based on line numbers and regular expression patterns. Similar to <code>split</code>, this command also supports customizing output filenames.<blockquote><p><img alt=info src=./images/info.svg> Since a lot of output files will be generated in this chapter (often with same filenames), remove these files after every illustration.</blockquote><h2 id=split-on-nth-line><a class=header href=#split-on-nth-line>Split on Nth line</a></h2><p>You can split the input into two based on a particular line number. To do so, specify the line number after the input source (filename or <code>stdin</code> data). The first output file will have the input lines <em>before</em> the given line number and the second output file will have the rest of the contents.<p>By default, the output files will be named <code>xx00</code>, <code>xx01</code>, <code>xx02</code>, and so on (where <code>xx</code> is the prefix). The numerical suffix will automatically use more digits if needed. You'll see examples with more than two output files later.<pre><code class=language-bash># split input into two based on line number 4
 $ seq 10 | csplit - 4
 6
 15
@@ -61,7 +51,7 @@ $ head xx*
 10
 
 $ rm xx*
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> As seen in the example above, <code>csplit</code> will also display the number of bytes written for each output file. You can use the <code>-q</code> option to suppress this message.</blockquote><blockquote><p><img src=./images/info.svg alt=info> <img src=./images/warning.svg alt=warning> As mentioned earlier, remove the output files after every illustration.</blockquote><h2 id=split-on-regexp><a class=header href=#split-on-regexp>Split on regexp</a></h2><p>You can also split the input based on a line matching the given regular expression. The output produced will vary based on <code>//</code> or <code>%%</code> delimiters being used to surround the regexp.<p>When <code>/regexp/</code> is used, output is similar to the line number based splitting. The first output file will have the input lines <em>before</em> the first occurrence of a line matching the given regexp and the second output file will have the rest of the contents.<pre><code class=language-bash># match a line containing 't' followed by zero or more characters and then 'p'
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> As seen in the example above, <code>csplit</code> will also display the number of bytes written for each output file. You can use the <code>-q</code> option to suppress this message.</blockquote><blockquote><p><img alt=info src=./images/info.svg> <img alt=warning src=./images/warning.svg> As mentioned earlier, remove the output files after every illustration.</blockquote><h2 id=split-on-regexp><a class=header href=#split-on-regexp>Split on regexp</a></h2><p>You can also split the input based on a line matching the given regular expression. The output produced will vary based on the <code>//</code> or <code>%%</code> delimiters being used to surround the regexp.<p>When <code>/regexp/</code> is used, output is similar to the line number based splitting. The first output file will have the input lines <em>before</em> the first occurrence of a line matching the given regexp and the second output file will have the rest of the contents.<pre><code class=language-bash># match a line containing 't' followed by zero or more characters and then 'p'
 # 'toothpaste' is the only match for this input file
 $ csplit -q purchases.txt '/t.*p/'
 
@@ -84,9 +74,9 @@ toothpaste
 tea
 soap
 tea
-</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> You'll get an error if the given regexp isn't found in the input.</blockquote><pre><code class=language-bash>$ csplit -q purchases.txt '/xyz/'
+</code></pre><blockquote><p><img alt=warning src=./images/warning.svg> You'll get an error if the given regexp isn't found in the input.<pre><code class=language-bash>$ csplit -q purchases.txt '/xyz/'
 csplit: ‘/xyz/’: match not found
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn about regexp syntax and features.</blockquote><h2 id=regexp-offset><a class=header href=#regexp-offset>Regexp offset</a></h2><p>You can also provide offset numbers that'll affect where the matching line and its surrounding lines should be placed. When the offset is greater than zero, the split will happen that many lines after the matching line. The default offset is zero.<pre><code class=language-bash># when the offset is '1', matching line will be part of the first file
+</code></pre></blockquote><blockquote><p><img alt=info src=./images/info.svg> See the <a href=https://learnbyexample.github.io/learn_gnugrep_ripgrep/breere-regular-expressions.html>Regular Expressions</a> chapter from my <strong>GNU grep</strong> ebook if you want to learn more about regexp syntax and features.</blockquote><h2 id=regexp-offset><a class=header href=#regexp-offset>Regexp offset</a></h2><p>You can also provide offset numbers that'll affect where the matching line and its surrounding lines should be placed. When the offset is greater than zero, the split will happen that many lines after the matching line. The default offset is zero.<pre><code class=language-bash># when the offset is '1', the matching line will be part of the first file
 $ csplit -q purchases.txt '/t.*p/1'
 $ head xx*
 ==> xx00 <==
@@ -100,8 +90,6 @@ toothpaste
 tea
 soap
 tea
-
-$ rm xx*
 
 # matching line and 1 line after won't be part of the output
 $ csplit -q purchases.txt '%t.*p%2'
@@ -122,14 +110,14 @@ toothpaste
 tea
 soap
 tea
-</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> You'll get an error if the offset goes beyond the number of lines available in the input.</blockquote><pre><code class=language-bash>$ csplit -q purchases.txt '/t.*p/5'
+</code></pre><blockquote><p><img alt=warning src=./images/warning.svg> You'll get an error if the offset goes beyond the number of lines available in the input.<pre><code class=language-bash>$ csplit -q purchases.txt '/t.*p/5'
 csplit: ‘/t.*p/5’: line number out of range
 
 $ csplit -q purchases.txt '/t.*p/-5'
 csplit: ‘/t.*p/-5’: line number out of range
-</code></pre><h2 id=repeat-split><a class=header href=#repeat-split>Repeat split</a></h2><p>You can perform line number and regexp based split more than once by adding <code>{N}</code> argument after the pattern. Default behavior examples seen so far is same as specifying <code>{0}</code>. Any number greater than zero will result in that many more splits.<pre><code class=language-bash># {1} means split one time more than the default split
+</code></pre></blockquote><h2 id=repeat-split><a class=header href=#repeat-split>Repeat split</a></h2><p>You can perform line number and regexp based split more than once by adding the <code>{N}</code> argument after the pattern. Default behavior examples seen so far is same as specifying <code>{0}</code>. Any number greater than zero will result in that many more splits.<pre><code class=language-bash># {1} means split one time more than the default split
 # so, two splits in total and three output files
-# in this example, split happens on 4th and 8th line numbers
+# in this example, split happens on the 4th and 8th line numbers
 $ seq 10 | csplit -q - 4 '{1}'
 
 $ head xx*
@@ -148,7 +136,7 @@ $ head xx*
 8
 9
 10
-</code></pre><p>Here's an example with regexp:<pre><code class=language-bash>$ cat log.txt 
+</code></pre><p>Here's an example with regexp:<pre><code class=language-bash>$ cat log.txt
 --> warning 1
 a,b,c,d
 42
@@ -157,9 +145,9 @@ x,y,z
 --> warning 3
 4,3,1
 
-# split on 3rd (2+1) occurrence of a line containing 'warning'
+# split on the third (2+1) occurrence of a line containing 'warning'
 $ csplit -q log.txt '%warning%' '{2}'
-$ cat xx00 
+$ cat xx00
 --> warning 3
 4,3,1
 </code></pre><p>As a special case, you can use <code>{*}</code> to repeat the split until the input is exhausted. This is especially useful with the <code>/regexp/</code> form of splitting. Here's an example:<pre><code class=language-bash># split on all lines matching 'paste' or 'powder'
@@ -178,19 +166,19 @@ toothpaste
 tea
 soap
 tea
-</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> You'll get an error if the repeat count goes beyond the number of matches possible with the given input.</blockquote><pre><code class=language-bash>$ seq 10 | csplit -q - 4 '{2}'
+</code></pre><blockquote><p><img alt=warning src=./images/warning.svg> You'll get an error if the repeat count goes beyond the number of matches possible with the given input.<pre><code class=language-bash>$ seq 10 | csplit -q - 4 '{2}'
 csplit: ‘4’: line number out of range on repetition 2
 
 $ csplit -q purchases.txt '/tea/' '{4}'
 csplit: ‘/tea/’: match not found on repetition 3
-</code></pre><h2 id=keep-files-on-error><a class=header href=#keep-files-on-error>Keep files on error</a></h2><p>By default, <code>csplit</code> will remove the created output files if there's an error or a signal that causes the command to stop. You can use the <code>-k</code> option to keep such files. One use case is line number based splitting with the <code>{*}</code> modifier.<pre><code class=language-bash>$ seq 10 | csplit -q - 4 '{*}'
-csplit: ‘4’: line number out of range on repetition 2
+</code></pre></blockquote><h2 id=keep-files-on-error><a class=header href=#keep-files-on-error>Keep files on error</a></h2><p>By default, <code>csplit</code> will remove the created output files if there's an error or a signal that causes the command to stop. You can use the <code>-k</code> option to keep such files. One use case is line number based splitting with the <code>{*}</code> modifier.<pre><code class=language-bash>$ seq 7 | csplit -q - 4 '{*}'
+csplit: ‘4’: line number out of range on repetition 1
 $ ls xx*
 ls: cannot access 'xx*': No such file or directory
 
 # -k option will allow you to retain the created files
-$ seq 10 | csplit -qk - 4 '{*}'
-csplit: ‘4’: line number out of range on repetition 2
+$ seq 7 | csplit -qk - 4 '{*}'
+csplit: ‘4’: line number out of range on repetition 1
 $ head xx*
 ==> xx00 <==
 1
@@ -202,11 +190,6 @@ $ head xx*
 5
 6
 7
-
-==> xx02 <==
-8
-9
-10
 </code></pre><h2 id=suppress-matched-lines><a class=header href=#suppress-matched-lines>Suppress matched lines</a></h2><p>The <code>--suppress-matched</code> option will suppress the lines matching the split condition.<pre><code class=language-bash>$ seq 5 | csplit -q --suppress-matched - 3
 # 3rd line won't be part of the output
 $ head xx*
@@ -250,22 +233,8 @@ tea
 
 ==> xx02 <==
 tea
-</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> Suppressing matched lines for regexp based split other than <code>{*}</code> usage doesn't give expected results. See <a href=https://lists.gnu.org/archive/html/bug-coreutils/2020-08/msg00006.html>this bug report</a> for more details. This bug has been fixed in <a href=https://lists.gnu.org/archive/html/coreutils-announce/2021-09/msg00000.html>coreutils version 9.0</a>.</blockquote><pre><code class=language-bash>$ seq 11 14 | csplit -q --suppress-matched - '/3/'
-# the matching line wasn't suppressed
-$ head xx*
-==> xx00 <==
-11
-12
-
-==> xx01 <==
-13
-14
-
-$ rm xx*
-
-$ seq 11 16 | csplit -q --suppress-matched - '/[35]/' '{1}'
-# the first matching line was correctly suppressed
-# but the second matching line wasn't suppressed
+</code></pre><p>Here's another example:<pre><code class=language-bash>$ seq 11 16 | csplit -q --suppress-matched - '/[35]/' '{1}'
+# lines matching '3' or '5' won't be part of the output
 $ head xx*
 ==> xx00 <==
 11
@@ -275,9 +244,10 @@ $ head xx*
 14
 
 ==> xx02 <==
-15
 16
-</code></pre><h2 id=exclude-empty-files><a class=header href=#exclude-empty-files>Exclude empty files</a></h2><p>There are various cases that can result in empty output files. For example, first or last line matching the given split condition. Another possibility is <code>--suppress-matched</code> option combined with consecutive lines matching during multiple splits. Here's an example:<pre><code class=language-bash>$ csplit -q --suppress-matched purchases.txt '/coffee\|tea/' '{*}'
+
+$ rm xx*
+</code></pre><h2 id=exclude-empty-files><a class=header href=#exclude-empty-files>Exclude empty files</a></h2><p>There are various cases that can result in empty output files. For example, first or last line matching the given split condition. Another possibility is the <code>--suppress-matched</code> option combined with consecutive lines matching during multiple splits. Here's an example:<pre><code class=language-bash>$ csplit -q --suppress-matched purchases.txt '/coffee\|tea/' '{*}'
 
 $ head xx*
 ==> xx00 <==
@@ -323,7 +293,7 @@ $ rm xx*
 $ seq 4 | csplit -q -n3 - 3
 $ ls xx*
 xx000  xx001
-</code></pre><p>The <code>-b</code> option allows you to control the suffix using <code>printf</code> formatting. Quoting from the <a href=https://www.gnu.org/software/coreutils/manual/html_node/csplit-invocation.html>manual</a>:<blockquote><p>When this option is specified, the suffix string must include exactly one <code>printf(3)</code>-style conversion specification, possibly including format specification flags, a field width, a precision specifications, or all of these kinds of modifiers. The format letter must convert a binary unsigned integer argument to readable form. The format letters <code>d</code> and <code>i</code> are aliases for <code>u</code>, and the <code>u</code>, <code>o</code>, <code>x</code>, and <code>X</code> conversions are allowed.</blockquote><p>Here's some examples:<pre><code class=language-bash># hexadecimal numbering
+</code></pre><p>The <code>-b</code> option allows you to control the suffix using the <code>printf</code> formatting. Quoting from the <a href=https://www.gnu.org/software/coreutils/manual/html_node/csplit-invocation.html>manual</a>:<blockquote><p>When this option is specified, the suffix string must include exactly one <code>printf(3)</code>-style conversion specification, possibly including format specification flags, a field width, a precision specifications, or all of these kinds of modifiers. The format letter must convert a binary unsigned integer argument to readable form. The format letters <code>d</code> and <code>i</code> are aliases for <code>u</code>, and the <code>u</code>, <code>o</code>, <code>x</code>, and <code>X</code> conversions are allowed.</blockquote><p>Here are some examples:<pre><code class=language-bash># hexadecimal numbering
 # minimum two digits, zero filled
 $ seq 100 | csplit -q -b'%02x' - 3 '{20}'
 $ ls xx*
@@ -332,10 +302,139 @@ xx01  xx03  xx05  xx07  xx09  xx0b  xx0d  xx0f  xx11  xx13  xx15
 $ rm xx*
 
 # custom prefix and suffix around decimal numbering
-# default minimum is single digit
+# default minimum is a single digit
 $ seq 20 | csplit -q -f'num_' -b'%d.txt' - 3 '{4}'
 $ ls num_*
 num_0.txt  num_1.txt  num_2.txt  num_3.txt  num_4.txt  num_5.txt
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Note that the <code>-b</code> option will override the <code>-n</code> option. See <code>man 3 printf</code> for more details about the formatting options.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=split.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=expand-unexpand.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=split.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=expand-unexpand.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
-            window.playground_copyable = true;
-        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> Note that the <code>-b</code> option will override the <code>-n</code> option. See <code>man 3 printf</code> for more details about the formatting options.</blockquote><h2 id=exercises><a class=header href=#exercises>Exercises</a></h2><blockquote><p><img alt=info src=images/info.svg> The <a href=https://github.com/learnbyexample/cli_text_processing_coreutils/tree/main/exercises>exercises</a> directory has all the files used in this section.</blockquote><blockquote><p><img alt=info src=./images/info.svg> Remove the output files after every exercise.</blockquote><p><strong>1)</strong> Split the <code>blocks.txt</code> file such that the first 7 lines are in the first file and the rest are in the second file as shown below.<pre><code class=language-bash>##### add your solution here
+
+$ head xx*
+==> xx00 <==
+----
+apple--banana
+mango---fig
+----
+3.14
+-42
+1000
+
+==> xx01 <==
+----
+sky blue
+dark green
+----
+hi hello
+
+$ rm xx*
+</code></pre><p><strong>2)</strong> Split the input file <code>items.txt</code> such that the text before a line containing <code>colors</code> is part of the first file and the rest are part of the second file as shown below.<pre><code class=language-bash>##### add your solution here
+
+$ head xx*
+==> xx00 <==
+1) fruits
+apple 5
+banana 10
+
+==> xx01 <==
+2) colors
+green
+sky blue
+3) magical beasts
+dragon 3
+unicorn 42
+
+$ rm xx*
+</code></pre><p><strong>3)</strong> Split the input file <code>items.txt</code> such that the line containing <code>magical</code> and all the lines that come after are part of the single output file.<pre><code class=language-bash>##### add your solution here
+
+$ cat xx00
+3) magical beasts
+dragon 3
+unicorn 42
+
+$ rm xx00
+</code></pre><p><strong>4)</strong> Split the input file <code>items.txt</code> such that the line containing <code>colors</code> as well the line that comes after are part of the first output file.<pre><code class=language-bash>##### add your solution here
+
+$ head xx*
+==> xx00 <==
+1) fruits
+apple 5
+banana 10
+2) colors
+green
+
+==> xx01 <==
+sky blue
+3) magical beasts
+dragon 3
+unicorn 42
+
+$ rm xx*
+</code></pre><p><strong>5)</strong> Split the input file <code>items.txt</code> on the line that comes before a line containing <code>magical</code>. Generate only a single output file as shown below.<pre><code class=language-bash>##### add your solution here
+
+$ cat xx00
+sky blue
+3) magical beasts
+dragon 3
+unicorn 42
+
+$ rm xx00
+</code></pre><p><strong>6)</strong> Split the input file <code>blocks.txt</code> on the 4th occurrence of a line starting with the <code>-</code> character. Generate only a single output file as shown below.<pre><code class=language-bash>##### add your solution here
+
+$ cat xx00
+----
+sky blue
+dark green
+----
+hi hello
+
+$ rm xx00
+</code></pre><p><strong>7)</strong> For the input file <code>blocks.txt</code>, determine the logic to produce the expected output shown below.<pre><code class=language-bash>##### add your solution here
+
+$ head xx*
+==> xx00 <==
+apple--banana
+mango---fig
+
+==> xx01 <==
+3.14
+-42
+1000
+
+==> xx02 <==
+sky blue
+dark green
+
+==> xx03 <==
+hi hello
+
+$ rm xx*
+</code></pre><p><strong>8)</strong> What does the <code>-k</code> option do?<p><strong>9)</strong> Split the <code>books.txt</code> file on every line as shown below.<pre><code class=language-bash>##### add your solution here
+csplit: ‘1’: line number out of range on repetition 3
+
+$ head row_*
+==> row_0 <==
+Cradle:::Mage Errant::The Weirkey Chronicles
+
+==> row_1 <==
+Mother of Learning::Eight:::::Dear Spellbook:Ascendant
+
+==> row_2 <==
+Mark of the Fool:Super Powereds:::Ends of Magic
+
+$ rm row_*
+</code></pre><p><strong>10)</strong> Split the <code>items.txt</code> file on lines starting with a digit character. Matching lines shouldn't be part of the output and the files should be named <code>group_0.txt</code>, <code>group_1.txt</code> and so on.<pre><code class=language-bash>##### add your solution here
+
+$ head group_*
+==> group_0.txt <==
+apple 5
+banana 10
+
+==> group_1.txt <==
+green
+sky blue
+
+==> group_2.txt <==
+dragon 3
+unicorn 42
+
+$ rm group_*
+</code></pre></main><nav aria-label="Page navigation"class=nav-wrapper><a aria-label="Previous chapter"class="mobile-nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=split.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="mobile-nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=expand-unexpand.html rel=next> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav aria-label="Page navigation"class=nav-wide-wrapper><a aria-label="Previous chapter"class="nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=split.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=expand-unexpand.html rel=next> <i class="fa fa-angle-right"></i> </a></nav></div><script>window.playground_copyable = true;</script><script charset=utf-8 src=elasticlunr.min.js></script><script charset=utf-8 src=mark.min.js></script><script charset=utf-8 src=searcher.js></script><script charset=utf-8 src=clipboard.min.js></script><script charset=utf-8 src=highlight.js></script><script charset=utf-8 src=book.js></script><script src=sidebar.js></script>
