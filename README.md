@@ -37,6 +37,10 @@ For web version of the book, visit https://learnbyexample.github.io/cli_text_pro
 >
 > — book review by Jesse Smith on [distrowatch.com](https://distrowatch.com/weekly.php?issue=20211206#book)
 
+>I discovered your books recently and they’re awesome, thank you! As a 20 year *nix they made me realize how much more there are to these rock solid and ancient tools, once you spend the time to actually learn the intricacies of them.
+>
+> — feedback on [reddit](https://old.reddit.com/r/commandline/comments/1byumd6/learn_gnu_coreutils_text_processing_tools_like/l2pk5bd/)
+
 <br>
 
 # Feedback
